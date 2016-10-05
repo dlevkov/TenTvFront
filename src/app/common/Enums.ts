@@ -11,11 +11,11 @@ export enum ApiControllers {
     EpisodeController = VodServices.episode
 }
 export enum ImageTypes {
-    Avatar,
-    Small,
-    Standart,
-    Medium,
-    Big
+    Thumbnail_109_59,
+    Small_303_165,
+    Standard_606_366,
+    Medium_460_258,
+    Big_768_400
 }
 export enum HeadlineItemTypes {
     Big = 10,

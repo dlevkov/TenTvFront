@@ -82,7 +82,7 @@
     ],
     "max-line-length": [
       true,
-      100
+      200
     ],
     "no-require-imports": false,
     "no-trailing-whitespace": true,
@@ -123,7 +123,8 @@
       true,
       "check-format",
       "allow-leading-underscore",
-      "ban-keywords"
+      "ban-keywords",
+      "allow-pascal-case"
     ],
     "whitespace": [
       true,

@@ -21,7 +21,7 @@ export class ArticleComponent implements OnInit {
         this._currentId = +this.route.snapshot.params['id'];
     }
     getItems() {
-        this._service.GetItemsByUri('').subscribe(data =>
+        this._service.GetItemsByUri('/TenTvAppFront/article').subscribe(data =>
             this.items = data);
     }
 }

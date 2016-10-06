@@ -1,9 +1,9 @@
-import { MainModel } from '../../common/models/headline.model';
+import { HeadlineModel } from '../../common/models/headline.model';
 
 export class SectionModel {
     SectionId?: number;
     IconUrl2?: string;
-    Headlines: MainModel[] = [];
+    Headlines: HeadlineModel[] = [];
 
     constructor(data: any[]) {
         this.SectionId = +data[0].SectionId;
@@ -14,7 +14,7 @@ export class SectionModel {
             element.DestArticleID = element.ArticleID; // renaming for next operation
             element.LastModifyDate = element.ModifyDate;
 
-            this.Headlines.push(new MainModel(element));
+            this.Headlines.push(new HeadlineModel(element));
         });
     }
 }

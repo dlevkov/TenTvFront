@@ -5,11 +5,11 @@
         <img [src]='item?.ImageFile' alt="">
     </div>
     <div id="ArticleListContainer">
-        <div *ngFor="let headline of item">
+        <div *ngFor="let headline of item?.Headlines">
 
 
-            <headline-big [item]='headline' *ngIf="headline.Id%4===0"></headline-big>
-            <headline-small *ngIf="headline.Id%4!=0"></headline-small>
+            <!--<headline-big [item]='headline' *ngIf="headline.Id%4===0"></headline-big>
+            <headline-small *ngIf="headline.Id%4!=0"></headline-small>-->
         </div>
     </div>
 </div>

@@ -13,7 +13,7 @@ export class SectionService {
         this._dal = new Dal(http);
     }
 
-    GetItemsByUri(uri: string) {;
+    GetItemsByUri(uri: string) {
         return this._dal.GetItemsByUri(uri)
             .map(data => {
                 return new SectionModel(data);

@@ -24,7 +24,7 @@ export class ArticleComponent implements OnInit {
         this.getItems();
     }
     getItems() {
-        this._service.GetItemsByUri('/TenTvAppFront/article').subscribe(data =>
+        this._service.GetItemsByUri('TenTvAppFront/section?article?%24filter=ArticleID%20eq%' + this._currentId).subscribe(data =>
             this.item = data);
     }
 }

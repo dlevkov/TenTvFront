@@ -11,8 +11,10 @@ export class ParagraphModel {
     ThumbPicLink: string;
     PicMediaStockImageAlt: string;
     PicMediaStockImageCredit: string;
+    DisplayOrder: number;
 
     constructor(data: any) {
+        this.DisplayOrder = data.DisplayOrder;
         this.MediaStockImageAlt = data.MediaStockImageAlt;
         this.MediaStockImageCredit = data.MediaStockImageCredit;
         this.Title = data.Title;

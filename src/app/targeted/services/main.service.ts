@@ -6,17 +6,17 @@ import { SectionModel } from '../models/section.model';
 import { Dal } from '../../common/services/dal.service';
 
 @Injectable()
-export class SectionService {
+export class MainService {
     private _dal: Dal;
 
     constructor(http: Http) {
         this._dal = new Dal(http);
     }
 
-    GetItemsByUri(uri: string) {
+    GetItemsByUri(uri: string) {;
         return this._dal.GetItemsByUri(uri)
             .map(data => {
-                return new SectionModel(data);
+                return new MainModel(data);
             });
     }
 }

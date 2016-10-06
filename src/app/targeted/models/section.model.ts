@@ -1,5 +1,6 @@
 import { HeadlineModel } from '../../common/models/headline.model';
 import { Constants } from '../../common/Constants';
+
 export class SectionModel {
     SectionID?: number;
     IconURL2?: string;

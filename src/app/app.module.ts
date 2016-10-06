@@ -14,7 +14,9 @@ import { ROUTES } from './app.routes';
 import { App } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
+
 import { NoContent } from './common/components/no-content';
+import { SectionComponent } from './targeted/components/section.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -32,10 +34,11 @@ type StoreType = {
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */
 @NgModule({
-  bootstrap: [ App ],
+  bootstrap: [App],
   declarations: [
     App,
-    NoContent
+    NoContent,
+    SectionComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
@@ -49,7 +52,7 @@ type StoreType = {
   ]
 })
 export class AppModule {
-  constructor(public appRef: ApplicationRef, public appState: AppState) {}
+  constructor(public appRef: ApplicationRef, public appState: AppState) { }
 
   hmrOnInit(store: StoreType) {
     if (!store || !store.state) return;
@@ -75,7 +78,7 @@ export class AppModule {
     // recreate root elements
     store.disposeOldHosts = createNewHosts(cmpLocation);
     // save input values
-    store.restoreInputValues  = createInputTransfer();
+    store.restoreInputValues = createInputTransfer();
     // remove styles
     removeNgStyles();
   }

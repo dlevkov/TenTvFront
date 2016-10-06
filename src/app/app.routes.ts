@@ -6,6 +6,7 @@ import { DataResolver } from './app.resolver';
 
 export const ROUTES: Routes = [
   { path: '', component: NoContent },
+  { path: 'section/:id', component: SectionComponent },
   { path: '**', component: NoContent },
-  { path: 'section:id', component: SectionComponent }
+
 ];

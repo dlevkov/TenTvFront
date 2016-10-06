@@ -24,8 +24,8 @@ import { AppState } from './app.service';
       </span>
       |
       <span>
-        <a [routerLink]=" ['./home'] ">
-          Home
+        <a [routerLink]=" ['./section/13118'] ">
+          Section
         </a>
       </span>
       |

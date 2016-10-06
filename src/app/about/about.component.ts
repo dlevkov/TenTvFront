@@ -34,7 +34,7 @@ export class About {
 
   ngOnInit() {
     this.route
-      .data
+      .data      
       .subscribe((data: any) => {
         // your resolved data from route
         this.localState = data.yourData;

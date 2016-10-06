@@ -4,12 +4,13 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription, BehaviorSubject } from 'rxjs/Rx';
 import { MainService } from '../services/main.service';
 import { HeadlineModel } from '../../common/models/headline.model';
+import { MainModel } from '../../targeted/models/main.model';
 @Component({
     selector: 'main',
     templateUrl: 'main.component.html'
 })
 export class MainComponent implements OnInit {
-    items: HeadlineModel[];
+    item: MainModel;
     private _currentId: number;
     private _service: MainService;
 
@@ -22,6 +23,6 @@ export class MainComponent implements OnInit {
     }
     getItems() {
         this._service.GetItemsByUri('').subscribe(data =>
-            this.items = data);
+            this.item = data);
     }
 }

@@ -15,14 +15,8 @@ export class MainService {
 
     GetItemsByUri(uri: string) {;
         return this._dal.GetItemsByUri(uri)
-            .map((seasons: Array<HeadlineModel>) => {
-                let result: Array<HeadlineModel> = [];
-                if (seasons) {
-                    seasons.forEach((season: HeadlineModel) => {
-                        result.push(new HeadlineModel(season));
-                    });
-                }
-                return result;
+            .map(data => {
+                return new MainModel(data);
             });
     }
 }

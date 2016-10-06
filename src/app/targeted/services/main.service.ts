@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { Constants } from '../../common/Constants';
-import { SectionModel } from '../models/section.model';
+import { MainModel } from '../models/main.model';
 import { Dal } from '../../common/services/dal.service';
 
 @Injectable()

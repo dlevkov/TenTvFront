@@ -17,6 +17,9 @@ export class HeadlineModel {
     DisplaySigns?: number;
     LastModifyDate?: string;
     CounterId: number;
+    get isBig(): boolean {
+        return this.CounterId % 4 === 0;
+    }
 
     constructor(parameters) {
         this.DestArticleID = parameters.DestArticleID;
@@ -33,5 +36,6 @@ export class HeadlineModel {
         this.VideoID = parameters.VideoID;
         this.DisplaySigns = parameters.DisplaySigns;
         this.LastModifyDate = parameters.LastModifyDate;
+        this.CounterId = parameters.Id;
     }
 }

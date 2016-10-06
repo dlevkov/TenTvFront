@@ -18,7 +18,8 @@ import { AppState, InternalStateType } from './app.service';
 
 import { NoContent } from './common/components/no-content';
 import { SectionComponent } from './targeted/components/section.component';
-import { HearlineSmallComponent } from './common/components/headline-small.component';
+import { HeadlineBigComponent } from './common/components/headlines/headline-big.component';
+import { HeadlineSmallComponent } from './common/components/headlines/headline-small.component';
 import { MainComponent } from './targeted/components/main.component';
 
 // Application wide providers
@@ -42,7 +43,9 @@ type StoreType = {
     App,
     NoContent,
     SectionComponent,
-    MainComponent
+    MainComponent,
+    HeadlineSmallComponent,
+    HeadlineBigComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,

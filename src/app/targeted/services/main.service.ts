@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Rx';
 import { Constants } from '../../common/Constants';
 import { SectionModel } from '../models/section.model';
 import { Dal } from '../../common/services/dal.service';
-
+import { HeadlineModel } from '../../common/models/headline.model';
 @Injectable()
 export class MainService {
     private _dal: Dal;
@@ -15,8 +15,14 @@ export class MainService {
 
     GetItemsByUri(uri: string) {;
         return this._dal.GetItemsByUri(uri)
-            .map(data => {
-                return new MainModel(data);
+            .map((seasons: Array<HeadlineModel>) => {
+                let result: Array<HeadlineModel> = [];
+                if (seasons) {
+                    seasons.forEach((season: HeadlineModel) => {
+                        result.push(new HeadlineModel(season));
+                    });
+                }
+                return result;
             });
     }
 }

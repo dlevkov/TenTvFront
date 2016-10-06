@@ -4,8 +4,8 @@
         <a href="article_gallery.html" class="rsvp_imag_expand"></a>
          <img [src]='item?.ImageFile' alt="">
     </div>
-    
-    <div id="ArticleListContainer">
-       <h1>{{item?.SectionID}}</h1>
+    <div id="ArticleListContainer" *ngFor="let headline of item">
+       <headline-big [item]='headline' *ngIf="headline.Id%4===0"></headline-big>
+       <!--<headline-small *ngIf="headline.Id%4!=0"></headline-small>-->
     </div>
 </div>

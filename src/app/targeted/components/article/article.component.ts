@@ -20,6 +20,7 @@ export class ArticleComponent implements OnInit {
 
     ngOnInit() {
         this._currentId = +this.route.snapshot.params['id'];
+       
         this.getItems();
     }
     getItems() {

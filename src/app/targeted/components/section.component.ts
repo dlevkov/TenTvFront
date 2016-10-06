@@ -27,7 +27,7 @@ export class SectionComponent implements OnInit, OnDestroy {
 
     getItems() {
         this._subscriber = this._service
-            .GetItemsByUri('TenTvAppFront/section?%24filter=SectionID%20eq%20' + this._currentId + '&%24orderby=DisplayOrder%20desc')
+            .GetItemsByUri('TenTvAppFront/section?article?%24filter=ArticleID%20eq%' + this._currentId)
             .subscribe(data => {
                 this.item = data;
             });

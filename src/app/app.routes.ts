@@ -3,6 +3,7 @@ import { NoContent } from './common/components/no-content';
 import { SectionComponent } from './targeted/components/section.component';
 import { MainComponent } from './targeted/components/main.component';
 import { DataResolver } from './app.resolver';
+import { ArticleModel } from './targeted/models/article.model';
 
 
 export const ROUTES: Routes = [

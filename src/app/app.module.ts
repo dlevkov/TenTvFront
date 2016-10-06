@@ -18,7 +18,9 @@ import { AppState, InternalStateType } from './app.service';
 
 import { NoContent } from './common/components/no-content';
 import { SectionComponent } from './targeted/components/section.component';
-import { HearlineSmallComponent } from './common/components/headline-small.component';
+import { HeadlineBigComponent } from './common/components/headlines/headline-big.component';
+import { HeadlineSmallComponent } from './common/components/headlines/headline-small.component';
+import { ArticleComponent } from './targeted/components/article/article.component';
 import { MainComponent } from './targeted/components/main.component';
 
 // Application wide providers
@@ -41,14 +43,17 @@ type StoreType = {
   declarations: [
     App,
     NoContent,
+    ArticleComponent,
     SectionComponent,
-    MainComponent
+    MainComponent,
+    HeadlineSmallComponent,
+    HeadlineBigComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: true })
+    RouterModule.forRoot(ROUTES, { useHash: false })
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,

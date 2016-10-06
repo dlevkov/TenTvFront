@@ -16,6 +16,7 @@ export class HeadlineModel {
     VideoID?: number;
     DisplaySigns?: number;
     LastModifyDate?: string;
+    CounterId: number;
 
     constructor(parameters) {
         this.DestArticleID = parameters.DestArticleID;

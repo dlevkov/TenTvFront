@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription, BehaviorSubject } from 'rxjs/Rx';
-import { ArticleService } from '../services/article.service';
-import { ArticleModel } from '../models/article.model';
+import { ArticleService } from '../../services/article.service';
+import { ArticleModel } from '../../models/article.model';
 
 @Component({
     selector: 'article',

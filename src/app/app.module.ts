@@ -17,6 +17,7 @@ import { AppState, InternalStateType } from './app.service';
 
 import { NoContent } from './common/components/no-content';
 import { SectionComponent } from './targeted/components/section.component';
+import { ArticleComponent } from './targeted/components/article/article.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -38,7 +39,7 @@ type StoreType = {
   declarations: [
     App,
     NoContent,
-    SectionComponent
+    SectionComponent, ArticleComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,

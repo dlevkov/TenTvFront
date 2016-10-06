@@ -1,7 +1,7 @@
 /**
  * MainModel
  */
-export class MainModel {
+export class HeadlineModel {
     DestArticleID?: number;
     DisplayOrder?: number;
     Title?: string;

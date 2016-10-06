@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 
+
 /*
  * Platform and Environment providers/directives/pipes
  */
@@ -18,6 +19,8 @@ import { AppState, InternalStateType } from './app.service';
 import { NoContent } from './common/components/no-content';
 import { SectionComponent } from './targeted/components/section.component';
 import { ArticleComponent } from './targeted/components/article/article.component';
+import { HearlineSmallComponent } from './common/components/headline-small.component';
+import { MainComponent } from './targeted/components/main.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -39,7 +42,9 @@ type StoreType = {
   declarations: [
     App,
     NoContent,
-    SectionComponent, ArticleComponent
+    ArticleComponent,
+    SectionComponent,
+    MainComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,

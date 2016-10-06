@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription, BehaviorSubject } from 'rxjs/Rx';
@@ -9,14 +9,15 @@ import { SectionModel } from '../models/section.model';
     selector: 'section',
     templateUrl: 'section.component.html'
 })
-export class SectionComponent implements OnInit {
+export class SectionComponent implements OnInit, OnDestroy {
     item: SectionModel;
+
     private _currentId: number;
     private _service: SectionService;
+    private _subscriber: Subscription;
 
     constructor(public route: ActivatedRoute, http: Http) {
         this._service = new SectionService(http);
-        console.log('section ctor');
     }
 
     ngOnInit() {
@@ -25,7 +26,13 @@ export class SectionComponent implements OnInit {
     }
 
     getItems() {
-        this._service.GetItemsByUri('TenTvAppFront/section?%24filter=SectionID%20eq%2013118&%24orderby=DisplayOrder%20desc').subscribe(data =>
-            this.item = data);
+        this._subscriber = this._service
+            .GetItemsByUri('TenTvAppFront/section?%24filter=SectionID%20eq%20' + this._currentId + '&%24orderby=DisplayOrder%20desc')
+            .subscribe(data => {
+                this.item = data;
+            });
+    }
+    ngOnDestroy() {
+        this._subscriber.unsubscribe();
     }
 }

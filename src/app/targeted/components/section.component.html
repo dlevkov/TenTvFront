@@ -1,3 +1,11 @@
-<h1> hello </h1>
-<h2>{{item?.SectionId}}</h2> 
-<h3 *ngFor="let headline of item?.Headlines">{{headline.Title}}</h3>
+<div id="SectionMainContainer">
+   
+    <div class="rsvp_image_with_caption" *ngIf="item?.IconURL2" >
+        <a href="article_gallery.html" class="rsvp_imag_expand"></a>
+         <img [src]='item?.ImageFile' alt="">
+    </div>
+    
+    <div id="ArticleListContainer">
+       <h1>{{item?.SectionID}}</h1>
+    </div>
+</div>

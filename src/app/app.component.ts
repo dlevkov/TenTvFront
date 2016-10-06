@@ -16,13 +16,8 @@ import { AppState } from './app.service';
     './app.style.css'
   ],
   template: `
-<<<<<<< HEAD
-
-      <router-outlet></router-outlet>
-
-=======
           <router-outlet></router-outlet>
->>>>>>> 5d4a8f3a5d166011d729d0868f0550afff8f1179
+
   `
 })
 export class App {

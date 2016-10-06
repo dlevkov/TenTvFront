@@ -2,19 +2,22 @@ import { Injectable, Inject } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { Constants } from '../../common/Constants';
+import { ArticleModel } from '../models/article.model';
+import { Dal } from '../../common/services/dal.service';
 
 @Injectable()
 export class ArticleService {
-    private _dataDomain: string = Constants.DATA_DOMAIN;
+    private _dal: Dal;
 
-    constructor( @Inject(Http) private _http: Http) { }
+    constructor(http: Http) {
+        this._dal = new Dal(http);
+    }
 
     GetItemsByUri(uri: string) {
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        return this._http.get(this._dataDomain + uri)
-            .map((res: Response) => res.json())
-            .catch(this.handleError);
+        return this._dal.GetItemsByUri(uri)
+            .map(data => {
+                return new ArticleModel(data);
+            });
     }
     public handleError(error: Response) {
         console.error(error);

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -11,12 +12,12 @@
   <meta name="description" content="<%= webpackConfig.metadata.title %>">
 
   <% if (webpackConfig.htmlElements.headTags) { %>
-  <!-- Configured Head Tags  -->
-  <%= webpackConfig.htmlElements.headTags %>
-  <% } %>
+    <!-- Configured Head Tags  -->
+    <%= webpackConfig.htmlElements.headTags %>
+      <% } %>
 
-  <!-- base url -->
-  <base href="<%= webpackConfig.metadata.baseUrl %>">
+        <!-- base url -->
+        <base href="<%= webpackConfig.metadata.baseUrl %>">
 
 
 </head>
@@ -24,11 +25,17 @@
 <body>
 
   <app>
-    Loading..
+    Loading...
   </app>
+
   <% if (webpackConfig.metadata.isDevServer && webpackConfig.metadata.HMR !== true) { %>
-  <!-- Webpack Dev Server reload -->
-  <script src="/webpack-dev-server.js"></script>
-  <% } %>
+    <!-- Webpack Dev Server reload -->
+    <script src="/webpack-dev-server.js"></script>
+    <% } %>
+
+
+
+
 </body>
+
 </html>

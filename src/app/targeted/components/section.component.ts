@@ -8,9 +8,10 @@ import { SectionService } from '../services/section.service';
     templateUrl: 'section.component.html'
 })
 export class SectionComponent implements OnInit {
+    items: any[];
     private _currentId: number;
     private _service: SectionService;
-    items: any[];
+
     constructor(public route: ActivatedRoute, http: Http) {
         this._service = new SectionService(http);
     }

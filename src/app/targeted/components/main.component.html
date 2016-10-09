@@ -2,7 +2,10 @@
     <div *ngFor="let headline of item?.Headlines">
         <div data-id={{headline.CounterId}}>
             <headline-main [item]='headline' *ngIf="headline.CounterId===0"></headline-main>
-            <headline-big [item]='headline' *ngIf="headline.CounterId<=4 && headline.CounterId>0"></headline-big>
+            <headline-alert [item]='headline' *ngIf="isAlert(headline)"></headline-alert>
+            <headline-big [item]='headline' *ngIf="isBig(headline)"></headline-big>
+            
+            <!--<headline-pair [item]='headline' *ngIf="isPair(headline)"></headline-pair>-->
         </div>
     </div>
 </div>

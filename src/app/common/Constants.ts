@@ -14,6 +14,7 @@ export class Constants {
             case ImageTypes.Thumbnail_109_59:
                 currentType = 28;
                 break;
+            case ImageTypes.Main_303_165:
             case ImageTypes.Small_303_165:
                 currentType = 493;
                 break;
@@ -35,6 +36,12 @@ export class Constants {
             case ImageTypes.Headline_Small_303_165:
                 currentType = 493;
                 break;
+            case ImageTypes.Main_450_450:
+                currentType = 76;
+                break;
+
+
+
             default:
                 throw new EvalError('Not implemented ImageType:' + item);
         }

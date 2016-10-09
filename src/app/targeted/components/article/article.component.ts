@@ -14,7 +14,7 @@ export class ArticleComponent implements OnInit {
     item: ArticleModel;
     private _currentId: number;
     private _service: ArticleService;
-    _loadingUrl: string = Constants.IMAGE_LOADING_URL16_9;
+    private _loadingUrl: string = Constants.IMAGE_LOADING_URL16_9;
 
     constructor(public route: ActivatedRoute, http: Http) {
         this._service = new ArticleService(http);
@@ -27,10 +27,10 @@ export class ArticleComponent implements OnInit {
 
     getItems() {
         this._service.GetItemsByUri('TenTvAppFront/article?$filter=ArticleID eq ' + this._currentId)
-        .subscribe(data =>{
-            this.item = data;
-            this._loadingUrl = this.item.TitlePic;
-    });
+            .subscribe(data => {
+                this.item = data;
+                this._loadingUrl = this.item.TitlePic;
+            });
 
 
     }

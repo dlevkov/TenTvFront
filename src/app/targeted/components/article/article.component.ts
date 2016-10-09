@@ -32,6 +32,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
                 this.item = data;
                 this._loadingUrl = this.item.TitlePic;
             });
+
     }
     ngOnDestroy() {
         this._subscriber.unsubscribe();

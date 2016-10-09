@@ -10,3 +10,4 @@ export class HeadlineMainComponent implements OnInit {
 
     ngOnInit() { }
 }
+

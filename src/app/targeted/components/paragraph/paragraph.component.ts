@@ -22,8 +22,7 @@ export class ParagraphComponent implements OnInit {
         this._loadingUrl = this.item.ImageSrc;
     }
     // encodeString():string {       
-    //   let encodedeString = this.domElement.nativeElement.encodeString(item.ParagraphContent);
-    //    console.log("encode: " + encodedeString);
-    //   return item.ParagraphContent;
+    //   document.getElementsByClassName('');
+    //   return encodedeString;
     // }
 }

@@ -2,10 +2,10 @@
 export class ParagraphModel {
     MediaStockImageAlt: string;
     MediaStockImageCredit: string;
-    Title: string;
+    ParagraphTitle:string;
     ArticleID: string;
     ServiceName: string;
-    ParagrphID: number;
+    ParagraphID: number;
     ParagraphContent: string;
     VideoID: string;
     ThumbPicLink: string;
@@ -17,10 +17,10 @@ export class ParagraphModel {
         this.DisplayOrder = data.DisplayOrder;
         this.MediaStockImageAlt = data.MediaStockImageAlt;
         this.MediaStockImageCredit = data.MediaStockImageCredit;
-        this.Title = data.Title;
+        this.ParagraphTitle = data.ParagraphTitle;
         this.ArticleID = data.ArticleID;
         this.ServiceName = data.ServiceName;
-        this.ParagrphID = data.ParagrphID;
+        this.ParagraphID = data.ParagraphID;
         this.ParagraphContent = data.ParagraphContent;
         this.VideoID = data.VideoID;
         this.ThumbPicLink = data.ThumbPicLink;

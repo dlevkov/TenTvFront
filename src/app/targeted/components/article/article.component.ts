@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription, BehaviorSubject } from 'rxjs/Rx';
 import { ArticleService } from '../../services/article.service';
 import { ArticleModel } from '../../models/article.model';
+import { Constants } from '../../../common/Constants';
 
 @Component({
     selector: 'article',
@@ -13,6 +14,7 @@ export class ArticleComponent implements OnInit {
     item: ArticleModel;
     private _currentId: number;
     private _service: ArticleService;
+    _loadingUrl: string = Constants.IMAGE_LOADING_URL16_9;
 
     constructor(public route: ActivatedRoute, http: Http) {
         this._service = new ArticleService(http);
@@ -20,14 +22,16 @@ export class ArticleComponent implements OnInit {
 
     ngOnInit() {
         this._currentId = +this.route.snapshot.params['id'];
-       
         this.getItems();
-        // console.log("IconURL2: " + this.item.IconURL2);
     }
+
     getItems() {
-        this._service.GetItemsByUri('TenTvAppFront/article?$filter=ArticleID eq ' + this._currentId).subscribe(data =>
-            this.item = data);
-         
-            
+        this._service.GetItemsByUri('TenTvAppFront/article?$filter=ArticleID eq ' + this._currentId)
+        .subscribe(data =>{
+            this.item = data;
+            this._loadingUrl = this.item.TitlePic;
+    });
+
+
     }
 }

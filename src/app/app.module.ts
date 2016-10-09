@@ -21,6 +21,7 @@ import { SectionComponent } from './targeted/components/section/section.componen
 import { HeadlineBigComponent } from './common/components/headlines/headline-big.component';
 import { HeadlineSmallComponent } from './common/components/headlines/headline-small.component';
 import { ArticleComponent } from './targeted/components/article/article.component';
+import { ParagraphComponent } from './targeted/components/paragraph/paragraph.component';
 import { MainComponent } from './targeted/components/main.component';
 
 // Application wide providers
@@ -47,7 +48,8 @@ type StoreType = {
     SectionComponent,
     MainComponent,
     HeadlineSmallComponent,
-    HeadlineBigComponent
+    HeadlineBigComponent,
+    ParagraphComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,

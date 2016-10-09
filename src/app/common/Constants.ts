@@ -29,7 +29,10 @@ export class Constants {
             case ImageTypes.HeadlIne_Big_460_258:
                 currentType = 693;
                 break;
-                case ImageTypes.Headline_Small_303_165:
+            case ImageTypes.Article_Default:
+                currentType = 1868;
+                break;
+            case ImageTypes.Headline_Small_303_165:
                 currentType = 493;
                 break;
             default:

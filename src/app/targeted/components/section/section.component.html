@@ -1,7 +1,7 @@
 <div id="SectionMainContainer">
 
     <div class="rsvp_image_with_caption" *ngIf="item?.IconURL2">
-        <a href="article_gallery.html" class="rsvp_imag_expand"></a>
+        <a [routerLink]="['article_gallery.html']" class="rsvp_imag_expand"></a>
         <img [src]='item?.ImageFile' alt="">
     </div>
     <div id="ArticleListContainer">

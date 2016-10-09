@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Rx';
 import { Constants } from '../../common/Constants';
 import { MainModel } from '../models/main.model';
 import { Dal } from '../../common/services/dal.service';
-import { HeadlineModel } from '../../common/models/headline.model';
+
 @Injectable()
 export class MainService {
     private _dal: Dal;

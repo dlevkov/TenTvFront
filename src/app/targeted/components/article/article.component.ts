@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription, BehaviorSubject } from 'rxjs/Rx';
@@ -10,10 +10,11 @@ import { Constants } from '../../../common/Constants';
     selector: 'article',
     templateUrl: 'article.component.html',
 })
-export class ArticleComponent implements OnInit {
+export class ArticleComponent implements OnInit, OnDestroy {
     item: ArticleModel;
     private _currentId: number;
     private _service: ArticleService;
+    private _subscriber: Subscription;
     private _loadingUrl: string = Constants.IMAGE_LOADING_URL16_9;
 
     constructor(public route: ActivatedRoute, http: Http) {
@@ -26,12 +27,15 @@ export class ArticleComponent implements OnInit {
     }
 
     getItems() {
-        this._service.GetItemsByUri('TenTvAppFront/article?$filter=ArticleID eq ' + this._currentId)
+        this._subscriber = this._service.GetItemsByUri('TenTvAppFront/article?$filter=ArticleID eq ' + this._currentId)
             .subscribe(data => {
                 this.item = data;
                 this._loadingUrl = this.item.TitlePic;
             });
 
+    }
+    ngOnDestroy() {
+        this._subscriber.unsubscribe();
 
     }
 }

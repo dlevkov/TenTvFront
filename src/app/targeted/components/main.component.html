@@ -1,3 +1,8 @@
-<!--<main *ngFor="let item of items">
-    <headline [item]='item'></headline>
-</main>-->
+<div class="rsvp_fullwidth" style="margin-bottom: 100px;">
+    <div *ngFor="let headline of item?.Headlines">
+        <div data-id={{headline.CounterId}}>
+            <headline-main [item]='headline' *ngIf="headline.CounterId===0"></headline-main>
+            <headline-big [item]='headline' *ngIf="headline.CounterId<=4 && headline.CounterId>0"></headline-big>
+        </div>
+    </div>
+</div>

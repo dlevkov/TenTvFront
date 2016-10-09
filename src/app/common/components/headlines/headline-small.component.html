@@ -2,7 +2,7 @@
 <!-- item start -->
 <ul class="rsvp_secondary_lisiting">
     <li class="rsvp_money_article">
-        <a [routerLink]="['/article/']">
+        <a [routerLink]="['/article', item?.DestArticleID]">
             <div class="rsvp_play_wrapper">
                 <img [src]="loadingUrl" [alt]="item?.MediaStockImageAlt" />
                 <div class="rsvp_icon_play_outer" *ngIf="item?.VideoID">

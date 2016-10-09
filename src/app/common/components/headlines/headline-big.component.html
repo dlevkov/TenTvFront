@@ -1,7 +1,7 @@
 <ul class="rsvp_feed_listing">
     <h1>{{item?.Title}}</h1>
     <li>
-        <a [routerLink]="['./article/']">
+        <a [routerLink]="['/article', item?.DestArticleID]">
             <div class="rsvp_play_wrapper">
                 <img [src]="loadingUrl" [alt]="item?.MediaStockImageAlt" />
                 <div class="rsvp_icon_play_outer" *ngIf="item?.VideoID">

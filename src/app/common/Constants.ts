@@ -44,10 +44,10 @@ export class Constants {
             return '';
         if (mediaStockImageTypeID > 0) {
             return this.NANA_IMAGES_DOMAIN + '/upload/mediastock/img/' + mediaStockImageTypeID + '/' + (mediaStockImageID / 1000000).toFixed(0) +
-                '/' + ((mediaStockImageID % 1000000) / 1000).toFixed(0) + '/' + mediaStockImageID + '.' + mediaStockImageExt;
+                '/' + Math.floor((mediaStockImageID % 1000000) / 1000) + '/' + mediaStockImageID + '.' + mediaStockImageExt;
         }
         return this.NANA_IMAGES_DOMAIN + '/upload/mediastock/NOREPLICATION/img/' + (mediaStockImageID / 1000000).toFixed(0) + '/'
-            + ((mediaStockImageID % 1000000) / 1000).toFixed(0) + '/' + mediaStockImageID + '_THUMBNAIL.' + mediaStockImageExt;
+            + Math.floor((mediaStockImageID % 1000000) / 1000) + '/' + mediaStockImageID + '_THUMBNAIL.' + mediaStockImageExt;
 
     }
 }

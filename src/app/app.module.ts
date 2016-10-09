@@ -19,7 +19,6 @@ import { AppState, InternalStateType } from './app.service';
 import { NoContent } from './common/components/no-content';
 import { SectionComponent } from './targeted/components/section/section.component';
 import { HeadlineBigComponent } from './common/components/headlines/headline-big.component';
-import { HeadlineMainComponent } from './common/components/headlines/headline-main.component';
 import { HeadlineSmallComponent } from './common/components/headlines/headline-small.component';
 import { ArticleComponent } from './targeted/components/article/article.component';
 import { ParagraphComponent } from './targeted/components/paragraph/paragraph.component';
@@ -50,8 +49,7 @@ type StoreType = {
     MainComponent,
     HeadlineSmallComponent,
     HeadlineBigComponent,
-    ParagraphComponent,
-    HeadlineMainComponent,
+    ParagraphComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,

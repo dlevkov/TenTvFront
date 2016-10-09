@@ -17,7 +17,7 @@ import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
 
 import { NoContent } from './common/components/no-content';
-import { SectionComponent } from './targeted/components/section.component';
+import { SectionComponent } from './targeted/components/section/section.component';
 import { HeadlineBigComponent } from './common/components/headlines/headline-big.component';
 import { HeadlineSmallComponent } from './common/components/headlines/headline-small.component';
 import { ArticleComponent } from './targeted/components/article/article.component';

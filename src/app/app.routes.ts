@@ -3,7 +3,7 @@ import { NoContent } from './common/components/no-content';
 import { SectionComponent } from './targeted/components/section.component';
 import { MainComponent } from './targeted/components/main.component';
 import { DataResolver } from './app.resolver';
-import {ArticleComponent  } from './targeted/components/article/article.component';
+import { ArticleComponent } from './targeted/components/article/article.component';
 
 
 

@@ -14,9 +14,16 @@ export class ParagraphComponent implements OnInit {
     @Input() item: ParagraphModel;
     private _loadingUrl: string = Constants.IMAGE_LOADING_URL16_9;
 
+    constructor(private domElement: ElementRef) {
 
+
+    }
     ngOnInit() {
         this._loadingUrl = this.item.ImageSrc;
     }
-
+    // encodeString():string {       
+    //   let encodedeString = this.domElement.nativeElement.encodeString(item.ParagraphContent);
+    //    console.log("encode: " + encodedeString);
+    //   return item.ParagraphContent;
+    // }
 }

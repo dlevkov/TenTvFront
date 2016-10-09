@@ -1,10 +1,12 @@
 import { ParagraphModel } from '../models/paragraph.model';
 import { Constants } from '../../common/Constants';
+import { ImageTypes } from '../../common/Enums';
 
 export class ArticleModel {
     Paragraphs: Array<ParagraphModel> = [];
     MediaStockImageAlt: string;
     MediaStockImageCredit: string;
+    ArticleMediaStockImageID: string;
     Title: string;
     AuthorName: string;
     SubTitle: string;
@@ -16,8 +18,10 @@ export class ArticleModel {
     StripeColor: string;
     ServiceName: string;
     ServiceID: number;
-    ParagrphID: number;
-    stripImagePath : string;
+    ParagraphID: number;
+    StripImagePath: string;
+    TitlePic: string;
+
 
     constructor(data: any[]) {
         this.MediaStockImageAlt = data[0].MediaStockImageAlt;
@@ -33,9 +37,12 @@ export class ArticleModel {
         this.StripeColor = data[0].StripeColor;
         this.ServiceName = data[0].ServiceName;
         this.ServiceID = data[0].ServiceID;
-        this.ParagrphID = data[0].ParagrphID;
-        this.stripImagePath =  Constants.NANA_IMAGES_DOMAIN + data[0].IconURL2;
+        this.ParagraphID = data[0].ParagraphID;
+        this.StripImagePath = Constants.NANA_IMAGES_DOMAIN + data[0].IconURL2;
+        this.ArticleMediaStockImageID = data[0].ArticleMediaStockImageID;
 
+        this.TitlePic = Constants.GetImagePathByType(this.ArticleMediaStockImageID, ImageTypes.Article_Default);
+        console.log(this.TitlePic);
         data.forEach(element => {
             this.Paragraphs.push(new ParagraphModel(element))
         });

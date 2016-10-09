@@ -11,18 +11,25 @@ import { MainModel } from '../../targeted/models/main.model';
 })
 export class MainComponent implements OnInit {
     item: MainModel;
-    private _currentId: number;
     private _service: MainService;
+    private _subscriber: Subscription;
 
     constructor(public route: ActivatedRoute, http: Http) {
         this._service = new MainService(http);
     }
 
     ngOnInit() {
-        this._currentId = +this.route.snapshot.params['id'];
+        this.getItems();
     }
+
     getItems() {
-        this._service.GetItemsByUri('').subscribe(data =>
-            this.item = data);
+        this._subscriber = this._service
+            .GetItemsByUri('TenTvAppFront/main')
+            .subscribe(data => {
+                this.item = data;
+            });
+    }
+    ngOnDestroy() {
+        this._subscriber.unsubscribe();
     }
 }

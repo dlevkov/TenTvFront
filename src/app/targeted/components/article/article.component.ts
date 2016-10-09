@@ -22,9 +22,12 @@ export class ArticleComponent implements OnInit {
         this._currentId = +this.route.snapshot.params['id'];
        
         this.getItems();
+        // console.log("IconURL2: " + this.item.IconURL2);
     }
     getItems() {
         this._service.GetItemsByUri('TenTvAppFront/article?$filter=ArticleID eq ' + this._currentId).subscribe(data =>
             this.item = data);
+         
+            
     }
 }

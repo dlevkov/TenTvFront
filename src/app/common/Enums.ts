@@ -15,7 +15,10 @@ export enum ImageTypes {
     Small_303_165,
     Standard_606_366,
     Medium_460_258,
-    Big_768_400
+    Big_768_400,
+    HeadlIne_Big_460_258,
+    Headline_Small_303_165
+
 }
 export enum HeadlineItemTypes {
     Big = 10,

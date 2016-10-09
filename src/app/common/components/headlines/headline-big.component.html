@@ -1,19 +1,17 @@
 <ul class="rsvp_feed_listing">
-  
+    <h1>{{item?.Title}}</h1>
     <li>
-        <a href="~/article/@Model.DestArticleID">
+        <a [routerLink]="['/article', item?.DestArticleID]">
             <div class="rsvp_play_wrapper">
-                <img src="@loadingUrl" onload="nanaHelper.change_image(this,'@ImageSrc');" alt="@Model.MediaStockImageAlt" />
-
-                    <div class="rsvp_icon_play_outer" *ngIf="item?.VideoID">
-                        <div class="rsvp_icon_play"></div>
-                    </div>
-                
+                <img [src]="loadingUrl" [alt]="item?.MediaStockImageAlt" />
+                <div class="rsvp_icon_play_outer" *ngIf="item?.VideoID">
+                    <div class="rsvp_icon_play"></div>
+                </div>
             </div>
             <div style="clear:both;"></div>
             <div class="rsvp_feed_cat_color rsvp_cat4" [style.background-color]='item?.StripeColor'></div>
             <div class="rsvp_feed_item_title oedooprom">{{item?.Title}}</div>
         </a>
     </li>
-    
+
 </ul>

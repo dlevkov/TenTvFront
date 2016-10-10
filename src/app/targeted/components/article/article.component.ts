@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription, BehaviorSubject } from 'rxjs/Rx';
@@ -10,14 +10,14 @@ import { Constants } from '../../../common/Constants';
     selector: 'article',
     templateUrl: 'article.component.html',
 })
-export class ArticleComponent implements OnInit, OnDestroy {
+export class ArticleComponent implements OnInit, OnDestroy, AfterViewInit {
     item: ArticleModel;
     private _currentId: number;
     private _service: ArticleService;
     private _subscriber: Subscription;
     private _loadingUrl: string = Constants.IMAGE_LOADING_URL16_9;
 
-    constructor(public route: ActivatedRoute, http: Http) {
+    constructor(public route: ActivatedRoute, http: Http, private myElement: ElementRef) {
         this._service = new ArticleService(http);
     }
 
@@ -26,6 +26,16 @@ export class ArticleComponent implements OnInit, OnDestroy {
         this.getItems();
     }
 
+    ngAfterViewInit() {
+        // console.log(window['test123']);
+        // window['testtext']('xxxxxxxxxxxxxx');
+
+        // let newNode =   document.createElement('div');
+        // newNode.id = 'anton';
+        //let textNode = document.createTextNode('<div><span class="gljfhg">Hi there and greetings!<span><div>');
+        // newNode.innerHTML = '<div><span class="gljfhg">Hi there and greetings!<span><div>';
+        // window['insertAfter'](newNode, this.myElement.nativeElement);
+    }
     getItems() {
         this._subscriber = this._service.GetItemsByUri('TenTvAppFront/article?$filter=ArticleID eq ' + this._currentId)
             .subscribe(data => {

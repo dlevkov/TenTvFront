@@ -59,7 +59,8 @@ type StoreType = {
     HeadlineMainComponent,
     HeadlineAlertComponent,
     HeadlinePairComponent,
-    InstagramComponent
+    InstagramComponent,
+    TwitterComponent
 
   ],
   imports: [ // import Angular's modules

@@ -6,6 +6,7 @@ import { ArticleService } from '../../services/article.service';
 import { ArticleModel } from '../../models/article.model';
 import { Constants } from '../../../common/Constants';
 
+
 @Component({
     selector: 'article',
     templateUrl: 'article.component.html',
@@ -27,14 +28,11 @@ export class ArticleComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        // console.log(window['test123']);
-        // window['testtext']('xxxxxxxxxxxxxx');
-
-        // let newNode =   document.createElement('div');
-        // newNode.id = 'anton';
-        //let textNode = document.createTextNode('<div><span class="gljfhg">Hi there and greetings!<span><div>');
-        // newNode.innerHTML = '<div><span class="gljfhg">Hi there and greetings!<span><div>';
-        // window['insertAfter'](newNode, this.myElement.nativeElement);
+        // ////example of direct dom injection, please see references in assets/js/3rdParty.js
+        // let newNode = document.createElement('script');
+        // newNode.id = 'antonscripthead';
+        // newNode.innerHTML = 'var testscript = 1;';
+        // window['nanaHelper'].insertToHead(newNode, this.myElement.nativeElement);
     }
     getItems() {
         this._subscriber = this._service.GetItemsByUri('TenTvAppFront/article?$filter=ArticleID eq ' + this._currentId)

@@ -28,6 +28,7 @@ import { HeadlinePairComponent } from './common/components/headlines/headline-pa
 import { ArticleComponent } from './targeted/components/article/article.component';
 import { ParagraphComponent } from './targeted/components/paragraph/paragraph.component';
 import { MainComponent } from './targeted/components/main.component';
+import { TwitterComponent } from './common/components/twitter/twitter.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -57,7 +58,8 @@ type StoreType = {
     ParagraphComponent,
     HeadlineMainComponent,
     HeadlineAlertComponent,
-    HeadlinePairComponent
+    HeadlinePairComponent,
+    TwitterComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,

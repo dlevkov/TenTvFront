@@ -16,8 +16,7 @@ import { AppState } from './app.service';
     './app.style.css'
   ],
   template: `
-          <router-outlet></router-outlet>
-          <instagram></instagram>
+          <router-outlet></router-outlet>        
 
   `
 })

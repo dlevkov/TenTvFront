@@ -11,7 +11,7 @@ import { Constants } from '../../../common/Constants';
     selector: 'article',
     templateUrl: 'article.component.html',
 })
-export class ArticleComponent implements OnInit, OnDestroy, AfterViewInit {
+export class ArticleComponent implements OnInit, OnDestroy{
     item: ArticleModel;
     private _currentId: number;
     private _service: ArticleService;
@@ -27,13 +27,7 @@ export class ArticleComponent implements OnInit, OnDestroy, AfterViewInit {
         this.getItems();
     }
 
-    ngAfterViewInit() {
-        // ////example of direct dom injection, please see references in assets/js/3rdParty.js
-        // let newNode = document.createElement('script');
-        // newNode.id = 'antonscripthead';
-        // newNode.innerHTML = 'var testscript = 1;';
-        // window['nanaHelper'].insertToHead(newNode, this.myElement.nativeElement);
-    }
+
     getItems() {
         this._subscriber = this._service.GetItemsByUri('TenTvAppFront/article?$filter=ArticleID eq ' + this._currentId)
             .subscribe(data => {

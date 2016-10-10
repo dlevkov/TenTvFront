@@ -7,8 +7,7 @@ import { Constants } from '../../../common/Constants';
 
 @Component({
     selector: 'paragraph',
-    templateUrl: 'paragraph.component.html',
-    host: {}
+    templateUrl: 'paragraph.component.html'
 })
 export class ParagraphComponent implements OnInit {
     @Input() item: ParagraphModel;

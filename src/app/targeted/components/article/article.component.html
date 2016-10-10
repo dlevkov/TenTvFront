@@ -8,8 +8,6 @@
 
     <!-- image with caption start -->
     <div style="clear:both;"></div>
-    <!--@if (!String.IsNullOrEmpty(@TitlePic))
-    {-->
     <div *ngIf='item?.TitlePic' class="rsvp_image_with_caption">
             <a href="article_gallery.html" class="rsvp_imag_expand"></a>
             <img [src]="_loadingUrl"  [alt]="item?.MediaStockImageAlt" />
@@ -33,9 +31,6 @@
         </div>
         <div class="rsvp_flc"></div>
         <paragraph [item]='paragraph' *ngFor="let paragraph of item?.Paragraphs"></paragraph>
-        <!--<div class="rsvp_article_inner_content">
-            @Html.Action("ArticleParagraph", "CommonObjectList", new { id = Model.ArticleID, serviceName = articleService.ServiceName, disableVideo = disableVideo })
-        </div>-->
     </div>
 </div>
 

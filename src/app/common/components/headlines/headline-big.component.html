@@ -4,7 +4,7 @@
         <a [routerLink]="['/article', item?.DestArticleID]">
             <div class="rsvp_play_wrapper">
                 <img [src]="loadingUrl" [alt]="item?.MediaStockImageAlt" />
-                <div class="rsvp_icon_play_outer" *ngIf="item?.VideoID">
+                <div class="rsvp_icon_play_outer" *ngIf="item?.VideoID > 0">
                     <div class="rsvp_icon_play"></div>
                 </div>
             </div>

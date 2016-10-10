@@ -1,3 +1,47 @@
-<div>
+<!--<div>
     {{item?.ParagraphTitle}}
+</div>-->
+<!--@model IList<Nana.DomainModel.ArticleParagraph>
+@{
+    string ImageSrc = "";
+    int pictype = Nana10Mvc.Constants.NanaConstants.Default1_1ImageType;
+    int counter = 0;
+    string loadingUrl = Nana10Mvc.Constants.NanaConstants.ImageLoadingUrl;
+    var articleSection = new Nana.DomainModel.Article_Section();
+    var serviceName = ViewBag.serviceName;
+    articleSection = ViewBag.sectionItemSingle;
+    var disableVideo = false;
+    try
+    {
+        disableVideo = (bool)ViewBag.disableVideo;
+    }
+    catch (Exception)
+    {
+
+    }
+}-->
+
+
+
+    <!--foreach (var item in Model.Where(x => x.isChild == false).OrderBy(i => i.DisplayOrder))-->
+    
+    <div *ngIf='item' class="rsvp_article_inner_content">
+        {{item?.ParagraphTitle}}
+        <!--{{item?.ParagraphContent}}-->
+        <div [innerHTML]='item.ParagraphContent'></div>
+    <!-- paragraph  -->
+
+        <!--if (item.PicMediaStockImageID.GetValueOrDefault(0) > 0)
+        {-->
+            <div style="clear:both;"></div>
+            <div class="rsvp_image_with_caption">
+              <a href="article_gallery.html" class="rsvp_imag_expand"></a>
+                    <img [src]="_loadingUrl"  [alt]="item?.PicMediaStockImageAlt" />
+
+                <p class="oedoopror">{{item.PicMediaStockImageAlt}} צילום: {{item.PicMediaStockImageCredit}}</p>
+            </div>
+            <div style="clear:both;"></div>
+        
+
 </div>
+   

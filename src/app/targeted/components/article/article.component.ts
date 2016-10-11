@@ -11,7 +11,7 @@ import { Constants } from '../../../common/Constants';
     selector: 'article',
     templateUrl: 'article.component.html',
 })
-export class ArticleComponent implements OnInit, OnDestroy, AfterViewInit {
+export class ArticleComponent implements OnInit, OnDestroy{
     item: ArticleModel;
     private _currentId: number;
     private _service: ArticleService;
@@ -40,6 +40,10 @@ export class ArticleComponent implements OnInit, OnDestroy, AfterViewInit {
         this.getItems();
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8b8ef55c4235ebe75d4a0ce0dae949b4ea0e00a6
     getItems() {
         this._subscriber = this._service.GetItemsByUri('TenTvAppFront/article?$filter=ArticleID eq ' + this._currentId)
             .subscribe(data => {

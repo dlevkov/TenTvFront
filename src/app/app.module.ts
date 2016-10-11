@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
-
+import {InstagramComponent } from './common/components/instagram/instagram.component';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -29,6 +29,7 @@ import { Taboola } from './common/components/3rdParty/taboola.component';
 import { ArticleComponent } from './targeted/components/article/article.component';
 import { ParagraphComponent } from './targeted/components/paragraph/paragraph.component';
 import { MainComponent } from './targeted/components/main.component';
+import { TwitterComponent } from './common/components/twitter/twitter.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -59,7 +60,9 @@ type StoreType = {
     HeadlineMainComponent,
     HeadlineAlertComponent,
     HeadlinePairComponent,
-    Taboola
+    Taboola,
+    InstagramComponent,
+    TwitterComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,

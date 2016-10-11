@@ -2,7 +2,12 @@ var nanaHelper = {
 
     //create function, it expects 2 values.
     insertAfter: function (newElement, targetElement) {
+
         //setTimeout(function () {
+
+        //
+        targetElement = targetElement.getElementsByClassName("anchor")[0];
+
         //target is what you want it to go after. Look for this elements parent.
         var parent = targetElement.parentNode;
 
@@ -15,6 +20,10 @@ var nanaHelper = {
             parent.insertBefore(newElement, targetElement.nextSibling);
         }
         //}, 3000);
+    },
+
+    insertBefore: function (newElement, targetElement) {
+        document.body.insertBefore(newElement, targetElement.childNodes[0]);
     },
 
     insertToHead: function (newElement) {

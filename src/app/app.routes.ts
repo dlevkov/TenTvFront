@@ -4,7 +4,7 @@ import { SectionComponent } from './targeted/components/section/section.componen
 import { MainComponent } from './targeted/components/main.component';
 import { DataResolver } from './app.resolver';
 import { ArticleComponent } from './targeted/components/article/article.component';
-
+import { TwitterComponent } from './common/components/twitter/twitter.component';
 
 
 export const ROUTES: Routes = [
@@ -12,6 +12,7 @@ export const ROUTES: Routes = [
   { path: 'section/:id', component: SectionComponent },
   { path: 'article/:id', component: ArticleComponent },
   { path: 'main', component: MainComponent },
+  { path: 'twitter', component: TwitterComponent },
   { path: '**', component: NoContent },
 
 ];

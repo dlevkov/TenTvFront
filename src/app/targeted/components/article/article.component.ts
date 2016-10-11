@@ -18,6 +18,19 @@ export class ArticleComponent implements OnInit, OnDestroy, AfterViewInit {
     private _subscriber: Subscription;
     private _loadingUrl: string = Constants.IMAGE_LOADING_URL16_9;
 
+    private underArticleHtmlString: string = `
+<div id="taboola-under-article"></div>
+<script type="text/javascript">
+  window._taboola = window._taboola || [];
+  _taboola.push({
+    mode: 'thumbnails-c',
+    container: 'taboola-under-article',
+    placement: 'Under Article',
+    target_type: 'mix'
+  });
+</script>
+    `;
+
     constructor(public route: ActivatedRoute, http: Http, private myElement: ElementRef) {
         this._service = new ArticleService(http);
     }
@@ -27,13 +40,6 @@ export class ArticleComponent implements OnInit, OnDestroy, AfterViewInit {
         this.getItems();
     }
 
-    ngAfterViewInit() {
-        // ////example of direct dom injection, please see references in assets/js/3rdParty.js
-        // let newNode = document.createElement('script');
-        // newNode.id = 'antonscripthead';
-        // newNode.innerHTML = 'var testscript = 1;';
-        // window['nanaHelper'].insertToHead(newNode, this.myElement.nativeElement);
-    }
     getItems() {
         this._subscriber = this._service.GetItemsByUri('TenTvAppFront/article?$filter=ArticleID eq ' + this._currentId)
             .subscribe(data => {
@@ -42,6 +48,18 @@ export class ArticleComponent implements OnInit, OnDestroy, AfterViewInit {
             });
 
     }
+
+    ngAfterViewInit() {
+        //this.appendUnderArticleUnit();
+    }
+
+    appendUnderArticleUnit() {
+        let newNode = document.createElement('div');
+        newNode.className = 'taboolaUnderArticle';
+        newNode.innerHTML = this.underArticleHtmlString;
+        window['nanaHelper'].insertToBodyEnd(newNode, this.myElement.nativeElement);
+    }
+
     ngOnDestroy() {
         this._subscriber.unsubscribe();
 

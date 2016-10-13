@@ -27,7 +27,7 @@ export class ArticleModel {
         this.MediaStockImageAlt = data[0].MediaStockImageAlt;
         this.MediaStockImageCredit = data[0].MediaStockImageCredit;
         this.Title = data[0].Title;
-        this.AuthorName = data[0].AuthorName
+        this.AuthorName = data[0].AuthorName;
         this.SubTitle = data[0].SubTitle;
         this.ModifyDateFormatted = data[0].ModifyDateFormatted;
         this.ArticleID = data[0].ArticleID;

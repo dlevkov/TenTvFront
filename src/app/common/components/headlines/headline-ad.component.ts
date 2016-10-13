@@ -2,9 +2,9 @@ import { Component, Input } from '@angular/core';
 import { HeadlineModel } from '../../models/headline.model';
 
 @Component({
-    selector: 'headline-alert',
-    templateUrl: 'headline-alert.component.html'
+    selector: 'headline-ad',
+    template: '<taboola [placeHolderId]=\'"taboola-mid-page"\' [placement]=\'"Mid Page"\'  [mode] =\'"thumbnails-b"\' [objectType] =\'"home"\'></taboola>'
 })
-export class HeadlineAlertComponent  {
+export class HeadlineAdComponent  {
     @Input() item: HeadlineModel;
 }

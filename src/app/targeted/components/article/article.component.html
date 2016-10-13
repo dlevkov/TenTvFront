@@ -30,14 +30,8 @@
             <span class="rsvp_date">עודכן {{item?.ModifyDateFormatted}}</span>
         </div>
         <div class="rsvp_flc"></div>
-        <paragraph [item]='paragraph' *ngFor="let paragraph of item?.Paragraphs"></paragraph>
+        <paragraph [item]='paragraph' *ngFor="let paragraph of item?.Paragraphs;let i=index"></paragraph>
     </div>
+    <taboola [placeHolderId]='"taboola-under-article"' [placement]='"Under Article"'  [mode] ='"thumbnails-c"' [objectType] ='"article"'></taboola>
     <main></main>
 </div>
-
-<taboola></taboola>
-<!--@Html.Raw(Nana10Mvc.CustomHelpers.Taboola.TaboolaContent("taboola-under-article", "Under Article", "thumbnails-c"))
-
-<div id="mainPageContainer" style="display:none;width:100%;">
-    @Html.Action("Category", "ComplexObject", new { id = 300803, serviceid = 169, partial = true })
-</div>-->

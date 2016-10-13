@@ -7,6 +7,19 @@ export class Constants {
     public static readonly IMAGE_LOADING_URL16_9 = '../../assets/img/preload_640-360.png';
     public static readonly DATA_DOMAIN = 'http://localhost/Nana10MVC/';
     public static readonly NANA_IMAGES_DOMAIN: string = 'http://f.nanafiles.co.il';
+    public static readonly DFPADUNITS: any =
+    {
+        '10tv': 'Desktop_Nana10_Channel10_Inread',
+        'bidur': 'Desktop_Nana10_Entertainment_Inread',
+        'celebs': 'Desktop_Nana10_Celebs_Inread',
+        'Food': 'Desktop_Nana10_Food_Inread',
+        'gamer': 'Desktop_Nana10_Gamer_Inread',
+        'lifestyle': 'Desktop_Nana10_style_Inread',
+        'net': 'Desktop_Nana10_Net_Inread',
+        'News': 'Desktop_Nana10_News_Inread',
+        'sport': 'Desktop_Nana10_Sport_Inread'
+
+    };
 
     public static GetImagePathByType(mediaStockImageID, item: ImageTypes, mediaStockImageExt?: string): string {
         let currentType: number = 0;

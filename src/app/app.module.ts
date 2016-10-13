@@ -23,6 +23,8 @@ import { HeadlineBigComponent } from './common/components/headlines/headline-big
 import { HeadlineSmallComponent } from './common/components/headlines/headline-small.component';
 import { HeadlineMainComponent } from './common/components/headlines/headline-main.component';
 import { HeadlineAlertComponent } from './common/components/headlines/headline-alert.component';
+import { HeadlineAdComponent } from './common/components/headlines/headline-ad.component';
+import { HeadlineAdSecondComponent } from './common/components/headlines/headline-adsecond.component';
 import { HeadlinePairComponent } from './common/components/headlines/headline-pair.component';
 import { TaboolaMain } from './common/components/3rdParty/taboola.component';
 
@@ -60,6 +62,8 @@ type StoreType = {
     HeadlineMainComponent,
     HeadlineAlertComponent,
     HeadlinePairComponent,
+    HeadlineAdComponent,
+    HeadlineAdSecondComponent,
     TaboolaMain,
     InstagramComponent,
     TwitterComponent

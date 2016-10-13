@@ -1,9 +1,9 @@
 export class Taboola {
     taboolaJsObject: any = window['NanaTaboola'];
-    objectType: string = 'home';
     placeHolderId: string;
     placement: string;
     mode: string;
+    objectType: string;
 
     appendTaboolaContent() {
         this.taboolaJsObject.initContent(this.placeHolderId, this.placement, this.mode);

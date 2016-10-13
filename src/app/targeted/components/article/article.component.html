@@ -32,6 +32,7 @@
         <div class="rsvp_flc"></div>
         <paragraph [item]='paragraph' [index]='i' *ngFor="let paragraph of item?.Paragraphs; let i = index"></paragraph>
     </div>
+    <taboola [placeHolderId]='"taboola-under-article"' [placement]='"Under Article"'  [mode] ='"thumbnails-c"' [objectType] ='"article"'></taboola>
     <main></main>
 </div>
 <third-party></third-party>

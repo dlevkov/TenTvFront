@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef, NgZone } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription, BehaviorSubject } from 'rxjs/Rx';
@@ -11,14 +11,15 @@ import { Constants } from '../../../common/Constants';
     selector: 'article',
     templateUrl: 'article.component.html',
 })
-export class ArticleComponent implements OnInit, OnDestroy{
+export class ArticleComponent implements OnInit, OnDestroy {
     item: ArticleModel;
     private _currentId: number;
     private _service: ArticleService;
     private _subscriber: Subscription;
     private _loadingUrl: string = Constants.IMAGE_LOADING_URL16_9;
 
-    constructor(public route: ActivatedRoute, http: Http, private myElement: ElementRef) {
+    constructor(public route: ActivatedRoute, http: Http, private myElement: ElementRef, private _ngZone: NgZone) {
+        window.angularComponentRef = { component: this, zone: _ngZone };
         this._service = new ArticleService(http);
     }
 
@@ -40,4 +41,26 @@ export class ArticleComponent implements OnInit, OnDestroy{
         this._subscriber.unsubscribe();
 
     }
+
+    //***************************************************************************************************************************//
+    //Get angular function from external JS:
+    // Add to \src\custom-typings.d.ts -  interface Window { angularComponentRef : any; }
+
+    // constructor(private _ngZone: NgZone) {
+    //     window.angularComponentRef = { component: this, zone: _ngZone };    //     
+    // }
+
+    // publicFunc(data: String) {
+    //     this._ngZone.run(() => {
+    //         this.privateFunc(data);
+    //     });
+    // }
+    // privateFunc(str) {
+    //     console.log("print: " + str);
+
+    // }
+
+    //Use in your outside JS 
+    // window.angularComponentRef.zone.run(() => {window.angularComponentRef.component.publicFunc('bla bla');})
+    //***************************************************************************************************************************//
 }

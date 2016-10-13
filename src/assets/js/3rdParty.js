@@ -165,4 +165,24 @@ var AdUnitsCollection = {
     }
 };
 
+var castTimeHelper = {
+
+    //
+    init: function () {
+
+    },
+
+    //
+    toggleServiceFilter: function () {
+        //nanaHelper.toggleServiceFilter();
+    },
+
+    //
+    changeFontSize: function (zoomin) {
+        //nanaHelper.changeFontSize(zoomin);
+    }
+
+
+};
+
 

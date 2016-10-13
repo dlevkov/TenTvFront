@@ -24,6 +24,7 @@ import { HeadlineSmallComponent } from './common/components/headlines/headline-s
 import { HeadlineMainComponent } from './common/components/headlines/headline-main.component';
 import { HeadlineAlertComponent } from './common/components/headlines/headline-alert.component';
 import { HeadlinePairComponent } from './common/components/headlines/headline-pair.component';
+import { TaboolaMain } from './common/components/3rdParty/taboola.component';
 
 import { ArticleComponent } from './targeted/components/article/article.component';
 import { ParagraphComponent } from './targeted/components/paragraph/paragraph.component';
@@ -60,8 +61,8 @@ type StoreType = {
     HeadlineAlertComponent,
     HeadlinePairComponent,
     ThirdPartyComponent,
+    TaboolaMain,
     TwitterComponent
-
   ],
   imports: [ // import Angular's modules
     BrowserModule,

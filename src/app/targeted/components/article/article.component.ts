@@ -27,7 +27,6 @@ export class ArticleComponent implements OnInit, OnDestroy{
         this.getItems();
     }
 
-
     getItems() {
         this._subscriber = this._service.GetItemsByUri('TenTvAppFront/article?$filter=ArticleID eq ' + this._currentId)
             .subscribe(data => {
@@ -35,6 +34,10 @@ export class ArticleComponent implements OnInit, OnDestroy{
                 this._loadingUrl = this.item.TitlePic;
             });
 
+    }
+
+    ngAfterViewInit() {
+        //
     }
     ngOnDestroy() {
         this._subscriber.unsubscribe();

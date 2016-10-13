@@ -40,9 +40,7 @@ export class ArticleModel {
         this.ParagraphID = data[0].ParagraphID;
         this.StripImagePath = Constants.NANA_IMAGES_DOMAIN + data[0].IconURL2;
         this.ArticleMediaStockImageID = data[0].ArticleMediaStockImageID;
-
         this.TitlePic = Constants.GetImagePathByType(this.ArticleMediaStockImageID, ImageTypes.Article_Default);
-        console.log(this.TitlePic);
         data.forEach(element => {
             this.Paragraphs.push(new ParagraphModel(element))
         });

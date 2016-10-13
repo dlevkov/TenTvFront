@@ -19,7 +19,7 @@ export class ArticleModel {
     ServiceID: number;
     ParagraphID: number;
     StripImagePath: string;
-    StripImagePathShow: boolean;
+    StripImagePathShow: boolean = true;
     TitlePic: string;
 
 
@@ -38,10 +38,15 @@ export class ArticleModel {
         this.ServiceName = data[0].ServiceName;
         this.ServiceID = data[0].ServiceID;
         this.ParagraphID = data[0].ParagraphID;
-        this.StripImagePathShow =
-            this.StripImagePath = this.ServiceID == 160 ? data[0].ThumbPicPath : data[0].IconURL2 != null ? Constants.NANA_IMAGES_DOMAIN + data[0].IconURL2 : this.StripImagePathShow == false;
-        console.log(this.StripImagePath);
 
+        if (this.ServiceID == 160) {
+            this.StripImagePath = data[0].ThumbPicPath;             
+        } else if (data[0].IconURL2 != null && data[0].IconURL2 != '') {
+            this.StripImagePath = Constants.NANA_IMAGES_DOMAIN + data[0].IconURL2;
+        } else {
+            this.StripImagePathShow = false;
+        }
+        
         this.ArticleMediaStockImageID = data[0].ArticleMediaStockImageID;
         this.TitlePic = Constants.GetImagePathByType(this.ArticleMediaStockImageID, ImageTypes.Article_Default);
         data.forEach(element => {

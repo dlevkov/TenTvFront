@@ -8,7 +8,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
     selector: 'paragraph',
-    templateUrl: 'paragraph.component.html'    
+    templateUrl: 'paragraph.component.html'
 })
 
 export class ParagraphComponent implements OnInit {

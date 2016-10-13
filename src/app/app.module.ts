@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
-import {ThirdPartyComponent } from './common/components/third-party/third-party.component';
+import {ThirdPartyComponent } from './common/components/3rdParty/third-party.component';
 
 /*
  * Platform and Environment providers/directives/pipes

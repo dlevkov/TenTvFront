@@ -1,15 +1,15 @@
 <div *ngIf='item' class="rsvp_article_inner_content">
-    <div class="anchor"></div>
+	<div class="anchor"></div>
 
-    <div [innerHTML]='safeHtml'></div>
+	<div [innerHTML]='safeHtml'></div>
 
-    <div style="clear:both;"></div>
-    <div *ngIf='item?.PicMediaStockImageID' class="rsvp_image_with_caption">
-        <a href="article_gallery.html" class="rsvp_imag_expand"></a>
-        <img [src]="_loadingUrl" [alt]="item?.PicMediaStockImageAlt" />
+	<div style="clear:both;"></div>
+	<div *ngIf='item?.PicMediaStockImageID' class="rsvp_image_with_caption">
+		<a href="article_gallery.html" class="rsvp_imag_expand"></a>
+		<img [src]="_loadingUrl" [alt]="item?.PicMediaStockImageAlt" />
 
-        <p class="oedoopror">{{item.PicMediaStockImageAlt}} צילום: {{item.PicMediaStockImageCredit}}</p>
-    </div>
-    <div style="clear:both;"></div>
+		<p class="oedoopror">{{item.PicMediaStockImageAlt}} צילום: {{item.PicMediaStockImageCredit}}</p>
+	</div>
+	<div style="clear:both;"></div>
 </div>
-<instagram></instagram>
+<third-party></third-party>

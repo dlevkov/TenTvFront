@@ -24,23 +24,6 @@ export class ParagraphComponent implements OnInit {
         this.safeHtml = this._sanitizer.bypassSecurityTrustHtml(this.HTMLEncode(this.item.ParagraphContent));
     }
 
-    ngAfterViewInit() {
-
-        // var s = document.createElement("script");
-        // s.type = "text/javascript";
-        // s.src = "http://platform.instagram.com/en_US/embeds.js";
-        // this.myElement.nativeElement.appendChild(s);
-
-        // ////example of direct dom injection, please see references in assets/js/3rdParty.js
-        // let newNode = document.createElement('div');
-        // newNode.className = 'paragraphContent';
-        // newNode.innerHTML = this.HTMLEncode(this.item.ParagraphContent);
-        // window['nanaHelper'].insertAfter(newNode, this.myElement.nativeElement);
-    }
-
-    ngAfterViewChecked() {
-    }
-
     HTMLEncode(str) {
         return str
             .replace(/&quot;/g, '"')

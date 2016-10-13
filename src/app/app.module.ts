@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
-import {InstagramComponent } from './common/components/instagram/instagram.component';
+import {ThirdPartyComponent } from './common/components/3rdParty/third-party.component';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -64,8 +64,8 @@ type StoreType = {
     HeadlinePairComponent,
     HeadlineAdComponent,
     HeadlineAdSecondComponent,
+    ThirdPartyComponent,
     TaboolaMain,
-    InstagramComponent,
     TwitterComponent
   ],
   imports: [ // import Angular's modules

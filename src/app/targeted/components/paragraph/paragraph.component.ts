@@ -13,6 +13,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 export class ParagraphComponent implements OnInit {
     @Input() item: ParagraphModel;
+    @Input() index: number;
     private _loadingUrl: string = Constants.IMAGE_LOADING_URL16_9;
     private safeHtml: SafeHtml;
 
@@ -22,23 +23,8 @@ export class ParagraphComponent implements OnInit {
     ngOnInit() {
         this._loadingUrl = this.item.ImageSrc;
         this.safeHtml = this._sanitizer.bypassSecurityTrustHtml(this.HTMLEncode(this.item.ParagraphContent));
-    }
-
-    ngAfterViewInit() {
-
-        // var s = document.createElement("script");
-        // s.type = "text/javascript";
-        // s.src = "http://platform.instagram.com/en_US/embeds.js";
-        // this.myElement.nativeElement.appendChild(s);
-
-        // ////example of direct dom injection, please see references in assets/js/3rdParty.js
-        // let newNode = document.createElement('div');
-        // newNode.className = 'paragraphContent';
-        // newNode.innerHTML = this.HTMLEncode(this.item.ParagraphContent);
-        // window['nanaHelper'].insertAfter(newNode, this.myElement.nativeElement);
-    }
-
-    ngAfterViewChecked() {
+        console.log('index: ' + this.index);
+        
     }
 
     HTMLEncode(str) {

@@ -23,8 +23,6 @@ export class ParagraphComponent implements OnInit {
     ngOnInit() {
         this._loadingUrl = this.item.ImageSrc;
         this.safeHtml = this._sanitizer.bypassSecurityTrustHtml(this.HTMLEncode(this.item.ParagraphContent));
-        console.log('index: ' + this.index);
-        
     }
 
     HTMLEncode(str) {

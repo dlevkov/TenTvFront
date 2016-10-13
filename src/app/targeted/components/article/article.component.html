@@ -1,8 +1,8 @@
 <div class="rsvp_fullwidth">
 
-    <div *ngIf='item?.UrlIcon2' class="rsvp_image_with_caption">
+    <div *ngIf='item?.StripImagePathShow' class="rsvp_image_with_caption">
         <a href="article_gallery.html" class="rsvp_imag_expand"></a>
-        <img  src='item?.stripImagePath' />
+        <img  [src]='item?.StripImagePath' />
         <p class="oedoopror">{{item?.MediaStockImageAlt}} צילום {{item?.MediaStockImageCredit}}</p>
     </div>
 
@@ -30,7 +30,7 @@
             <span class="rsvp_date">עודכן {{item?.ModifyDateFormatted}}</span>
         </div>
         <div class="rsvp_flc"></div>
-        <paragraph [item]='paragraph' *ngFor="let paragraph of item?.Paragraphs"></paragraph>
+        <paragraph [item]='paragraph' [index]='i' *ngFor="let paragraph of item?.Paragraphs; let i = index"></paragraph>
     </div>
     <main></main>
 </div>

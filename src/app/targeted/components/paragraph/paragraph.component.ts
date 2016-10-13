@@ -13,6 +13,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 export class ParagraphComponent implements OnInit {
     @Input() item: ParagraphModel;
+    @Input() index: number;
     private _loadingUrl: string = Constants.IMAGE_LOADING_URL16_9;
     private safeHtml: SafeHtml;
 
@@ -22,6 +23,8 @@ export class ParagraphComponent implements OnInit {
     ngOnInit() {
         this._loadingUrl = this.item.ImageSrc;
         this.safeHtml = this._sanitizer.bypassSecurityTrustHtml(this.HTMLEncode(this.item.ParagraphContent));
+        console.log('index: ' + this.index);
+        
     }
 
     HTMLEncode(str) {

@@ -7,7 +7,7 @@ import { Constants } from '../../Constants';
 @Component({
     selector: 'dfp',
     template: `
-    <div id="{{placeHolderId}}" dfpObjectName="{{dfpObjectName}}" style="{{dfpStyle}}"></div
+    <div id="{{placeHolderId}}" style="{{dfpStyle}}"></div>
   `
 })
 export class DfpMain implements OnInit, OnDestroy, AfterViewInit {

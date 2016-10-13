@@ -27,6 +27,7 @@ import { HeadlineAdComponent } from './common/components/headlines/headline-ad.c
 import { HeadlineAdSecondComponent } from './common/components/headlines/headline-adsecond.component';
 import { HeadlinePairComponent } from './common/components/headlines/headline-pair.component';
 import { TaboolaMain } from './common/components/3rdParty/taboola.component';
+import { DfpMain } from './common/components/3rdParty/dfp.component';
 
 import { ArticleComponent } from './targeted/components/article/article.component';
 import { ParagraphComponent } from './targeted/components/paragraph/paragraph.component';
@@ -66,7 +67,8 @@ type StoreType = {
     HeadlineAdSecondComponent,
     ThirdPartyComponent,
     TaboolaMain,
-    TwitterComponent
+    TwitterComponent,
+    DfpMain
   ],
   imports: [ // import Angular's modules
     BrowserModule,

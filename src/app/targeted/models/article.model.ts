@@ -46,9 +46,10 @@ export class ArticleModel {
         } else {
             this.StripImagePathShow = false;
         }
-
+        
         this.ArticleMediaStockImageID = data[0].ArticleMediaStockImageID;
         this.TitlePic = Constants.GetImagePathByType(this.ArticleMediaStockImageID, ImageTypes.Article_Default);
+        console.log(this.TitlePic);
         data.forEach(element => {
             this.Paragraphs.push(new ParagraphModel(element))
         });

@@ -59,6 +59,28 @@ var NanaTaboola = {
             });
     }
 };
+var nanaHelper = {
+    currentFontSize: 10,
+    maxFontSize: 50,
+    minFontSize: 16,
+    fontInterval: 2,
+    fontSelectors: ['.rsvp_article_inner_content p:not(p.oedoopror)', '.rsvp_article_body_h1', '.rsvp_article_body_h2', '.rsvp_feed_item_title'],
+
+    changeFontSize: function (zoomin) {
+        console.log('zoomin: ' + zoomin);
+        this.currentFontSize = parseInt($nana(this.fontSelectors[0]).css("font-size"));
+        if ((this.currentFontSize >= this.maxFontSize && zoomin) || (this.currentFontSize <= this.minFontSize && !zoomin))
+            return false;
+
+        var zoomI = zoomin ? 1 : -1;
+        this.currentFontSize += (this.fontInterval * zoomI);
+        for (var key in this.fontSelectors) {
+            var cancreateZoom = parseInt($nana(this.fontSelectors[key]).css('font-size'));
+            cancreateZoom += (this.fontInterval * zoomI);
+            $nana(this.fontSelectors[key]).attr("style", "font-size:" + cancreateZoom + "px; line-height:" + cancreateZoom + "px;");
+        }
+    }
+}
 
 var AdUnitsCollection = {
     //maavaron: googleDfpID + "MOBILE_NANA10_MAAVARON_320x460",
@@ -179,7 +201,8 @@ var castTimeHelper = {
 
     //
     changeFontSize: function (zoomin) {
-        //nanaHelper.changeFontSize(zoomin);
+
+        nanaHelper.changeFontSize(zoomin);
     }
 
 

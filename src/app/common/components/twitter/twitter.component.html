@@ -4,10 +4,10 @@
         <div class="rsvp_twitter_widget">
             <div class="rsvp_twitter_right" >
                 <img src="./../../../../assets/icons/twitter_bird.png" />
-                <span>{{_item?.TimeBefore}}</span>
-                {{_item?.TitleTrimed}}
+                <span>{{_currentItem?.TimeBefore}}</span>
+                {{_currentItem?.TitleTrimed}}
             </div>
-            <a (click)="getNext(_item?.CounterId)" >
+            <a class="rsvp_twitter_button" (click)="getNext(_currentItem?.CounterId)" >
                  <img src="./../../../../assets/icons/twitter_left.png" />
             </a>
             <div style="clear:both;"></div>

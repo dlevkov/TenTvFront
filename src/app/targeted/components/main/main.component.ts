@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription, BehaviorSubject } from 'rxjs/Rx';
@@ -12,6 +12,7 @@ import { MainModel } from '../../../targeted/models/main.model';
     templateUrl: 'main.component.html'
 })
 export class MainComponent implements OnInit {
+    @Input() showTwitter: boolean = true;
     item: MainModel;
     private _service: MainService;
     private _subscriber: Subscription;

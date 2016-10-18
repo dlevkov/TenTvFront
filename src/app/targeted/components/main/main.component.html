@@ -8,5 +8,7 @@
 		<headline-ad [item]='headline' *ngIf="headline.HeadlineType==='Ad' && !headline.AdsSecond"></headline-ad>
 		<headline-adsecond [item]='headline' *ngIf="headline.HeadlineType==='Ad' && headline.AdsSecond"></headline-adsecond>
 	</div>
-	<twitter></twitter>
+
+	<twitter *ngIf='showTwitter'></twitter>
+	<scroll-top></scroll-top>
 </div>

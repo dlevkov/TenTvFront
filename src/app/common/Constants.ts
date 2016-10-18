@@ -7,6 +7,7 @@ export class Constants {
     public static readonly IMAGE_LOADING_URL16_9 = '../../assets/img/preload_640-360.png';
     public static readonly DATA_DOMAIN = 'http://localhost/Nana10MVC/';
     public static readonly NANA_IMAGES_DOMAIN: string = 'http://f.nanafiles.co.il';
+    public static readonly SCROLL_POSITION: number = 1000;
     public static readonly DFPADUNITS: any =
     {
         '10tv': 'Desktop_Nana10_Channel10_Inread',

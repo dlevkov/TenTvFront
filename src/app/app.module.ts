@@ -15,7 +15,7 @@ import { ROUTES } from './app.routes';
 import { App } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
-
+import { ScrollTop } from './common/components/scroll-top/scroll-top.component';
 import { NoContent } from './common/components/no-content';
 import { SectionComponent } from './targeted/components/section/section.component';
 
@@ -68,7 +68,8 @@ type StoreType = {
     ThirdPartyComponent,
     TaboolaMain,
     TwitterComponent,
-    DfpMain
+    DfpMain,
+    ScrollTop
   ],
   imports: [ // import Angular's modules
     BrowserModule,

@@ -10,5 +10,6 @@
             <headline-adsecond [item]='headline' *ngIf="headline.CounterId ===6">></headline-adsecond>
         </div>
     </div>
-     <twitter></twitter>
+     <twitter *ngIf='showTwitter'></twitter>
+     <scroll-top></scroll-top>
 </div>

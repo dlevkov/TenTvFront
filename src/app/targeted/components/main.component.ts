@@ -5,6 +5,7 @@ import { Subscription, BehaviorSubject } from 'rxjs/Rx';
 import { MainService } from '../services/main.service';
 import { HeadlineModel } from '../../common/models/headline.model';
 import { MainModel } from '../../targeted/models/main.model';
+
 @Component({
     selector: 'main',
     templateUrl: 'main.component.html'
@@ -24,20 +25,21 @@ export class MainComponent implements OnInit {
 
     getItems() {
         this._subscriber = this._service
-            .GetItemsByUri('TenTvAppFront/main')
+            .GetItemsByUri('TenTvAppFront/main?%24orderby=DisplayOrder%20asc')
             .subscribe(data => {
                 this.item = data;
             });
     }
-    isBig(headline: HeadlineModel): boolean {
-        return headline.CounterId <= 4 && headline.CounterId > 0;
-    }
-    isPair(headline: HeadlineModel): boolean {
-        return headline.DisplaySigns === 9 && headline.CounterId > 4;
-    }
-    isAlert(headline: HeadlineModel): boolean {
-        return headline.DisplaySigns === 6 && headline.CounterId > 0;
-    }
+
+    // isBig(headline: HeadlineModel): boolean {
+    //     return headline.CounterId <= 4 && headline.CounterId > 0;
+    // }
+    // isPair(headline: HeadlineModel): boolean {
+    //     return headline.DisplaySigns === 9 && headline.CounterId > 4;
+    // }
+    // isAlert(headline: HeadlineModel): boolean {
+    //     return headline.DisplaySigns === 6 && headline.CounterId > 0;
+    // }
 
     ngOnDestroy() {
         this._subscriber.unsubscribe();

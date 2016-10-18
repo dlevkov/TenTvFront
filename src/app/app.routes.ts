@@ -9,7 +9,7 @@ import { TwitterComponent } from './common/components/twitter/twitter.component'
 
 export const ROUTES: Routes = [
   { path: '', component: MainComponent },
-  { path: 'main', component: MainComponent, },
+  { path: 'main', component: MainComponent },
   { path: 'section/:id', component: SectionComponent },
   { path: 'article/:id', component: ArticleComponent },
   { path: 'twitter', component: TwitterComponent },

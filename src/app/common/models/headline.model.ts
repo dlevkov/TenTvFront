@@ -6,13 +6,13 @@ import { Constants } from '../../common/Constants';
 export class HeadlineModel {
     readonly HEADLINETYPES: any =
     {
-        Big: 10,
-        Video: 1,  // temporary replaced by standard item in views
-        Main: 2,
-        Ad: 8,
-        Pair: 9,
-        Small: 0,
-        Alert: 6
+        10: 'Big',
+        1: 'Video',  // temporary replaced by standard item in views
+        2: 'Main',
+        8: 'Ad',
+        9: 'Pair',
+        0: 'Small',
+        6: 'Alert'
     };
     DestArticleID?: number;
     DisplayOrder?: number;
@@ -29,26 +29,37 @@ export class HeadlineModel {
     DisplaySigns?: number;
     LastModifyDate?: string;
     CounterId: number;
-    isSmall(): boolean {
-        return this.DisplaySigns === this.HEADLINETYPES.Small;
-    }
+    AdsSecond: boolean = false;
+    HeadlineType: string;
+    AlertId: number = -1;
+    PairStart: boolean = false;
+    // isSmall(): boolean {
+    //     return this.DisplaySigns === this.HEADLINETYPES.Small;
+    // }
 
-    isAlert(): boolean {
-        return this.DisplaySigns === this.HEADLINETYPES.Alert;
-    }
+    // isBig(): boolean {
+    //     return this.DisplaySigns === this.HEADLINETYPES.Big;
+    // }
 
-    isAd(): boolean {
-        return this.DisplaySigns === this.HEADLINETYPES.Ad;
-    }
+    // isAlert(): boolean {
+    //     return this.DisplaySigns === this.HEADLINETYPES.Alert;
+    // }
 
-    isAdSecond(): boolean {
-        return this.DisplaySigns === this.HEADLINETYPES.Ad;
-    }
+    // isAd(): boolean {
+    //     return this.DisplaySigns === this.HEADLINETYPES.Ad && !this.AdsSecond;
+    // }
 
-    isPair(): boolean {
-        return this.DisplaySigns === this.HEADLINETYPES.Pair;
-    }
+    // isAdSecond(): boolean {
+    //     return this.DisplaySigns === this.HEADLINETYPES.Ad && this.AdsSecond;
+    // }
 
+    // isPair(): boolean {
+    //     return this.DisplaySigns === this.HEADLINETYPES.Pair;
+    // }
+
+    getTypeString(): string {
+        return this.HEADLINETYPES[this.DisplaySigns];
+    }
     constructor(parameters) {
         this.DestArticleID = parameters.DestArticleID;
         this.DisplayOrder = parameters.DisplayOrder;
@@ -65,5 +76,6 @@ export class HeadlineModel {
         this.DisplaySigns = parameters.DisplaySigns;
         this.LastModifyDate = parameters.LastModifyDate;
         this.CounterId = parameters.Id;
+        this.HeadlineType = this.getTypeString();
     }
 }

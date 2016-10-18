@@ -7,6 +7,7 @@
 		<headline-pair [item]='headline' *ngIf="headline.HeadlineType==='Pair' && headline.PairStart" [nextItem]='headline.PairStart ? item.Headlines[i+1] : null'></headline-pair>
 		<headline-ad [item]='headline' *ngIf="headline.HeadlineType==='Ad' && !headline.AdsSecond"></headline-ad>
 		<headline-adsecond [item]='headline' *ngIf="headline.HeadlineType==='Ad' && headline.AdsSecond"></headline-adsecond>
+		<dfp *ngIf="headline.isDfp(i)" [placeHolderId]='"ad-div-upper-strip-" + generateDfpId()' [dfpStyle]='{"width":"320px","height": "50px","margin":"0 auto","margin-top":"10px","margin-bottom":"10px"}' [dfpObjectName]='"main"'></dfp>
 	</div>
 
 	<twitter *ngIf='showTwitter'></twitter>

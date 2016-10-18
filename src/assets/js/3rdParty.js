@@ -175,12 +175,12 @@ var AdUnitsCollection = {
 
     //
     validPosition: function () {
-        var res = false;
+        var res = true;
 
-        if (this.counter <= this.boxCount && this.currentPosition > this.startDisplayPosition && (this.currentPosition < (this.startDisplayPosition + (this.counter + 1) * this.intervalDisplayPosition))) {
-            res = true;
-            console.log("current ad count" + this.counter);
-        }
+        // if (this.counter <= this.boxCount && this.currentPosition > this.startDisplayPosition && (this.currentPosition < (this.startDisplayPosition + (this.counter + 1) * this.intervalDisplayPosition))) {
+        //     res = true;
+        //     console.log("current ad count" + this.counter);
+        // }
 
 
         return res;

@@ -33,6 +33,10 @@ export class HeadlineModel {
     HeadlineType: string;
     AlertId: number = -1;
     PairStart: boolean = false;
+    isDfp(i: number): boolean {
+        return i !== 0 && (this.CounterId === 3 || (i > 4 && i % 4 === 0));
+    }
+
     // isSmall(): boolean {
     //     return this.DisplaySigns === this.HEADLINETYPES.Small;
     // }

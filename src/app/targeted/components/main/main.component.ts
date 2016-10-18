@@ -14,11 +14,16 @@ import { MainModel } from '../../../targeted/models/main.model';
 export class MainComponent implements OnInit {
     @Input() showTwitter: boolean = true;
     item: MainModel;
+    DfpId: number = 0;
     private _service: MainService;
     private _subscriber: Subscription;
 
     constructor(public route: ActivatedRoute, http: Http) {
         this._service = new MainService(http);
+    }
+
+    generateDfpId(): number {
+        return this.DfpId++;
     }
 
     ngOnInit() {

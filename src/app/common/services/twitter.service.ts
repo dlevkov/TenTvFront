@@ -12,8 +12,10 @@ export class TwitterService {
         this._dal = new Dal(http);
     }
 
-    GetItemsByUri(uri: string) {
-        return this._dal.GetItemsByUri(uri)
+    pollITwitts() {
+        return Observable.interval(1000 * 1)
+            .flatMap(() => this._dal.GetItemsByUri('TenTvAppFront/Twitts'))
+            .retry(5)
             .map((items) => {
                 let result: Array<TwitterModel> = [];
                 let counter = 0;
@@ -26,5 +28,6 @@ export class TwitterService {
                 }
                 return result;
             });
+
     }
 }

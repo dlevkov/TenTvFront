@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription, BehaviorSubject } from 'rxjs/Rx';
-import { MainService } from '../services/main.service';
-import { HeadlineModel } from '../../common/models/headline.model';
-import { MainModel } from '../../targeted/models/main.model';
+
+import { MainService } from '../../services/main.service';
+import { HeadlineModel } from '../../../common/models/headline.model';
+import { MainModel } from '../../../targeted/models/main.model';
 
 @Component({
     selector: 'main',

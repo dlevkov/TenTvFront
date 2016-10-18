@@ -15,7 +15,7 @@ import { ROUTES } from './app.routes';
 import { App } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
-
+import { ScrollTop } from './common/components/scroll-top/scroll-top.component';
 import { NoContent } from './common/components/no-content';
 import { SectionComponent } from './targeted/components/section/section.component';
 
@@ -31,7 +31,7 @@ import { DfpMain } from './common/components/3rdParty/dfp.component';
 
 import { ArticleComponent } from './targeted/components/article/article.component';
 import { ParagraphComponent } from './targeted/components/paragraph/paragraph.component';
-import { MainComponent } from './targeted/components/main.component';
+import { MainComponent } from './targeted/components/main/main.component';
 import { TwitterComponent } from './common/components/twitter/twitter.component';
 
 import { FilterServiceComponent } from './targeted/components/filter-service/filter-service.component';
@@ -72,7 +72,8 @@ type StoreType = {
     TwitterComponent,
     DfpMain,
     FilterServiceComponent,
-    FilterServiceItemComponent
+    FilterServiceItemComponent,
+    ScrollTop
   ],
   imports: [ // import Angular's modules
     BrowserModule,

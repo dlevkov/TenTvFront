@@ -1,7 +1,19 @@
 /**
  * MainModel
  */
+import { Constants } from '../../common/Constants';
+
 export class HeadlineModel {
+    readonly HEADLINETYPES: any =
+    {
+        Big: 10,
+        Video: 1,  // temporary replaced by standard item in views
+        Main: 2,
+        Ad: 8,
+        Pair: 9,
+        Small: 0,
+        Alert: 6
+    };
     DestArticleID?: number;
     DisplayOrder?: number;
     Title?: string;
@@ -17,8 +29,24 @@ export class HeadlineModel {
     DisplaySigns?: number;
     LastModifyDate?: string;
     CounterId: number;
-    get isBig(): boolean {
-        return this.CounterId % 4 === 0;
+    isSmall(): boolean {
+        return this.DisplaySigns === this.HEADLINETYPES.Small;
+    }
+
+    isAlert(): boolean {
+        return this.DisplaySigns === this.HEADLINETYPES.Alert;
+    }
+
+    isAd(): boolean {
+        return this.DisplaySigns === this.HEADLINETYPES.Ad;
+    }
+
+    isAdSecond(): boolean {
+        return this.DisplaySigns === this.HEADLINETYPES.Ad;
+    }
+
+    isPair(): boolean {
+        return this.DisplaySigns === this.HEADLINETYPES.Pair;
     }
 
     constructor(parameters) {

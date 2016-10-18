@@ -3,10 +3,14 @@ import { Http } from '@angular/http';
 import { Subscription } from 'rxjs/Rx';
 import { TwitterService } from '../../services/twitter.service';
 import { TwitterModel } from '../../models/twitter.model';
+import { Constants } from '../../Constants';
 
 @Component({
     selector: 'twitter',
-    templateUrl: 'twitter.component.html'
+    templateUrl: 'twitter.component.html',
+    host: {
+        '(window:scroll)': 'scrolleEvent($event)'
+    }
 })
 export class TwitterComponent implements OnInit, OnDestroy {
     items: TwitterModel[];
@@ -14,10 +18,16 @@ export class TwitterComponent implements OnInit, OnDestroy {
     private _currentId: number;
     private _service: TwitterService;
     private _subscriber: Subscription;
+    private _isVisible: boolean = true;
 
     constructor(http: Http) {
         this._service = new TwitterService(http);
     }
+
+    scrolleEvent(event) {
+        this._isVisible = (0 <= window.pageYOffset && window.pageYOffset < Constants.SCROLL_POSITION) ? true : false;
+    }
+
 
     ngOnInit() {
         this.getItems();

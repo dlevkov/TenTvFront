@@ -376,4 +376,19 @@ border-bottom:1px solid #d8d8d8; border-top:1px solid #d8d8d8;}
  	.rsvp_filter_checkbox{width:30px; height:30px;}
 }
  
- 
+ /*Twitter start*/
+ twitter{
+ position: fixed; 
+ bottom: -35px;
+ display: block;
+ width: 100%;
+ }
+ /*Twitter end*/
+
+ /*Scroll-Top start*/
+ #goToTopButton{
+  bottom: 10px;
+  left: 10px;
+  display: block;
+ }
+ /*Scroll-Top end*/

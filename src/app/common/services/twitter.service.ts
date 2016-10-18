@@ -13,7 +13,7 @@ export class TwitterService {
     }
 
     pollITwitts() {
-        return Observable.interval(1000 * 5)
+        return Observable.interval(1000 * 1)
             .flatMap(() => this._dal.GetItemsByUri('TenTvAppFront/Twitts'))
             .retry(5)
             .map((items) => {

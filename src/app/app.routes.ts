@@ -4,7 +4,7 @@ import { SectionComponent } from './targeted/components/section/section.componen
 import { MainComponent } from './targeted/components/main/main.component';
 import { DataResolver } from './app.resolver';
 import { ArticleComponent } from './targeted/components/article/article.component';
-import { TwitterToolbarComponent } from './common/components/twitter/twitter-toolbar.component';
+import { TwitterComponent } from './common/components/twitter/twitter.component';
 import { FilterServiceComponent } from './targeted/components/filter-service/filter-service.component';
 
 export const ROUTES: Routes = [
@@ -12,7 +12,7 @@ export const ROUTES: Routes = [
   { path: 'main', component: MainComponent },
   { path: 'section/:id', component: SectionComponent },
   { path: 'article/:id', component: ArticleComponent },
-  { path: 'twitter', component: TwitterToolbarComponent },
+  { path: 'twitter', component: TwitterComponent },
   { path: 'filter', component: FilterServiceComponent },
   { path: '**', component: NoContent },
 

@@ -13,7 +13,7 @@ import { Constants } from '../../Constants';
 export class DfpMain implements OnInit, OnDestroy, AfterViewInit {
     @Input() serviceName: string = '10tv';
     @Input() placeHolderId: string = '';
-    @Input() dfpObjectName: string = 'home';
+    @Input() dfpObjectName: string = 'main';
     @Input() dfpStyle: string = '';
 
     private dfpRef: any;

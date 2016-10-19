@@ -83,7 +83,7 @@ var nanaHelper = {
 }
 
 var AdUnitsCollection = {
-    maavaron: googleDfpID + "Channel10_Interstitial_Ros",
+    maavaron: googleDfpID + "Channel10_Interstitial_Ros_test1",
     //liveBox: googleDfpID + "MOBILE_NANA10_LiveBoxVideo_300x250",
     strip: googleDfpID + "Channel10_Banner_General_2",
     box: googleDfpID + "Channel10_Box_300X250",
@@ -154,7 +154,7 @@ var AdUnitsCollection = {
 
             default:
                 res.push(320);
-                res.push(460);
+                res.push(568);
                 break;
         }
         return res;

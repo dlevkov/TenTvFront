@@ -33,33 +33,44 @@ export class HeadlineModel {
     HeadlineType: string;
     AlertId: number = -1;
     PairStart: boolean = false;
-    isDfp(i: number): boolean {
-        return i !== 0 && (this.CounterId === 3 || (i > 4 && i % 4 === 0));
+    isDfp(i: any, TopFourEndIndex: any): boolean {
+        return i !== 0 && (i === TopFourEndIndex || (i - TopFourEndIndex) % 6 === 0);
     }
 
-    // isSmall(): boolean {
-    //     return this.DisplaySigns === this.HEADLINETYPES.Small;
-    // }
+    getClass(i: any): string {
+        return i + '_' + this.CounterId;
+    }
 
-    // isBig(): boolean {
-    //     return this.DisplaySigns === this.HEADLINETYPES.Big;
-    // }
+    isMain(): boolean {
+        return this.CounterId === 0;
+    }
+    isTopFour(): boolean {
+        return this.isMain() || (this.CounterId >= 1 && this.CounterId <= 3);
+    }
 
-    // isAlert(): boolean {
-    //     return this.DisplaySigns === this.HEADLINETYPES.Alert;
-    // }
+    isSmall(): boolean {
+        return !this.isTopFour() && (this.HeadlineType === 'Small' || this.HeadlineType === 'Video');
+    }
 
-    // isAd(): boolean {
-    //     return this.DisplaySigns === this.HEADLINETYPES.Ad && !this.AdsSecond;
-    // }
+    isBig(): boolean {
+        return !this.isMain() && (this.HeadlineType === 'Big' || this.isTopFour());
+    }
 
-    // isAdSecond(): boolean {
-    //     return this.DisplaySigns === this.HEADLINETYPES.Ad && this.AdsSecond;
-    // }
+    isAlert(): boolean {
+        return !this.isTopFour() && this.HeadlineType === 'Alert';
+    }
 
-    // isPair(): boolean {
-    //     return this.DisplaySigns === this.HEADLINETYPES.Pair;
-    // }
+    isAd(): boolean {
+        return !this.isTopFour() && this.HeadlineType === 'Ad' && !this.AdsSecond;
+    }
+
+    isAdSecond(): boolean {
+        return !this.isTopFour() && this.HeadlineType === 'Ad' && this.AdsSecond;
+    }
+
+    isPair(): boolean {
+        return !this.isTopFour() && this.HeadlineType === 'Pair' && this.PairStart;
+    }
 
     getTypeString(): string {
         return this.HEADLINETYPES[this.DisplaySigns];

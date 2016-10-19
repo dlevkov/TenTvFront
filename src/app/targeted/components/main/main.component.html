@@ -1,13 +1,13 @@
 <div class="rsvp_fullwidth" style="margin-bottom: 100px;">
-	<div *ngFor="let headline of item?.Headlines; let i=index" [class]='headline.HeadlineType'>
-		<headline-main [item]='headline' *ngIf="headline.CounterId===0"></headline-main>
-		<headline-big [item]='headline' *ngIf="headline.HeadlineType==='Big' || (headline.CounterId >=1 && headline.CounterId <=3)"></headline-big>
-		<headline-alert [item]='headline' *ngIf="headline.HeadlineType==='Alert'" [countId]='item.AlertCounter'></headline-alert>
-		<headline-small [item]='headline' *ngIf="headline.HeadlineType==='Small'"></headline-small>
-		<headline-pair [item]='headline' *ngIf="headline.HeadlineType==='Pair' && headline.PairStart" [nextItem]='headline.PairStart ? item.Headlines[i+1] : null'></headline-pair>
-		<headline-ad [item]='headline' *ngIf="headline.HeadlineType==='Ad' && !headline.AdsSecond"></headline-ad>
-		<headline-adsecond [item]='headline' *ngIf="headline.HeadlineType==='Ad' && headline.AdsSecond"></headline-adsecond>
-		<dfp *ngIf="headline.isDfp(i)" [placeHolderId]='"ad-div-upper-strip-" + generateDfpId()' [dfpStyle]='{"width":"320px","height": "50px","margin":"0 auto","margin-top":"10px","margin-bottom":"10px"}' [dfpObjectName]='"main"'></dfp>
+	<div *ngFor="let headline of item?.Headlines; let i=index" [class]='headline.getClass(i)'>
+		<headline-main [item]='headline' *ngIf="headline.isMain()"></headline-main>
+		<headline-big [item]='headline' *ngIf="headline.isBig()"></headline-big>
+		<headline-alert [item]='headline' *ngIf="headline.isAlert()" [countId]='item.AlertCounter'></headline-alert>
+		<headline-small [item]='headline' *ngIf="headline.isSmall()"></headline-small>
+		<headline-pair [item]='headline' *ngIf="headline.isPair()" [nextItem]='headline.PairStart ? item.Headlines[i+1] : null'></headline-pair>
+		<headline-ad [item]='headline' *ngIf="headline.isAd()"></headline-ad>
+		<headline-adsecond [item]='headline' *ngIf="headline.isAdSecond()"></headline-adsecond>
+		<dfp *ngIf="headline.isDfp(i,item?.TopFourEndIndex)" [placeHolderId]='"ad-div-upper-strip-" + i' [dfpStyle]='{"width":"320px","height": "50px","margin":"0 auto","margin-top":"10px","margin-bottom":"10px", "background-color":"red"}' [dfpObjectName]='"main"'></dfp>
 	</div>
 
 	<twitter *ngIf='showTwitter'></twitter>

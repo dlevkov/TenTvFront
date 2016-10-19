@@ -8,6 +8,7 @@ export class MainModel {
     PairtHeadlines: HeadlineModel[] = [];
     AlertCounter: number = 0;
     ItemCounter: number = 0;
+    TopFourEndIndex: number = -1;
 
     constructor(data) {
         data.forEach(element => {
@@ -33,8 +34,12 @@ export class MainModel {
     reorganizeModel() {
         this.reorganizeAlerts();
         this.reorganizePairs();
+        this.setTopFourEndIndex();
     }
 
+    setTopFourEndIndex() {
+        this.TopFourEndIndex = 3 + this.AlertHeadlines.length;
+    }
     reorganizeAlerts() {
         //
         let i = 1;

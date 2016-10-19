@@ -89,6 +89,7 @@ var AdUnitsCollection = {
     box: googleDfpID + "Channel10_Box_300X250",
     boxCount: -1,
     counter: 0,
+    slotName: "",
     startDisplayPosition: 1000,
     intervalDisplayPosition: 200,
     currentPosition: -1,
@@ -126,12 +127,11 @@ var AdUnitsCollection = {
             googletag.enableServices();
 
             //TODO: ANTON, replace by object 
-            var slotName = 'ad-div-box';
-            var slot = googletag.defineSlot(AdUnitsCollection.box, [300, 250], slotName).addService(googletag.pubads());
+            var slot = googletag.defineSlot(AdUnitsCollection.box, [300, 250], AdUnitsCollection.slotName).addService(googletag.pubads());
 
             // Display has to be called before
             // refresh and after the slot div is in the page.
-            googletag.display(slotName);
+            googletag.display(AdUnitsCollection.slotName);
             googletag.pubads().refresh([slot]);
             googletag.pubads().collapseEmptyDivs();
         });
@@ -145,6 +145,8 @@ var AdUnitsCollection = {
     //
     initMain: function () {
         if (!this.validPosition()) return false;
+
+        //setTimeout(function () {
 
         //init dfp objects uf needed
         //TODO: Anton
@@ -161,22 +163,24 @@ var AdUnitsCollection = {
             googletag.enableServices();
 
             //TODO: ANTON, replace by object 
-            var slotName = 'ad-div-upper-strip-' + AdUnitsCollection.counter;
-            var slot = googletag.defineSlot(AdUnitsCollection.strip, [320, 50], slotName).addService(googletag.pubads());
+            var slot = googletag.defineSlot(AdUnitsCollection.strip, [320, 50], AdUnitsCollection.slotName).addService(googletag.pubads());
 
             // Display has to be called before
             // refresh and after the slot div is in the page.
-            googletag.display(slotName);
+            googletag.display(AdUnitsCollection.slotName);
             googletag.pubads().refresh([slot]);
             googletag.pubads().collapseEmptyDivs();
         });
-        this.counter++;
+        //}, AdUnitsCollection.counter * 1000);
+
+        AdUnitsCollection.counter++;
     },
 
     //
     validPosition: function () {
         var res = true;
 
+        res = document.getElementById(this.slotName) !== null ? true : false;
         // if (this.counter <= this.boxCount && this.currentPosition > this.startDisplayPosition && (this.currentPosition < (this.startDisplayPosition + (this.counter + 1) * this.intervalDisplayPosition))) {
         //     res = true;
         //     console.log("current ad count" + this.counter);

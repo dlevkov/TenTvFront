@@ -38,16 +38,6 @@ export class MainComponent implements OnInit {
             });
     }
 
-    // isBig(headline: HeadlineModel): boolean {
-    //     return headline.CounterId <= 4 && headline.CounterId > 0;
-    // }
-    // isPair(headline: HeadlineModel): boolean {
-    //     return headline.DisplaySigns === 9 && headline.CounterId > 4;
-    // }
-    // isAlert(headline: HeadlineModel): boolean {
-    //     return headline.DisplaySigns === 6 && headline.CounterId > 0;
-    // }
-
     ngOnDestroy() {
         this._subscriber.unsubscribe();
     }

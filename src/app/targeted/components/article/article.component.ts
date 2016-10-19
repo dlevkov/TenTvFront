@@ -25,7 +25,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this._currentId = +this.route.snapshot.params['id'];
-        this.getItems();        
+        this.getItems();
     }
 
     getItems() {
@@ -42,8 +42,8 @@ export class ArticleComponent implements OnInit, OnDestroy {
 
     }
 
-    //***************************************************************************************************************************//
-    //Get angular function from external JS:
+    // ***************************************************************************************************************************//
+    // Get angular function from external JS:
     // Add to \src\custom-typings.d.ts -  interface Window { angularComponentRef : any; }
 
     // constructor(private _ngZone: NgZone) {
@@ -60,7 +60,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
 
     // }
 
-    //Use in your outside JS 
+    // Use in your outside JS 
     // window.angularComponentRef.zone.run(() => {window.angularComponentRef.component.publicFunc('bla bla');})
-    //***************************************************************************************************************************//
+    // ***************************************************************************************************************************//
 }

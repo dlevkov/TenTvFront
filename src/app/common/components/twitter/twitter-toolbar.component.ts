@@ -6,7 +6,7 @@ import { TwitterModel } from '../../models/twitter.model';
 import { Constants } from '../../Constants';
 
 @Component({
-    selector: 'twitter',
+    selector: 'twitter-toolbar',
     templateUrl: 'twitter-toolbar.component.html',
     host: {
         '(window:scroll)': 'scrolleEvent($event)'

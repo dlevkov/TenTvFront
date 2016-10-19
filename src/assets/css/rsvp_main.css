@@ -377,11 +377,12 @@ border-bottom:1px solid #d8d8d8; border-top:1px solid #d8d8d8;}
 }
  
  /*Twitter start*/
- twitter{
+ twitter-toolbar{
  position: fixed; 
  bottom: -35px;
  display: block;
  width: 100%;
+ z-index: 10;
  }
  /*Twitter end*/
 

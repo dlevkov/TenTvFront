@@ -32,7 +32,7 @@ import { DfpMain } from './common/components/3rdParty/dfp.component';
 import { ArticleComponent } from './targeted/components/article/article.component';
 import { ParagraphComponent } from './targeted/components/paragraph/paragraph.component';
 import { MainComponent } from './targeted/components/main/main.component';
-import { TwitterComponent } from './common/components/twitter/twitter.component';
+import { TwitterToolbarComponent } from './common/components/twitter/twitter-toolbar.component';
 
 import { FilterServiceComponent } from './targeted/components/filter-service/filter-service.component';
 import { FilterServiceItemComponent } from './targeted/components/filter-service/filter-service-item.component';
@@ -69,7 +69,7 @@ type StoreType = {
     HeadlineAdSecondComponent,
     ThirdPartyComponent,
     TaboolaMain,
-    TwitterComponent,
+    TwitterToolbarComponent,
     DfpMain,
     FilterServiceComponent,
     FilterServiceItemComponent,

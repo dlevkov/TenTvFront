@@ -7,12 +7,12 @@ import { Constants } from '../../Constants';
 
 @Component({
     selector: 'twitter',
-    templateUrl: 'twitter.component.html',
+    templateUrl: 'twitter-toolbar.component.html',
     host: {
         '(window:scroll)': 'scrolleEvent($event)'
     }
 })
-export class TwitterComponent implements OnInit, OnDestroy {
+export class TwitterToolbarComponent implements OnInit, OnDestroy {
     items: TwitterModel[];
     private _currentItem: TwitterModel;
     private _currentId: number;

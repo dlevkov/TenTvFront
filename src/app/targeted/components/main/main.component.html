@@ -10,6 +10,6 @@
 		<dfp *ngIf="headline.isDfp(i,item?.TopFourEndIndex)" [placeHolderId]='"ad-div-upper-strip-" + i' [dfpStyle]='{"width":"320px","height": "50px","margin":"0 auto","margin-top":"10px","margin-bottom":"10px", "background-color":"red"}' [dfpObjectName]='"main"'></dfp>
 	</div>
 
-	<twitter *ngIf='showTwitter'></twitter>
+	<twitter-toolbar *ngIf='showTwitter'></twitter-toolbar>
 	<scroll-top></scroll-top>
 </div>

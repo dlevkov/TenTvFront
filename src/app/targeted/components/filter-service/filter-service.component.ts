@@ -36,6 +36,6 @@ export class FilterServiceComponent implements OnInit, OnDestroy {
         return this._items.filter(x => x.Checked === true).map(x => x.ServiceID);
     }
     private Redirect() {
-        // this._router.navigate()
+        this._router.navigate(['/article-list', { data: this.getChecked() }]);
     }
 }

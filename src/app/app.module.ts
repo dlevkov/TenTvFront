@@ -28,10 +28,12 @@ import { HeadlineAdSecondComponent } from './common/components/headlines/headlin
 import { HeadlinePairComponent } from './common/components/headlines/headline-pair.component';
 import { TaboolaMain } from './common/components/3rdParty/taboola.component';
 import { DfpMain } from './common/components/3rdParty/dfp.component';
+import { ArticlesListComponent } from './targeted/components/articles-list/artilcles-list.component';
 
 import { ArticleComponent } from './targeted/components/article/article.component';
 import { ParagraphComponent } from './targeted/components/paragraph/paragraph.component';
 import { MainComponent } from './targeted/components/main/main.component';
+import { TwitterToolbarComponent } from './common/components/twitter/twitter-toolbar.component';
 import { TwitterComponent } from './common/components/twitter/twitter.component';
 
 import { FilterServiceComponent } from './targeted/components/filter-service/filter-service.component';
@@ -69,11 +71,12 @@ type StoreType = {
     HeadlineAdSecondComponent,
     ThirdPartyComponent,
     TaboolaMain,
-    TwitterComponent,
+    TwitterToolbarComponent, TwitterComponent,
     DfpMain,
+    ScrollTop,
+    ArticlesListComponent,
     FilterServiceComponent,
     FilterServiceItemComponent,
-    ScrollTop
   ],
   imports: [ // import Angular's modules
     BrowserModule,

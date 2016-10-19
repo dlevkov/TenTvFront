@@ -6,6 +6,7 @@ import { DataResolver } from './app.resolver';
 import { ArticleComponent } from './targeted/components/article/article.component';
 import { TwitterComponent } from './common/components/twitter/twitter.component';
 import { ArticlesListComponent } from './targeted/components/articles-list/artilcles-list.component';
+import { FilterServiceComponent } from './targeted/components/filter-service/filter-service.component';
 
 
 export const ROUTES: Routes = [
@@ -15,6 +16,7 @@ export const ROUTES: Routes = [
   { path: 'section/:id', component: SectionComponent },
   { path: 'article/:id', component: ArticleComponent },
   { path: 'twitter', component: TwitterComponent },
+  { path: 'filter', component: FilterServiceComponent },
   { path: '**', component: NoContent },
 
 ];

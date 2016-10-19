@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
-import {ThirdPartyComponent } from './common/components/3rdParty/third-party.component';
+import { ThirdPartyComponent } from './common/components/3rdParty/third-party.component';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -33,8 +33,11 @@ import { ArticlesListComponent } from './targeted/components/articles-list/artil
 import { ArticleComponent } from './targeted/components/article/article.component';
 import { ParagraphComponent } from './targeted/components/paragraph/paragraph.component';
 import { MainComponent } from './targeted/components/main/main.component';
+import { TwitterToolbarComponent } from './common/components/twitter/twitter-toolbar.component';
 import { TwitterComponent } from './common/components/twitter/twitter.component';
 
+import { FilterServiceComponent } from './targeted/components/filter-service/filter-service.component';
+import { FilterServiceItemComponent } from './targeted/components/filter-service/filter-service-item.component';
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
@@ -68,10 +71,12 @@ type StoreType = {
     HeadlineAdSecondComponent,
     ThirdPartyComponent,
     TaboolaMain,
-    TwitterComponent,
+    TwitterToolbarComponent, TwitterComponent,
     DfpMain,
     ScrollTop,
-    ArticlesListComponent
+    ArticlesListComponent,
+    FilterServiceComponent,
+    FilterServiceItemComponent,
   ],
   imports: [ // import Angular's modules
     BrowserModule,

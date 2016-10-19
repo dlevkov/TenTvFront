@@ -9,10 +9,13 @@ import { ImageTypes } from '../../Enums';
 })
 export class HeadlinePairComponent implements OnInit {
     @Input() item: HeadlineModel;
+    @Input() nextItem: HeadlineModel;
     loadingUrl = Constants.IMAGE_LOADING_URL16_9;
+    loadingUrlNext = Constants.IMAGE_LOADING_URL16_9;
     constructor() { }
 
     ngOnInit() {
         this.loadingUrl = Constants.GetImagePathByType(this.item.MediaStockImageID, ImageTypes.HeadlIne_Big_460_258);
+        this.loadingUrlNext = Constants.GetImagePathByType(this.nextItem.MediaStockImageID, ImageTypes.HeadlIne_Big_460_258);
     }
 }

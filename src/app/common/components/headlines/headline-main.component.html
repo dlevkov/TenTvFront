@@ -1,6 +1,6 @@
 <!-- main article start -->
 <div style="clear:both;"></div>
-<div class="rsvp_main_article">
+<div class="rsvp_main_article" [ngStyle]="{'margin-bottom': '0'}">
     <a [routerLink]="['/article', item?.DestArticleID]">
         <img [src]="loadingUrl" [alt]="item?.MediaStockImageAlt" />
         <div class="rsvp_main_article_content">

@@ -1,0 +1,17 @@
+    <!--  twitter widget start here  -->
+    <div *ngIf='_isVisible'>
+        <div style="clear:both;"></div>
+        <div class="rsvp_twitter_widget">
+            <div class="rsvp_twitter_right" [routerLink]="['/twitter']">
+                <img src="./../../../../assets/icons/twitter_bird.png" />
+                <span>{{_currentItem?.TimeBefore}}</span>
+                {{_currentItem?.TitleTrimed}}
+            </div>
+            <a class="rsvp_twitter_button" (click)="getNext(_currentItem?.CounterId)" >
+                 <img src="./../../../../assets/icons/twitter_left.png" />
+            </a>
+            <div style="clear:both;"></div>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+    <!--  twitter widget end here  -->

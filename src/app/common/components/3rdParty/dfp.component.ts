@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef, Input } from '
 import { Http } from '@angular/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Constants } from '../../Constants';
+import { Maavaron } from './maavaron.component';
 
 
 @Component({
@@ -15,6 +16,7 @@ export class DfpMain implements OnInit, OnDestroy, AfterViewInit {
     @Input() placeHolderId: string = '';
     @Input() dfpObjectName: string = 'main';
     @Input() dfpStyle: string = '';
+    @Input() maavaron: Maavaron;
 
     private _dfpRef: any;
     private _isVisible: boolean = false;
@@ -36,15 +38,17 @@ export class DfpMain implements OnInit, OnDestroy, AfterViewInit {
 
     ngAfterViewInit() {
         //
-        this.generateParams();
+        this.generateDfpParams();
+        this.setDfpParams();
+        this._dfpRef.init();
+    }
 
+    setDfpParams() {
         this._dfpRef = window['AdUnitsCollection'];
         this._dfpRef.objectName = this.dfpObjectName;
         this._dfpRef.slotName = this.placeHolderId;
         this._dfpRef.adSize = this.adSize;
         this._dfpRef.adUnitName = this.adUnitName;
-
-        this._dfpRef.init();
     }
 
     //
@@ -73,6 +77,7 @@ export class DfpMain implements OnInit, OnDestroy, AfterViewInit {
                 break;
         }
         return res;
+
     }
 
     //
@@ -103,31 +108,34 @@ export class DfpMain implements OnInit, OnDestroy, AfterViewInit {
 
             default:
                 res.push(320);
-                res.push(50);
+                res.push(568);
                 break;
         }
         return res;
     }
 
-    generateParams() {
+    generateDfpParams() {
         this.getResolution();
         switch (this.dfpObjectName) {
             case 'main':
-                this.adUnitName = Constants.DFPADUNITSNAMES.main;
-                this.getMainAdUnitSize();
+                this.adUnitName = Constants.DFPADUNITSNAMES['strip'];
+                this.adSize = this.getMainAdUnitSize();
                 break;
             case 'article':
-                this.adUnitName = Constants.DFPADUNITSNAMES.article;
-                this.getArticleAdUnitSize();
+                this.adUnitName = Constants.DFPADUNITSNAMES['box'];
+                this.adSize = this.getArticleAdUnitSize();
                 break;
             case 'maavaron':
-                this.adUnitName = Constants.DFPADUNITSNAMES.maavaron;
-                this.getMaavaronAdUnitSize();
+                this.adUnitName = Constants.DFPADUNITSNAMES['maavaron'];
+                this.adSize = this.getMaavaronAdUnitSize();
+                this.maavaron.setSize(this.adSize);
                 break;
             default:
             //
 
         }
+
+
     }
 
 

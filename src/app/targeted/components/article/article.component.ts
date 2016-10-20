@@ -29,7 +29,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
     }
 
     getItems() {
-        this._subscriber = this._service.GetItemsByUri('TenTvAppFront/article?$filter=ArticleID eq ' + this._currentId)
+        this._subscriber = this._service.GetItemsByUri('TenTvAppFront/article/' + this._currentId)
             .subscribe(data => {
                 this.item = data;
                 this._loadingUrl = this.item.TitlePic;

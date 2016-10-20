@@ -23,7 +23,6 @@ export class ArticlesListComponent implements OnInit {
     }
 
     getItems() {
-        let index = 0;
         this._serviceIds.forEach((element, index) => {
             this._url += ('idsList=' + element + '&&');
         });

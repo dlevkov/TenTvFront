@@ -4,49 +4,45 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Constants } from '../../../common/Constants';
 import { Subscription, BehaviorSubject } from 'rxjs/Rx';
 import { ArticleListService } from '../../services/artilce-list.service';
-import { HeadlineModel } from '../../../common/models/headline.model';
-
+import { ArticleListModel } from '../../../targeted/models/article-list.model';
+import { HeadlineSmallComponent } from '../../../common/components/headlines/headline-small.component';
 
 @Component({
     selector: 'articles-list',
     templateUrl: 'articles-list.component.html',
 })
 export class ArticlesListComponent implements OnInit {
-    private item: HeadlineModel;
-    private _loadingUrl: string = Constants.IMAGE_LOADING_URL16_9;
+    private items: Array<ArticleListModel> = [];
     private _subscriber: Subscription;
     private _service: ArticleListService;
-    private _serviceIds: number[] = [];
-    private _url: string;
+    private _serviceIds: string[] = [];
+    private _url: string = '';
 
-    constructor(public route: ActivatedRoute, http: Http) {
+    constructor(public route: ActivatedRoute, http: Http, private _router: Router) {
         this._service = new ArticleListService(http);
     }
 
     getItems() {
         this._serviceIds.forEach((element, index) => {
-            this._url = 'idsList=' + element;
-            if (this._serviceIds.length !== index) {
-                this._url += '&&';
-            }
+            this._url += ('idsList=' + element + '&&');
         });
-        this._subscriber = this._service.GetItemsByUri('TenTvAppFront/article-list?' + this._url)
+        this._subscriber = this._service.GetItemsByUri('TenTvAppFront/article-list?' + this._url + '$orderby=DestArticleID')
             .subscribe(data => {
-                this.item = data;
-                console.log(data);
-                // this._loadingUrl = this.item.TitlePic;
+                this.items = data;
             });
+
     }
 
     ngOnInit() {
-        this._serviceIds = this.route.snapshot.params['ids'];
+        let data: string = this.route.snapshot.params['data']; // get list of id's as a string splited by ','
+        this._serviceIds = data.split(',');
         this.getItems();
+
     }
 
     ngOnDestroy() {
         this._subscriber.unsubscribe();
     }
-
 }
 
 

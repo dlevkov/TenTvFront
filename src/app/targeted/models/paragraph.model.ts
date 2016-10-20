@@ -13,7 +13,7 @@ export class ParagraphModel {
     ThumbPicLink: string;
     PicMediaStockImageAlt: string;
     PicMediaStockImageCredit: string;
-    PicMediaStockImageID:string;
+    PicMediaStockImageID: string;
     DisplayOrder: number;
     ImageSrc: string;
 
@@ -31,6 +31,6 @@ export class ParagraphModel {
         this.ThumbPicLink = data.ThumbPicLink;
         this.PicMediaStockImageAlt = data.PicMediaStockImageAlt;
         this.PicMediaStockImageCredit = data.PicMediaStockImageCredit;
-        this.ImageSrc =  Constants.GetImagePathByType(data.PicMediaStockImageID, ImageTypes.Article_Default);
+        this.ImageSrc = Constants.GetImagePathByType(data.PicMediaStockImageID, ImageTypes.Article_Default);
     }
 }

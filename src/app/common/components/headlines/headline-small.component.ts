@@ -8,11 +8,11 @@ import { ImageTypes } from '../../Enums';
     templateUrl: 'headline-small.component.html'
 })
 export class HeadlineSmallComponent implements OnInit {
-     @Input() item: HeadlineModel;
+    @Input() item: HeadlineModel;
     loadingUrl = Constants.IMAGE_LOADING_URL16_9;
     constructor() { }
 
     ngOnInit() {
-        this.loadingUrl = Constants.GetImagePathByType(this.item.MediaStockImageID, ImageTypes.Headline_Small_303_165);
+        this.loadingUrl = this.item.MediaStockImageID != null ? Constants.GetImagePathByType(this.item.MediaStockImageID, ImageTypes.Headline_Small_303_165) : null;
     }
 }

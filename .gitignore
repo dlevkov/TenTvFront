@@ -28,6 +28,7 @@ build/Release
 .DS_Store
 ehthumbs.db
 Icon?
+!/src/assets/icons
 Thumbs.db
 
 # Node Files #

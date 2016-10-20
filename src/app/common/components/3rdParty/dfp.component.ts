@@ -17,6 +17,7 @@ export class DfpMain implements OnInit, OnDestroy, AfterViewInit {
     @Input() dfpStyle: string = '';
 
     private dfpRef: any;
+    private _isVisible: boolean = false;
 
     constructor(
         public route: ActivatedRoute, http: Http, private myElement: ElementRef
@@ -30,15 +31,11 @@ export class DfpMain implements OnInit, OnDestroy, AfterViewInit {
     }
 
     ngAfterViewInit() {
+        //
         this.dfpRef = window['AdUnitsCollection'];
         this.dfpRef.objectName = this.dfpObjectName;
+        this.dfpRef.slotName = this.placeHolderId;
         this.dfpRef.init();
-        //     this.taboolaRef.placeHolderId = this.placeHolderId;
-        //     this.taboolaRef.placement =  this.placement;
-        //     this.taboolaRef.mode = this.mode;
-        //     this.taboolaRef.appendTaboolaHead();
-        //     this.taboolaRef.appendTabolaBodyEnd();
-        //     this.taboolaRef.appendTaboolaContent();
     }
 
     ngOnDestroy() {

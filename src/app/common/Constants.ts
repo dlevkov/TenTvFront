@@ -8,20 +8,23 @@ export class Constants {
     public static readonly DATA_DOMAIN = 'http://localhost/Nana10MVC/';
     public static readonly NANA_IMAGES_DOMAIN: string = 'http://f.nanafiles.co.il';
     public static readonly SCROLL_POSITION: number = 1000;
-    public static readonly DFPADUNITS: any =
-    {
-        '10tv': 'Desktop_Nana10_Channel10_Inread',
-        'bidur': 'Desktop_Nana10_Entertainment_Inread',
-        'celebs': 'Desktop_Nana10_Celebs_Inread',
-        'Food': 'Desktop_Nana10_Food_Inread',
-        'gamer': 'Desktop_Nana10_Gamer_Inread',
-        'lifestyle': 'Desktop_Nana10_style_Inread',
-        'net': 'Desktop_Nana10_Net_Inread',
-        'News': 'Desktop_Nana10_News_Inread',
-        'sport': 'Desktop_Nana10_Sport_Inread'
 
-    };
+    public static readonly DFPADUNITS: { [key: string]: string } = Constants.Init();
 
+    public static Init(): { [key: string]: string } {
+        let t = {
+            '10tv': 'Desktop_Nana10_Channel10_Inread',
+            'bidur': 'Desktop_Nana10_Entertainment_Inread',
+            'celebs': 'Desktop_Nana10_Celebs_Inread',
+            'Food': 'Desktop_Nana10_Food_Inread',
+            'gamer': 'Desktop_Nana10_Gamer_Inread',
+            'lifestyle': 'Desktop_Nana10_style_Inread',
+            'net': 'Desktop_Nana10_Net_Inread',
+            'News': 'Desktop_Nana10_News_Inread',
+            'sport': 'Desktop_Nana10_Sport_Inread'
+        };
+        return t;
+    }
     public static GetImagePathByType(mediaStockImageID, item: ImageTypes, mediaStockImageExt?: string): string {
         let currentType: number = 0;
         switch (item) {
@@ -53,9 +56,6 @@ export class Constants {
             case ImageTypes.Main_450_450:
                 currentType = 76;
                 break;
-
-
-
             default:
                 throw new EvalError('Not implemented ImageType:' + item);
         }
@@ -63,7 +63,6 @@ export class Constants {
     }
 
     private static GetImagePath(mediaStockImageID: number, mediaStockImageTypeID: number, mediaStockImageExt: string = 'jpg'): string {
-
         if (mediaStockImageID === 0)
             return '';
         if (mediaStockImageTypeID > 0) {

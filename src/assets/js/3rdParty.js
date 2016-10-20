@@ -83,25 +83,33 @@ var nanaHelper = {
 }
 
 var AdUnitsCollection = {
-    //maavaron: googleDfpID + "MOBILE_NANA10_MAAVARON_320x460",
+    maavaron: googleDfpID + "Channel10_Interstitial_Ros_test1",
     //liveBox: googleDfpID + "MOBILE_NANA10_LiveBoxVideo_300x250",
     strip: googleDfpID + "Channel10_Banner_General_2",
     box: googleDfpID + "Channel10_Box_300X250",
-    boxCount: -1,
-    counter: 0,
-    startDisplayPosition: 1000,
-    intervalDisplayPosition: 200,
-    currentPosition: -1,
+    slotName: "",
+    slot: null,
+    currentPosition: {
+        width: 0,
+        height: 0
+    },
     objectName: "main",
+    currentResolution: [],
 
     init: function () {
 
         switch (this.objectName) {
             case "main":
-                this.initMain();
+                this.slot = googletag.defineSlot(AdUnitsCollection.strip, AdUnitsCollection.getMainAdUnitSize(), AdUnitsCollection.slotName).addService(googletag.pubads());
+                this.initGeneral();
                 break;
             case "article":
-                this.initArticle();
+                this.slot = googletag.defineSlot(AdUnitsCollection.box, AdUnitsCollection.getArticleAdUnitSize(), AdUnitsCollection.slotName).addService(googletag.pubads());
+                this.initGeneral();
+                break;
+            case "maavaron":
+                this.slot = googletag.defineSlot(AdUnitsCollection.maavaron, AdUnitsCollection.getMaavaronAdUnitSize(), AdUnitsCollection.slotName).addService(googletag.pubads());
+                this.initGeneral();
                 break;
             default:
                 this.initGeneral();
@@ -111,44 +119,68 @@ var AdUnitsCollection = {
     },
 
     //
-    initArticle: function () {
-        googletag.cmd.push(function () {
-
-            // Infinite scroll requires SRA
-            googletag.pubads().enableSingleRequest();
-
-            // Disable initial load, we will use refresh() to fetch ads.
-            // Calling this function means that display() calls just
-            // register the slot as ready, but do not fetch ads for it.
-            googletag.pubads().disableInitialLoad();
-
-            // Enable services
-            googletag.enableServices();
-
-            //TODO: ANTON, replace by object 
-            var slotName = 'ad-div-box';
-            var slot = googletag.defineSlot(AdUnitsCollection.box, [300, 250], slotName).addService(googletag.pubads());
-
-            // Display has to be called before
-            // refresh and after the slot div is in the page.
-            googletag.display(slotName);
-            googletag.pubads().refresh([slot]);
-            googletag.pubads().collapseEmptyDivs();
-        });
+    getResolution: function () {
+        this.currentResolution.width = screen.width;
+        this.currentResolution.height = screen.height;
     },
 
+    //
+    getMainAdUnitSize: function () {
+        var res = [];
+        this.getResolution();
+
+        switch (this.currentResolution.width) {
+            case 2:
+
+                break;
+
+            default:
+                res.push(320);
+                res.push(50);
+                break;
+        }
+        return res;
+    },
+
+    //
+    getMaavaronAdUnitSize: function () {
+        var res = [];
+        this.getResolution();
+
+        switch (this.currentResolution.width) {
+            case 2:
+
+                break;
+
+            default:
+                res.push(320);
+                res.push(568);
+                break;
+        }
+        return res;
+    },
+
+    //
+    getArticleAdUnitSize: function () {
+        var res = [];
+        this.getResolution();
+
+        switch (this.currentResolution.width) {
+            case 2:
+
+                break;
+
+            default:
+                res.push(300);
+                res.push(250);
+                break;
+        }
+        return res;
+    },
     //
     initGeneral: function () {
-
-    },
-
-    //
-    initMain: function () {
-        if (!this.validPosition()) return false;
-
-        //init dfp objects uf needed
-        //TODO: Anton
         googletag.cmd.push(function () {
+
             // Infinite scroll requires SRA
             googletag.pubads().enableSingleRequest();
 
@@ -160,29 +192,18 @@ var AdUnitsCollection = {
             // Enable services
             googletag.enableServices();
 
-            //TODO: ANTON, replace by object 
-            var slotName = 'ad-div-upper-strip-' + AdUnitsCollection.counter;
-            var slot = googletag.defineSlot(AdUnitsCollection.strip, [320, 50], slotName).addService(googletag.pubads());
-
             // Display has to be called before
             // refresh and after the slot div is in the page.
-            googletag.display(slotName);
-            googletag.pubads().refresh([slot]);
+            googletag.display(AdUnitsCollection.slotName);
+            googletag.pubads().refresh([AdUnitsCollection.slot]);
             googletag.pubads().collapseEmptyDivs();
         });
-        this.counter++;
     },
 
     //
     validPosition: function () {
-        var res = false;
-
-        if (this.counter <= this.boxCount && this.currentPosition > this.startDisplayPosition && (this.currentPosition < (this.startDisplayPosition + (this.counter + 1) * this.intervalDisplayPosition))) {
-            res = true;
-            console.log("current ad count" + this.counter);
-        }
-
-
+        var res = true;
+        res = document.getElementById(this.slotName) !== null ? true : false;
         return res;
     }
 };

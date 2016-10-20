@@ -33,29 +33,44 @@ export class HeadlineModel {
     HeadlineType: string;
     AlertId: number = -1;
     PairStart: boolean = false;
-    // isSmall(): boolean {
-    //     return this.DisplaySigns === this.HEADLINETYPES.Small;
-    // }
+    isDfp(i: any, TopFourEndIndex: any): boolean {
+        return i !== 0 && (i === TopFourEndIndex || (i - TopFourEndIndex) % 6 === 0);
+    }
 
-    // isBig(): boolean {
-    //     return this.DisplaySigns === this.HEADLINETYPES.Big;
-    // }
+    getClass(i: any): string {
+        return i + '_' + this.CounterId;
+    }
 
-    // isAlert(): boolean {
-    //     return this.DisplaySigns === this.HEADLINETYPES.Alert;
-    // }
+    isMain(): boolean {
+        return this.CounterId === 0;
+    }
+    isTopFour(): boolean {
+        return this.isMain() || (this.CounterId >= 1 && this.CounterId <= 3);
+    }
 
-    // isAd(): boolean {
-    //     return this.DisplaySigns === this.HEADLINETYPES.Ad && !this.AdsSecond;
-    // }
+    isSmall(): boolean {
+        return !this.isTopFour() && (this.HeadlineType === 'Small' || this.HeadlineType === 'Video');
+    }
 
-    // isAdSecond(): boolean {
-    //     return this.DisplaySigns === this.HEADLINETYPES.Ad && this.AdsSecond;
-    // }
+    isBig(): boolean {
+        return !this.isMain() && (this.HeadlineType === 'Big' || this.isTopFour());
+    }
 
-    // isPair(): boolean {
-    //     return this.DisplaySigns === this.HEADLINETYPES.Pair;
-    // }
+    isAlert(): boolean {
+        return !this.isTopFour() && this.HeadlineType === 'Alert';
+    }
+
+    isAd(): boolean {
+        return !this.isTopFour() && this.HeadlineType === 'Ad' && !this.AdsSecond;
+    }
+
+    isAdSecond(): boolean {
+        return !this.isTopFour() && this.HeadlineType === 'Ad' && this.AdsSecond;
+    }
+
+    isPair(): boolean {
+        return !this.isTopFour() && this.HeadlineType === 'Pair' && this.PairStart;
+    }
 
     getTypeString(): string {
         return this.HEADLINETYPES[this.DisplaySigns];

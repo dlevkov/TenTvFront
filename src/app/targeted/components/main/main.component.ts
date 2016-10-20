@@ -14,11 +14,16 @@ import { MainModel } from '../../../targeted/models/main.model';
 export class MainComponent implements OnInit {
     @Input() showTwitter: boolean = true;
     item: MainModel;
+    DfpId: number = 0;
     private _service: MainService;
     private _subscriber: Subscription;
 
     constructor(public route: ActivatedRoute, http: Http) {
         this._service = new MainService(http);
+    }
+
+    generateDfpId(): number {
+        return this.DfpId++;
     }
 
     ngOnInit() {
@@ -32,16 +37,6 @@ export class MainComponent implements OnInit {
                 this.item = data;
             });
     }
-
-    // isBig(headline: HeadlineModel): boolean {
-    //     return headline.CounterId <= 4 && headline.CounterId > 0;
-    // }
-    // isPair(headline: HeadlineModel): boolean {
-    //     return headline.DisplaySigns === 9 && headline.CounterId > 4;
-    // }
-    // isAlert(headline: HeadlineModel): boolean {
-    //     return headline.DisplaySigns === 6 && headline.CounterId > 0;
-    // }
 
     ngOnDestroy() {
         this._subscriber.unsubscribe();

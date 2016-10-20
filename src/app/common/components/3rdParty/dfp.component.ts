@@ -59,9 +59,42 @@ export class DfpMain implements OnInit, OnDestroy, AfterViewInit {
     }
 
     //
-    getAdUnitSize() {
+    getMainAdUnitSize() {
         let res = [];
-        this.getResolution();
+
+        switch (this._currentResolution[0]) {
+            case 2:
+
+                break;
+
+            default:
+                res.push(320);
+                res.push(50);
+                break;
+        }
+        return res;
+    }
+
+    //
+    getArticleAdUnitSize() {
+        let res = [];
+
+        switch (this._currentResolution[0]) {
+            case 2:
+
+                break;
+
+            default:
+                res.push(300);
+                res.push(50);
+                break;
+        }
+        return res;
+    }
+
+    //
+    getMaavaronAdUnitSize() {
+        let res = [];
 
         switch (this._currentResolution[0]) {
             case 2:
@@ -97,17 +130,7 @@ export class DfpMain implements OnInit, OnDestroy, AfterViewInit {
         }
     }
 
-    getMainAdUnitSize() {
 
-    }
-
-    getArticleAdUnitSize() {
-
-    }
-
-    getMaavaronAdUnitSize() {
-
-    }
 }
 
 

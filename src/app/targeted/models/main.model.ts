@@ -1,4 +1,5 @@
 import { HeadlineModel } from '../../common/models/headline.model';
+import { Constants } from '../../common/Constants';
 
 export class MainModel {
     Headlines: HeadlineModel[] = [];
@@ -64,7 +65,7 @@ export class MainModel {
     }
 
     handleAlerts(headline: HeadlineModel, element: any) {
-        if (headline.HEADLINETYPES[element.DisplaySigns] === 'Alert') {
+        if (Constants.HEADLINETYPES[element.DisplaySigns] === 'Alert') {
             headline.AlertId = this.AlertCounter++;
             this.AlertHeadlines.push(headline);
             this.headlinePushValid = false;
@@ -72,14 +73,14 @@ export class MainModel {
     }
 
     handlePairs(headline: HeadlineModel, element: any) {
-        if (headline.HEADLINETYPES[element.DisplaySigns] === 'Pair') {
+        if (Constants.HEADLINETYPES[element.DisplaySigns] === 'Pair') {
             this.PairtHeadlines.push(headline);
             this.headlinePushValid = false;
         }
     }
 
     handleAds(headline: HeadlineModel, element: any) {
-        if (headline.HEADLINETYPES[element.DisplaySigns] === 'Ad') {
+        if (Constants.HEADLINETYPES[element.DisplaySigns] === 'Ad') {
             this.adFirst = true;
         }
     }

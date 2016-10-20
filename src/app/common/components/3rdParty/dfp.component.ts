@@ -16,8 +16,12 @@ export class DfpMain implements OnInit, OnDestroy, AfterViewInit {
     @Input() dfpObjectName: string = 'main';
     @Input() dfpStyle: string = '';
 
-    private dfpRef: any;
+    private _dfpRef: any;
     private _isVisible: boolean = false;
+    private _currentResolution: number[] = [];
+    private slotName: string;
+    private adSize: number[] = [];
+    private adUnitName: string;
 
     constructor(
         public route: ActivatedRoute, http: Http, private myElement: ElementRef
@@ -32,35 +36,78 @@ export class DfpMain implements OnInit, OnDestroy, AfterViewInit {
 
     ngAfterViewInit() {
         //
-        this.dfpRef = window['AdUnitsCollection'];
-        this.dfpRef.objectName = this.dfpObjectName;
-        this.dfpRef.slotName = this.placeHolderId;
-        this.dfpRef.init();
+        this.generateParams();
+
+        this._dfpRef = window['AdUnitsCollection'];
+        this._dfpRef.objectName = this.dfpObjectName;
+        this._dfpRef.slotName = this.placeHolderId;
+        this._dfpRef.adSize = this.adSize;
+        this._dfpRef.adUnitName = this.adUnitName;
+
+        this._dfpRef.init();
     }
 
+    //
     ngOnDestroy() {
         //
     }
 
-    AdDiv(id: string, style: string, close: boolean) {
-        // init static resources if inread tag
-        let prefix = '';
-        let inreadAdUnitName = '';
-        if (id === 'ad-div-inread-article') {
-            let InreadAdUnitList = Constants.DFPADUNITS;
-            let currentAdUnit = InreadAdUnitList[this.serviceName];
+    //
+    getResolution() {
+        this._currentResolution.length = 0;
+        this._currentResolution = [screen.width, screen.height];
+    }
 
-            if (currentAdUnit != null) {
-                // prefix = "<script>var inreadAdUnitName = '" + currentAdUnit.AdUnitName + "';</script>"; ;
-                inreadAdUnitName = '" + currentAdUnit.AdUnitName + "';
-            } else
-                inreadAdUnitName = '';
+    //
+    getAdUnitSize() {
+        let res = [];
+        this.getResolution();
+
+        switch (this._currentResolution[0]) {
+            case 2:
+
+                break;
+
+            default:
+                res.push(320);
+                res.push(50);
+                break;
         }
+        return res;
+    }
 
+    generateParams() {
+        this.getResolution();
+        switch (this.dfpObjectName) {
+            case 'main':
+                this.adUnitName = Constants.DFPADUNITSNAMES.main;
+                this.getMainAdUnitSize();
+                break;
+            case 'article':
+                this.adUnitName = Constants.DFPADUNITSNAMES.article;
+                this.getArticleAdUnitSize();
+                break;
+            case 'maavaron':
+                this.adUnitName = Constants.DFPADUNITSNAMES.maavaron;
+                this.getMaavaronAdUnitSize();
+                break;
+            default:
+            //
 
-        // let closeHtml = close
-        // ? `<div id='maavaronClose' onclick='Maavaron.hideM();' style='width: 60px;height: 60px;border: 0;position: absolute;margin: 2px 10px 10px 0;cursor: pointer;left:0px;'></div>`
-        // : ``;
-        // return String.Format("{3}<div id='{0}' style={1}>{2}</div>", id, style, closeHtml, prefix);
+        }
+    }
+
+    getMainAdUnitSize() {
+
+    }
+
+    getArticleAdUnitSize() {
+
+    }
+
+    getMaavaronAdUnitSize() {
+
     }
 }
+
+

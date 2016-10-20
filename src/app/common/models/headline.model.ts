@@ -4,16 +4,6 @@
 import { Constants } from '../../common/Constants';
 
 export class HeadlineModel {
-    readonly HEADLINETYPES: any =
-    {
-        10: 'Big',
-        1: 'Video',  // temporary replaced by standard item in views
-        2: 'Main',
-        8: 'Ad',
-        9: 'Pair',
-        0: 'Small',
-        6: 'Alert'
-    };
     DestArticleID?: number;
     DisplayOrder?: number;
     Title?: string;
@@ -73,7 +63,7 @@ export class HeadlineModel {
     }
 
     getTypeString(): string {
-        return this.HEADLINETYPES[this.DisplaySigns];
+        return Constants.HEADLINETYPES[this.DisplaySigns];
     }
     constructor(parameters) {
         this.DestArticleID = parameters.DestArticleID;

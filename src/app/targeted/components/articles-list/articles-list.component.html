@@ -1,9 +1,3 @@
-<!--<div class="rsvp_fullwidth" style="margin-bottom: 100px;">
-    <div *ngFor="let headline of item?.Headlines">
-        <div>
-            <headline-small [item]='headline' *ngIf="headline.isSmall()"></headline-small>
-        </div>
-    </div>
-     <twitter *ngIf='showTwitter'></twitter>
-     <scroll-top></scroll-top>
-</div>-->
+<div *ngFor="let item of items; let i=index;">
+	<headline-small  [item]='item.Headline'></headline-small>
+</div>

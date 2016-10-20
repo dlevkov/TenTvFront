@@ -1,6 +1,6 @@
 <!-- money article start -->
 <!-- item start -->
-<ul class="rsvp_secondary_lisiting">
+<ul *ngIf='loadingUrl' class="rsvp_secondary_lisiting">
     <li class="rsvp_money_article">
         <a [routerLink]="['/article', item?.DestArticleID]">
             <div class="rsvp_play_wrapper">

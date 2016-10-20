@@ -77,5 +77,6 @@ export class HeadlineModel {
         this.LastModifyDate = parameters.LastModifyDate;
         this.CounterId = parameters.Id;
         this.HeadlineType = this.getTypeString();
+
     }
 }

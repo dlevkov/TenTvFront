@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { Constants } from '../../common/Constants';
-import { HeadlineModel } from '../../common/models/headline.model';
+import { ArticleListModel } from '../../targeted/models/article-list.model';
 import { Dal } from '../../common/services/dal.service';
 
 @Injectable()
@@ -16,7 +16,13 @@ export class ArticleListService {
     GetItemsByUri(uri: string) {
         return this._dal.GetItemsByUri(uri)
             .map(data => {
-                return new HeadlineModel(data);
+                let items: Array<ArticleListModel> = [];
+                if (data) {
+                    data.forEach((item) => {
+                        items.push(new ArticleListModel(item));
+                    });
+                }
+                return items;
             });
     }
 }

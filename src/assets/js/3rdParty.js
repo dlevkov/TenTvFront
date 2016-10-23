@@ -1,7 +1,7 @@
 // Load DFP --
 var googletag = googletag || {};
 googletag.cmd = googletag.cmd || [];
-(function () {
+(function() {
     var gads = document.createElement('script');
     gads.async = true;
     gads.type = 'text/javascript';
@@ -15,7 +15,7 @@ googletag.cmd = googletag.cmd || [];
 var NanaTaboola = {
     objectType: "home",
     headerObject: {},
-    insertHeader: function () {
+    insertHeader: function() {
         switch (this.objectType) {
             case "home":
                 this.headerObject = { home: 'auto' };
@@ -29,20 +29,20 @@ var NanaTaboola = {
         }
         window._taboola = window._taboola || [];
         _taboola.push(this.headerObject);
-        ! function (e, f, u, i) {
+        ! function(e, f, u, i) {
             if (!document.getElementById(i)) {
                 e.async = 1;
                 e.src = u;
                 e.id = i;
                 f.parentNode.insertBefore(e, f);
             }
-        } (document.createElement('script'),
+        }(document.createElement('script'),
             document.getElementsByTagName('script')[0],
             '//cdn.taboola.com/libtrc/nana10tv-app/loader.js',
             'tb_loader_script');
     },
 
-    insertFooter: function () {
+    insertFooter: function() {
         window._taboola = window._taboola || [];
         _taboola.push({ flush: true });
     },
@@ -64,7 +64,7 @@ var nanaHelper = {
     fontInterval: 2,
     fontSelectors: ['.rsvp_article_inner_content p:not(p.oedoopror)', '.rsvp_article_body_h1', '.rsvp_article_body_h2', '.rsvp_feed_item_title'],
 
-    changeFontSize: function (zoomin) {
+    changeFontSize: function(zoomin) {
         console.log('zoomin: ' + zoomin);
         this.currentFontSize = parseInt($nana(this.fontSelectors[0]).css("font-size"));
         if ((this.currentFontSize >= this.maxFontSize && zoomin) || (this.currentFontSize <= this.minFontSize && !zoomin))
@@ -87,13 +87,13 @@ var AdUnitsCollection = {
     adSize: [],
     adUnitName: "",
 
-    init: function () {
+    init: function() {
         this.initGeneral();
     },
 
     //
-    initGeneral: function () {
-        googletag.cmd.push(function () {
+    initGeneral: function() {
+        googletag.cmd.push(function() {
 
             // Infinite scroll requires SRA
             googletag.pubads().enableSingleRequest();
@@ -116,7 +116,7 @@ var AdUnitsCollection = {
     },
 
     //
-    validPosition: function () {
+    validPosition: function() {
         var res = true;
         res = document.getElementById(this.slotName) !== null ? true : false;
         return res;
@@ -126,17 +126,17 @@ var AdUnitsCollection = {
 var castTimeHelper = {
 
     //
-    init: function () {
+    init: function() {
 
     },
 
     //
-    toggleServiceFilter: function () {
-        //nanaHelper.toggleServiceFilter();
+    toggleServiceFilter: function() {
+        window.angularComponentRef.zone.run(() => { window.angularComponentRef.component.showFilter(); })
     },
 
     //
-    changeFontSize: function (zoomin) {
+    changeFontSize: function(zoomin) {
         nanaHelper.changeFontSize(zoomin);
     }
 

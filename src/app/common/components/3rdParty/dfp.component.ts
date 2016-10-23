@@ -24,6 +24,8 @@ export class DfpMain implements OnInit, OnDestroy, AfterViewInit {
     private slotName: string;
     private adSize: number[] = [];
     private adUnitName: string;
+    private _loadingTimeout: number = Constants.DFPLOADINGTIMEOUT;
+    private _count: number = 0;
 
     constructor(
         public route: ActivatedRoute, http: Http, private myElement: ElementRef
@@ -37,10 +39,11 @@ export class DfpMain implements OnInit, OnDestroy, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        //
+
         this.generateDfpParams();
         this.setDfpParams();
         this._dfpRef.init();
+
     }
 
     setDfpParams() {

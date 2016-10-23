@@ -10,6 +10,8 @@ export class MainModel {
     AlertCounter: number = 0;
     ItemCounter: number = 0;
     TopFourEndIndex: number = -1;
+    isFiltered: boolean = false;
+    sids: number[] = [];
 
     constructor(data) {
         data.forEach(element => {
@@ -84,4 +86,10 @@ export class MainModel {
             this.adFirst = true;
         }
     }
+
+    setFiltered() {
+        this.isFiltered = true;
+        this.sids = [12, 23];
+    }
+
 }

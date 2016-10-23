@@ -1,3 +1,5 @@
-<div *ngFor="let item of items; let i=index;">
-	<headline-small  [item]='item.Headline'></headline-small>
+<div *ngIf="isVisible">
+    <div *ngFor="let item of items; let i=index;">
+        <headline-small [item]='item.Headline'></headline-small>
+    </div>
 </div>

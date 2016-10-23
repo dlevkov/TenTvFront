@@ -15,6 +15,7 @@ export class Constants {
     public static readonly DFPADUNITS: any = Constants.InitDfpAdUnits();
     public static readonly HEADLINETYPES: any = Constants.InitHeadlineTypes();
     public static readonly DFPADUNITSNAMES: any = Constants.InitDfpAdUnitsName();
+    public static readonly DFPLOADINGTIMEOUT: number = 100;
 
 
     public static InitHeadlineTypes(): any {

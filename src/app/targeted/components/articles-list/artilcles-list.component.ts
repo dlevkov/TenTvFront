@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, EventEmitter, Output } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Constants } from '../../../common/Constants';
@@ -12,10 +12,11 @@ import { HeadlineSmallComponent } from '../../../common/components/headlines/hea
     templateUrl: 'articles-list.component.html',
 })
 export class ArticlesListComponent implements OnInit {
+    @Input() isVisible: boolean = false;
+    @Input() sids: string[] = [];
     private items: Array<ArticleListModel> = [];
     private _subscriber: Subscription;
     private _service: ArticleListService;
-    private _serviceIds: string[] = [];
     private _url: string = '';
 
     constructor(public route: ActivatedRoute, http: Http, private _router: Router) {
@@ -23,7 +24,7 @@ export class ArticlesListComponent implements OnInit {
     }
 
     getItems() {
-        this._serviceIds.forEach((element, index) => {
+        this.sids.forEach((element, index) => {
             this._url += ('idsList=' + element + '&&');
         });
         this._subscriber = this._service.GetItemsByUri('TenTvAppFront/article-list?' + this._url + '$orderby=DestArticleID')
@@ -34,15 +35,20 @@ export class ArticlesListComponent implements OnInit {
     }
 
     ngOnInit() {
+        //
         let data: string = this.route.snapshot.params['data']; // get list of id's as a string splited by ','
-        this._serviceIds = data.split(',');
+        if (typeof data !== 'undefined' && data) {
+            this.sids = data.split(',');
+        } else {
+            this.sids = [];
+        }
         this.getItems();
-
     }
 
     ngOnDestroy() {
         this._subscriber.unsubscribe();
     }
+
 }
 
 

@@ -2,43 +2,43 @@
 <html dir="rtl" lang="he-IL" prefix="og: http://ogp.me/ns#">
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="/assets/css/rsvp_fonts.css" rel="stylesheet">
-	<link href="/assets/css/rsvp_main.css" rel="stylesheet">
-	<script src="/assets/js/3rdParty.js"></script>
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-		crossorigin="anonymous"></script>
-	<title>
-		<%= webpackConfig.metadata.title %>
-	</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/assets/css/rsvp_fonts.css" rel="stylesheet">
+    <link href="/assets/css/rsvp_main.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script>
+        var $nana = jQuery.noConflict();
+    </script>
+    <script src="/assets/js/3rdParty.js"></script>
+    <title>
+        <%= webpackConfig.metadata.title %>
+    </title>
 
-	<meta name="description" content="<%= webpackConfig.metadata.title %>">
+    <meta name="description" content="<%= webpackConfig.metadata.title %>">
 
-	<% if (webpackConfig.htmlElements.headTags) { %>
-		<!-- Configured Head Tags  -->
-		<%= webpackConfig.htmlElements.headTags %>
-			<% } %>
+    <% if (webpackConfig.htmlElements.headTags) { %>
+        <!-- Configured Head Tags  -->
+        <%= webpackConfig.htmlElements.headTags %>
+            <% } %>
 
-				<!-- base url -->
-				<base href="<%= webpackConfig.metadata.baseUrl %>">
+                <!-- base url -->
+                <base href="<%= webpackConfig.metadata.baseUrl %>">
 </head>
 
 <body>
-	<script>
-  var $nana = jQuery.noConflict();
-</script>
-	<app>
+
+    <app>
         <div class="rsvp_filter_loader" id="loadingFilterImage">
             <img src='/assets/icons/loader.gif' />
         </div>
-	</app>
+    </app>
 
-	<% if (webpackConfig.metadata.isDevServer && webpackConfig.metadata.HMR !== true) { %>
-		<!-- Webpack Dev Server reload -->
-		<script src="/webpack-dev-server.js"></script>
-		<% } %>
+    <% if (webpackConfig.metadata.isDevServer && webpackConfig.metadata.HMR !== true) { %>
+        <!-- Webpack Dev Server reload -->
+        <script src="/webpack-dev-server.js"></script>
+        <% } %>
 
 
 

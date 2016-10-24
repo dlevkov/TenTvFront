@@ -8,7 +8,7 @@ import { Maavaron } from './maavaron.component';
 @Component({
     selector: 'dfp',
     template: `
-    <div id="{{placeHolderId}}" [ngStyle]="dfpStyle"></div>
+    <div id="{{placeHolderId}}" [ngStyle]="dfpStyle" [class]='"mainDfpItem"'></div>
   `
 })
 export class DfpMain implements OnInit, OnDestroy, AfterViewInit {
@@ -18,7 +18,7 @@ export class DfpMain implements OnInit, OnDestroy, AfterViewInit {
     @Input() dfpStyle: string = '';
     @Input() maavaron: Maavaron;
 
-    private _dfpRef: any;
+    private _dfpRef: any[];
     private _isVisible: boolean = false;
     private _currentResolution: number[] = [];
     private slotName: string;
@@ -26,6 +26,7 @@ export class DfpMain implements OnInit, OnDestroy, AfterViewInit {
     private adUnitName: string;
     private _loadingTimeout: number = Constants.DFPLOADINGTIMEOUT;
     private _count: number = 0;
+    private _adUnitsCollectionIndex: any;
 
     constructor(
         public route: ActivatedRoute, http: Http, private myElement: ElementRef
@@ -41,17 +42,22 @@ export class DfpMain implements OnInit, OnDestroy, AfterViewInit {
     ngAfterViewInit() {
 
         this.generateDfpParams();
-        this.setDfpParams();
-        this._dfpRef.init();
+        let unit = this.setDfpParams();
 
     }
 
-    setDfpParams() {
-        this._dfpRef = window['AdUnitsCollection'];
-        this._dfpRef.objectName = this.dfpObjectName;
-        this._dfpRef.slotName = this.placeHolderId;
-        this._dfpRef.adSize = this.adSize;
-        this._dfpRef.adUnitName = this.adUnitName;
+    setDfpParams(): any {
+        let unit = new window['AdUnitsCollection']();
+        this._adUnitsCollectionIndex = window['AdUnitsCollectionIndex'];
+        this._adUnitsCollectionIndex.getUnitsCount();
+
+        unit.objectName = this.dfpObjectName;
+        unit.slotName = this.placeHolderId;
+        unit.adSize = this.adSize;
+        unit.adUnitName = this.adUnitName;
+
+        this._adUnitsCollectionIndex.list.push(unit);
+        return unit;
     }
 
     //
@@ -94,7 +100,7 @@ export class DfpMain implements OnInit, OnDestroy, AfterViewInit {
 
             default:
                 res.push(300);
-                res.push(50);
+                res.push(250);
                 break;
         }
         return res;

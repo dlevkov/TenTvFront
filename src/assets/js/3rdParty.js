@@ -11,6 +11,12 @@ googletag.cmd = googletag.cmd || [];
     node.parentNode.insertBefore(gads, node);
 })();
 
+$nana(document).ready(function() {
+    setTimeout(function() {
+        AdUnitsCollectionIndex.init();
+    }, 100);
+
+});
 
 var NanaTaboola = {
     objectType: "home",
@@ -80,21 +86,39 @@ var nanaHelper = {
     }
 }
 
-var AdUnitsCollection = {
-    slotName: "",
-    slot: null,
-    objectName: "main",
-    adSize: [],
-    adUnitName: "",
-
+var AdUnitsCollectionIndex = {
+    list: [],
+    currentId: 0,
+    count: 0,
     init: function() {
-        this.initGeneral();
+        //
+        console.log('dfp init');
+        this.getUnitsCount();
+        for (let i = 0; i < this.count; i++) {
+            this.currentId = i;
+            this.list[i].init();
+        }
     },
 
-    //
-    initGeneral: function() {
-        googletag.cmd.push(function() {
+    getUnitsCount: function() {
+        this.count = document.getElementsByTagName('dfp').length;
+    }
+};
 
+function AdUnitsCollection() {
+    this.slotName = "";
+    this.slot = null;
+    this.objectName = "main";
+    this.adSize = [];
+    this.adUnitName = "";
+
+    this.init = function() {
+        this.initGeneral();
+    };
+
+    //
+    this.initGeneral = function() {
+        googletag.cmd.push(function() {
             // Infinite scroll requires SRA
             googletag.pubads().enableSingleRequest();
 
@@ -106,22 +130,66 @@ var AdUnitsCollection = {
             // Enable services
             googletag.enableServices();
 
-            AdUnitsCollection.slot = googletag.defineSlot(AdUnitsCollection.adUnitName, AdUnitsCollection.adSize, AdUnitsCollection.slotName).addService(googletag.pubads());
+            var unit = AdUnitsCollectionIndex.list[AdUnitsCollectionIndex.currentId];
+
+            unit.slot = googletag.defineSlot(unit.adUnitName, unit.adSize, unit.slotName).addService(googletag.pubads());
             // Display has to be called before
             // refresh and after the slot div is in the page.
-            googletag.display(AdUnitsCollection.slotName);
-            googletag.pubads().refresh([AdUnitsCollection.slot]);
+            googletag.display(unit.slotName);
+            googletag.pubads().refresh([unit.slot]);
             googletag.pubads().collapseEmptyDivs();
         });
-    },
+    };
 
     //
-    validPosition: function() {
+    this.validPosition = function() {
         var res = true;
         res = document.getElementById(this.slotName) !== null ? true : false;
         return res;
-    }
-};
+    };
+}
+// var AdUnitsCollection = {
+//     slotName: "",
+//     slot: null,
+//     objectName: "main",
+//     adSize: [],
+//     adUnitName: "",
+
+//     init: function() {
+//         this.initGeneral();
+//     },
+
+//     //
+//     initGeneral: function() {
+//         googletag.cmd.push(function() {
+
+//             // Infinite scroll requires SRA
+//             googletag.pubads().enableSingleRequest();
+
+//             // Disable initial load, we will use refresh() to fetch ads.
+//             // Calling this function means that display() calls just
+//             // register the slot as ready, but do not fetch ads for it.
+//             googletag.pubads().disableInitialLoad();
+
+//             // Enable services
+//             googletag.enableServices();
+
+//             AdUnitsCollection.slot = googletag.defineSlot(AdUnitsCollection.adUnitName, AdUnitsCollection.adSize, AdUnitsCollection.slotName).addService(googletag.pubads());
+//             // Display has to be called before
+//             // refresh and after the slot div is in the page.
+//             googletag.display(AdUnitsCollection.slotName);
+//             googletag.pubads().refresh([AdUnitsCollection.slot]);
+//             googletag.pubads().collapseEmptyDivs();
+//         });
+//     },
+
+//     //
+//     validPosition: function() {
+//         var res = true;
+//         res = document.getElementById(this.slotName) !== null ? true : false;
+//         return res;
+//     }
+// };
 
 var castTimeHelper = {
 

@@ -17,6 +17,8 @@ export class FilterServiceComponent implements OnInit, OnDestroy {
     private _service: FilterServiceService;
     private _subscriber: Subscription;
     private _isVisible: boolean = false;
+    private _sids: number[] = [];
+    private _generatedId: string;
 
     constructor(http: Http, private _router: Router, private _ngZone: NgZone) {
         this._service = new FilterServiceService(http);
@@ -36,8 +38,8 @@ export class FilterServiceComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this._subscriber.unsubscribe();
     }
-    getChecked(): number[] {
-        return this._items.filter(x => x.Checked === true).map(x => x.ServiceID);
+    getChecked() {
+        this._sids = this._items.filter(x => x.Checked === true).map(x => x.ServiceID);
     }
 
     showFilter(data: String) {
@@ -54,6 +56,13 @@ export class FilterServiceComponent implements OnInit, OnDestroy {
         this._isVisible = false;
         this.mainModel.setFiltered();
         let seed = new Date().getMilliseconds();
-        this._router.navigate(['/mainfiltered' + seed, { data: this.getChecked() }]);
+        this.getChecked();
+        this.getId();
+        // TODO, DEVTEAM, make router work properly
+        // this._router.navigate(['/mainfiltered/' + this._generatedId, { data: this._sids }]);
+        window.location.href = '/mainfiltered/' + this._generatedId + ';data=' + this._sids.join(',');
+    }
+    private getId() {
+        this._generatedId = this._sids.join('');
     }
 }

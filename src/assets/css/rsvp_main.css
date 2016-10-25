@@ -46,7 +46,7 @@ table {
 	border-spacing: 0;
 }
 img{ display:block;}
-input,textarea{resize: none; outline:none; -webkit-border-radius: 0px;  -webkit-appearance: none; border:0;}
+input,textarea{resize: none; outline:none; border-radius: 0px; -webkit-border-radius: 0px;  -webkit-appearance: none; border:0;}
 h1,h2,h3,h4,h5,h6{font-weight:normal;}
 a{text-decoration:none;}
 a{	-webkit-transition: all 0.2s ease-in-out;
@@ -351,7 +351,6 @@ border-bottom:1px solid #d8d8d8; border-top:1px solid #d8d8d8;}
 	.rsvp_main_article,.rsvp_money_article,.rsvp_video_prom,.rsvp_article_inner_content .rsvp_image_with_caption,.rsvp_banner_container,.rsvp_article_inner_content ul.rsvp_related_ul,
 	.rsvp_article_inner_content ul.rsvp_related_ul li
 	{margin-bottom:12px;}
-	.rsvp_feed_double_title{ }
 	.rsvp_video_prom_title,.rsvp_article_body_h2{margin-top:12px;}
 	.rsvp_video_prom{    border-bottom: 1px solid #d8d8d8;   border-top: 4px solid #1f1f1f;}
 	.rsvp_main_article_updates_row{padding-bottom:0;}

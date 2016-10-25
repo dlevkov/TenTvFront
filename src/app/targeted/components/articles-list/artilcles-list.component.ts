@@ -19,9 +19,13 @@ export class ArticlesListComponent implements OnInit, AfterViewInit {
     private _service: ArticleListService;
     private _url: string = '';
     private _keepGoing: boolean = true;
+    private _routeSubscriber: Subscription;
 
     constructor(public route: ActivatedRoute, http: Http, private _router: Router) {
         this._service = new ArticleListService(http);
+        this._routeSubscriber = this.route.params.subscribe(x => {
+            this.init(x['data']);
+        });
         // this._router.events.forEach((event: NavigationEnd) => {
         //     // Do whatever in here
 
@@ -33,6 +37,7 @@ export class ArticlesListComponent implements OnInit, AfterViewInit {
     }
 
     getItems() {
+        this._url = '';
         this.sids.forEach((element, index) => {
             this._url += ('idsList=' + element + '&&');
         });
@@ -45,17 +50,14 @@ export class ArticlesListComponent implements OnInit, AfterViewInit {
 
     ngOnInit() {
         //
-        this.init();
     }
 
     ngAfterViewInit() {
         //
-        this._keepGoing = true;
     }
 
-    init() {
+    init(data: string) {
         //
-        let data: string = this.route.snapshot.params['data']; // get list of id's as a string splited by ','
         if (typeof data !== 'undefined' && data) {
             this.sids = data.split(',');
         } else {

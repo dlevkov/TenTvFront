@@ -11,10 +11,7 @@
             <dfp *ngIf="headline.isDfp(i,item?.TopFourEndIndex)" [placeHolderId]='"ad-div-upper-strip-" + i' [dfpStyle]='{"width":"320px","height": "50px","margin":"0 auto","margin-top":"10px","margin-bottom":"10px", "background-color":"#efedb6"}' [dfpObjectName]='"main"'></dfp>
         </div>
     </div>
-    <router-outlet>
-        <articles-list [isVisible]="item?.isFiltered" [sids]=[(item?.sids)]></articles-list>
-    </router-outlet>
-
+    <articles-list [isVisible]="item?.isFiltered" [sids]=[(item?.sids)]></articles-list>
     <twitter-toolbar *ngIf='showTwitter'></twitter-toolbar>
     <scroll-top></scroll-top>
     <filter-service [mainModel]='item'></filter-service>

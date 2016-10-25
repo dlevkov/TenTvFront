@@ -13,6 +13,7 @@ import { Constants } from '../../../common/Constants';
 })
 export class ArticleComponent implements OnInit, OnDestroy {
     item: ArticleModel;
+    parser: any = window['contentParser'];
     private _currentId: number;
     private _service: ArticleService;
     private _subscriber: Subscription;
@@ -32,6 +33,8 @@ export class ArticleComponent implements OnInit, OnDestroy {
         this._subscriber = this._service.GetItemsByUri('TenTvAppFront/article/' + this._currentId)
             .subscribe(data => {
                 this.item = data;
+                this.parser.length = this.item.Paragraphs.length;
+                console.log(this.item.Paragraphs);
                 this._loadingUrl = this.item.TitlePic;
             });
 
@@ -39,7 +42,6 @@ export class ArticleComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this._subscriber.unsubscribe();
-
     }
 
     // ***************************************************************************************************************************//

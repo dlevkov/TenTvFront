@@ -40,5 +40,8 @@ export class MainComponent implements OnInit {
 
     ngOnDestroy() {
         this._subscriber.unsubscribe();
+        console.log('main detor');
+        
+        
     }
 }

@@ -229,4 +229,30 @@ var castTimeHelper = {
 
 };
 
+var contentParser = {
+    scriptList: [],
+    resultScriptList: [],
+    count: 0,
+    length: 0,
+    contentScript: function (content) {
+        let script = $nana(content);
+        contentParser.count++;
+        contentParser.scriptList.push($nana(script).filter('script'));
+        console.log('count: ' + contentParser.count);
+        console.log('length: ' + contentParser.length);
+        if (contentParser.count === contentParser.length) {
+            // $nana.each(contentParser.scriptList, function (i, item) {
+            //     console.log(item);
+            //     if ($nana.inArray(item, contentParser.resultScriptList) == -1) {
+            //         console.log('inArray');
+            //         contentParser.resultScriptList.push(item);
+            //     }
+
+            //     $nana("head").append(contentParser.resultScriptList);
+            // });
+            contentParser.scriptList = $nana.unique(contentParser.scriptList);
+            $nana("head").append(contentParser.scriptList);
+        }
+    }
+};
 

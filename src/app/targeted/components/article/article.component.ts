@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef, NgZone } from '@angular/core';
+import { Component, OnDestroy, ElementRef, NgZone } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription, BehaviorSubject } from 'rxjs/Rx';
@@ -11,22 +11,23 @@ import { Constants } from '../../../common/Constants';
     selector: 'article',
     templateUrl: 'article.component.html',
 })
-export class ArticleComponent implements OnInit, OnDestroy {
+export class ArticleComponent implements OnDestroy {
     item: ArticleModel;
     parser: any = window['contentParser'];
     private _currentId: number;
     private _service: ArticleService;
     private _subscriber: Subscription;
+    private _routeSubscriber: Subscription;
     private _loadingUrl: string = Constants.IMAGE_LOADING_URL16_9;
 
     constructor(public route: ActivatedRoute, http: Http, private myElement: ElementRef, private _ngZone: NgZone) {
         window.angularComponentRef = { component: this, zone: _ngZone };
         this._service = new ArticleService(http);
-    }
+        this._routeSubscriber = this.route.params.subscribe(x => {
+            this._currentId = +x['id'];
+            this.getItems();
+        });
 
-    ngOnInit() {
-        this._currentId = +this.route.snapshot.params['id'];
-        this.getItems();
     }
 
     getItems() {
@@ -42,6 +43,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this._subscriber.unsubscribe();
+        this._routeSubscriber.unsubscribe();
     }
 
     // ***************************************************************************************************************************//

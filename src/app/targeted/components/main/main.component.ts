@@ -6,6 +6,7 @@ import { Subscription, BehaviorSubject } from 'rxjs/Rx';
 import { MainService } from '../../services/main.service';
 import { HeadlineModel } from '../../../common/models/headline.model';
 import { MainModel } from '../../../targeted/models/main.model';
+import { FilterServiceComponent } from '../filter-service/filter-service.component';
 
 @Component({
     selector: 'main',
@@ -15,6 +16,7 @@ export class MainComponent implements OnInit {
     @Input() showTwitter: boolean = true;
     item: MainModel;
     DfpId: number = 0;
+    isFiltered: boolean = false;
     private _service: MainService;
     private _subscriber: Subscription;
 
@@ -27,6 +29,10 @@ export class MainComponent implements OnInit {
     }
 
     ngOnInit() {
+        let data: string = this.route.snapshot.params['data']; // get list of id's as a string splited by ','
+        if (typeof data !== 'undefined' && data) {
+            this.isFiltered = true;
+        }
         this.getItems();
     }
 
@@ -35,6 +41,7 @@ export class MainComponent implements OnInit {
             .GetItemsByUri('TenTvAppFront/main?%24orderby=DisplayOrder%20asc')
             .subscribe(data => {
                 this.item = data;
+                this.item.isFiltered = this.isFiltered;
             });
     }
 
@@ -43,5 +50,10 @@ export class MainComponent implements OnInit {
         console.log('main detor');
         
         
+    }
+
+    parentFn() {
+        console.log('parent');
+
     }
 }

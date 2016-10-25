@@ -2,12 +2,13 @@ import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef, Input } from '
 import { Http } from '@angular/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Constants } from '../../Constants';
+import { Maavaron } from './maavaron.component';
 
 
 @Component({
     selector: 'dfp',
     template: `
-    <div id="{{placeHolderId}}" [ngStyle]="dfpStyle"></div>
+    <div id="{{placeHolderId}}" [ngStyle]="dfpStyle" [class]='"mainDfpItem"'></div>
   `
 })
 export class DfpMain implements OnInit, OnDestroy, AfterViewInit {
@@ -15,9 +16,17 @@ export class DfpMain implements OnInit, OnDestroy, AfterViewInit {
     @Input() placeHolderId: string = '';
     @Input() dfpObjectName: string = 'main';
     @Input() dfpStyle: string = '';
+    @Input() maavaron: Maavaron;
 
-    private dfpRef: any;
+    private _dfpRef: any[];
     private _isVisible: boolean = false;
+    private _currentResolution: number[] = [];
+    private slotName: string;
+    private adSize: number[] = [];
+    private adUnitName: string;
+    private _loadingTimeout: number = Constants.DFPLOADINGTIMEOUT;
+    private _count: number = 0;
+    private _adUnitsCollectionIndex: any;
 
     constructor(
         public route: ActivatedRoute, http: Http, private myElement: ElementRef
@@ -31,36 +40,114 @@ export class DfpMain implements OnInit, OnDestroy, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        //
-        this.dfpRef = window['AdUnitsCollection'];
-        this.dfpRef.objectName = this.dfpObjectName;
-        this.dfpRef.slotName = this.placeHolderId;
-        this.dfpRef.init();
+
+        this.generateDfpParams();
+        let unit = this.setDfpParams();
+
     }
 
+    setDfpParams(): any {
+        let unit = new window['AdUnitsCollection']();
+        this._adUnitsCollectionIndex = window['AdUnitsCollectionIndex'];
+        this._adUnitsCollectionIndex.getUnitsCount();
+
+        unit.objectName = this.dfpObjectName;
+        unit.slotName = this.placeHolderId;
+        unit.adSize = this.adSize;
+        unit.adUnitName = this.adUnitName;
+
+        this._adUnitsCollectionIndex.list.push(unit);
+        return unit;
+    }
+
+    //
     ngOnDestroy() {
         //
     }
 
-    AdDiv(id: string, style: string, close: boolean) {
-        // init static resources if inread tag
-        let prefix = '';
-        let inreadAdUnitName = '';
-        if (id === 'ad-div-inread-article') {
-            let InreadAdUnitList = Constants.DFPADUNITS;
-            let currentAdUnit = InreadAdUnitList[this.serviceName];
+    //
+    getResolution() {
+        this._currentResolution.length = 0;
+        this._currentResolution = [screen.width, screen.height];
+    }
 
-            if (currentAdUnit != null) {
-                // prefix = "<script>var inreadAdUnitName = '" + currentAdUnit.AdUnitName + "';</script>"; ;
-                inreadAdUnitName = '" + currentAdUnit.AdUnitName + "';
-            } else
-                inreadAdUnitName = '';
+    //
+    getMainAdUnitSize() {
+        let res = [];
+
+        switch (this._currentResolution[0]) {
+            case 2:
+
+                break;
+
+            default:
+                res.push(320);
+                res.push(50);
+                break;
+        }
+        return res;
+
+    }
+
+    //
+    getArticleAdUnitSize() {
+        let res = [];
+
+        switch (this._currentResolution[0]) {
+            case 2:
+
+                break;
+
+            default:
+                res.push(300);
+                res.push(250);
+                break;
+        }
+        return res;
+    }
+
+    //
+    getMaavaronAdUnitSize() {
+        let res = [];
+
+        switch (this._currentResolution[0]) {
+            case 2:
+
+                break;
+
+            default:
+                res.push(320);
+                res.push(568);
+                break;
+        }
+        return res;
+    }
+
+    generateDfpParams() {
+        this.getResolution();
+        switch (this.dfpObjectName) {
+            case 'main':
+                this.adUnitName = Constants.DFPADUNITSNAMES['strip'];
+                this.adSize = this.getMainAdUnitSize();
+                break;
+            case 'article':
+                this.adUnitName = Constants.DFPADUNITSNAMES['box'];
+                this.adSize = this.getArticleAdUnitSize();
+                break;
+            case 'maavaron':
+                this.adUnitName = Constants.DFPADUNITSNAMES['maavaron'];
+                this.adSize = this.getMaavaronAdUnitSize();
+                this.maavaron.setSize(this.adSize);
+                break;
+            default:
+            //
+
         }
 
 
-        // let closeHtml = close
-        // ? `<div id='maavaronClose' onclick='Maavaron.hideM();' style='width: 60px;height: 60px;border: 0;position: absolute;margin: 2px 10px 10px 0;cursor: pointer;left:0px;'></div>`
-        // : ``;
-        // return String.Format("{3}<div id='{0}' style={1}>{2}</div>", id, style, closeHtml, prefix);
     }
+
+
 }
+
+

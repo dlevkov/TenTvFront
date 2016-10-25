@@ -21,6 +21,7 @@ export class Dal {
     }
     public handleError(error: Response) {
         console.error(error);
+        window.location.href = '/main';
         return Observable.throw(error.json().error || 'Server error');
     }
 }

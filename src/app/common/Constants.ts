@@ -5,14 +5,33 @@ export class Constants {
     public static readonly SEARCH_KEY: string = 'search';
     public static readonly IMAGE_LOADING_URL = '../../assets/img/preload640-640.png';
     public static readonly IMAGE_LOADING_URL16_9 = '../../assets/img/preload_640-360.png';
-    public static readonly DATA_DOMAIN = 'http://localhost/Nana10MVC/';
+    //public static readonly DATA_DOMAIN = 'http://localhost/Nana10MVC/';
+    public static readonly DATA_DOMAIN = 'http://api-dev.nana10.co.il/';
     public static readonly NANA_IMAGES_DOMAIN: string = 'http://f.nanafiles.co.il';
     public static readonly SCROLL_POSITION: number = 1000;
+    public static readonly GOOGLEDFPID: string = '/9243695/';
+    public static readonly MAAVARONTIMEOUT: number = 5000;
 
-    public static readonly DFPADUNITS: { [key: string]: string } = Constants.Init();
+    public static readonly DFPADUNITS: any = Constants.InitDfpAdUnits();
+    public static readonly HEADLINETYPES: any = Constants.InitHeadlineTypes();
+    public static readonly DFPADUNITSNAMES: any = Constants.InitDfpAdUnitsName();
+    public static readonly DFPLOADINGTIMEOUT: number = 100;
 
-    public static Init(): { [key: string]: string } {
-        let t = {
+
+    public static InitHeadlineTypes(): any {
+        let units = {
+            10: 'Big',
+            1: 'Video',  // temporary replaced by standard item in views
+            2: 'Main',
+            8: 'Ad',
+            9: 'Pair',
+            0: 'Small',
+            6: 'Alert'
+        };
+        return units;
+    }
+    public static InitDfpAdUnits(): { [key: string]: string } {
+        let units = {
             '10tv': 'Desktop_Nana10_Channel10_Inread',
             'bidur': 'Desktop_Nana10_Entertainment_Inread',
             'celebs': 'Desktop_Nana10_Celebs_Inread',
@@ -23,8 +42,20 @@ export class Constants {
             'News': 'Desktop_Nana10_News_Inread',
             'sport': 'Desktop_Nana10_Sport_Inread'
         };
-        return t;
+        return units;
     }
+
+    public static InitDfpAdUnitsName(): any {
+        let units = {
+            'maavaron': Constants.GOOGLEDFPID + 'Channel10_Interstitial_Ros_test1',
+            // liveBox: googleDfpID + 'MOBILE_NANA10_LiveBoxVideo_300x250',
+            'strip': Constants.GOOGLEDFPID + 'Channel10_Banner_General_2',
+            'box': Constants.GOOGLEDFPID + 'Channel10_Box_300X250',
+        };
+        return units;
+    }
+
+
     public static GetImagePathByType(mediaStockImageID, item: ImageTypes, mediaStockImageExt?: string): string {
         let currentType: number = 0;
         switch (item) {

@@ -28,7 +28,7 @@ function casttimePlayer() {
         } else if (this.platform === "ios" && typeof webkit !== "undefined") {
             webkit.messageHandlers.callbackHandler.postMessage(JSON.stringify(this.casttimeObject))
         } else {
-            alert("Platform: " + this.platform);
+            console.log("Platform: " + this.platform);
         }
     };
 

@@ -1,4 +1,4 @@
-<ul *ngIf="item?.VideoId" class="rsvp_feed_listing">
+<ul *ngIf="item?.Id" class="rsvp_feed_listing">
     <li>
         <div class="rsvp_play_wrapper" [ngStyle]="{'margin-bottom': '10px'}" (click)="initVideo()">
             <img [src]="item?.GetImages?.Medium_460_258" [alt]="item?.Title" />

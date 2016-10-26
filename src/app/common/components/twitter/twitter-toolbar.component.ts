@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewChecked } from '@angular/core';
 import { Http } from '@angular/http';
 import { Subscription } from 'rxjs/Rx';
 import { TwitterService } from '../../services/twitter.service';
@@ -12,13 +12,14 @@ import { Constants } from '../../Constants';
         '(window:scroll)': 'scrolleEvent($event)'
     }
 })
-export class TwitterToolbarComponent implements OnInit, OnDestroy {
+export class TwitterToolbarComponent implements OnInit, OnDestroy, AfterViewChecked {
     items: TwitterModel[];
     private _currentItem: TwitterModel;
     private _currentId: number;
     private _service: TwitterService;
     private _subscriber: Subscription;
     private _isVisible: boolean = true;
+    private _isPolled = false;
 
     constructor(http: Http) {
         this._service = new TwitterService(http);
@@ -32,8 +33,25 @@ export class TwitterToolbarComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.getItems();
     }
+    ngAfterViewChecked() {
+        if (this.items != null && !this._isPolled) {
+            console.log('checked change');
+            this._subscriber.unsubscribe();
+            this.pollItems();
+        }
+
+    }
 
     getItems() {
+        this._subscriber = this._service
+            .getTwitts()
+            .subscribe(data => {
+                this.items = data;
+                if (!this._currentItem || this._currentItem.CounterId === 0) // is first time or last DB value
+                    this._currentItem = data[0];
+            });
+    }
+    pollItems() {
         this._subscriber = this._service
             .pollITwitts()
             .subscribe(data => {
@@ -41,6 +59,7 @@ export class TwitterToolbarComponent implements OnInit, OnDestroy {
                 if (!this._currentItem || this._currentItem.CounterId === 0) // is first time or last DB value
                     this._currentItem = data[0];
             });
+        this._isPolled = true;
     }
     getNext(id: number) {
         id++;

@@ -13,7 +13,7 @@ export class TwitterService {
     }
 
     pollITwitts() {
-        return Observable.interval(1000 * 2)
+        return Observable.interval(1000 * 60)
             .flatMap(() => this._dal.GetItemsByUri('TenTvAppFront/Twitts'))
             .map((items) => {
                 let result: Array<TwitterModel> = [];
@@ -27,6 +27,20 @@ export class TwitterService {
                 }
                 return result;
             });
-
+    }
+    getTwitts() {
+        return this._dal.GetItemsByUri('TenTvAppFront/Twitts')
+           .map((items) => {
+                let result: Array<TwitterModel> = [];
+                let counter = 0;
+                if (items) {
+                    items.forEach((item) => {
+                        item.CounterId = counter;
+                        result.push(new TwitterModel(item));
+                        counter++;
+                    });
+                }
+                return result;
+            });
     }
 }

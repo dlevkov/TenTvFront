@@ -18,4 +18,8 @@ export class ThirdPartyComponent {
         twitter.src = 'http://platform.twitter.com/widgets.js';
         this.myElement.nativeElement.appendChild(twitter);
     }
+
+// If you have html string that contains script tags insert it this way:
+//     const fragment = document.createRange().createContextualFragment(yourHtmlString);
+//     anyElement.appendChild(fragment);
 }

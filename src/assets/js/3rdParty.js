@@ -190,48 +190,6 @@ function AdUnitsCollection() {
         return res;
     };
 }
-// var AdUnitsCollection = {
-//     slotName: "",
-//     slot: null,
-//     objectName: "main",
-//     adSize: [],
-//     adUnitName: "",
-
-//     init: function() {
-//         this.initGeneral();
-//     },
-
-//     //
-//     initGeneral: function() {
-//         googletag.cmd.push(function() {
-
-//             // Infinite scroll requires SRA
-//             googletag.pubads().enableSingleRequest();
-
-//             // Disable initial load, we will use refresh() to fetch ads.
-//             // Calling this function means that display() calls just
-//             // register the slot as ready, but do not fetch ads for it.
-//             googletag.pubads().disableInitialLoad();
-
-//             // Enable services
-//             googletag.enableServices();
-
-//             AdUnitsCollection.slot = googletag.defineSlot(AdUnitsCollection.adUnitName, AdUnitsCollection.adSize, AdUnitsCollection.slotName).addService(googletag.pubads());
-//             // Display has to be called before
-//             // refresh and after the slot div is in the page.
-//             googletag.display(AdUnitsCollection.slotName);
-//             googletag.pubads().refresh([AdUnitsCollection.slot]);
-//             googletag.pubads().collapseEmptyDivs();
-//         });
-//     },
-
-//     //
-//     validPosition: function() {
-//         var res = true;
-//         res = document.getElementById(this.slotName) !== null ? true : false;
-//         return res;
-//     }
-// };
 
 var castTimeHelper = {
 

@@ -6,7 +6,7 @@ export class Constants {
     public static readonly IMAGE_LOADING_URL = '../../assets/img/preload640-640.png';
     public static readonly IMAGE_LOADING_URL16_9 = '../../assets/img/preload_640-360.png';
 
-    public static DATA_DOMAIN = 'http://api-dev.nana10.co.il/';
+    public static DATA_DOMAIN = 'http://api.nana10.co.il/';
     public static readonly NANA_IMAGES_DOMAIN: string = 'http://f.nanafiles.co.il';
     public static readonly SCROLL_POSITION: number = 1000;
     public static readonly GOOGLEDFPID: string = '/9243695/';
@@ -15,7 +15,7 @@ export class Constants {
     public static readonly DFPADUNITS: any = Constants.InitDfpAdUnits();
     public static readonly HEADLINETYPES: any = Constants.InitHeadlineTypes();
     public static readonly DFPADUNITSNAMES: any = Constants.InitDfpAdUnitsName();
-    public static readonly DFPLOADINGTIMEOUT: number = 100;
+    public static readonly DFPLOADINGTIMEOUT: number = 1000;
 
 
     public static InitHeadlineTypes(): any {

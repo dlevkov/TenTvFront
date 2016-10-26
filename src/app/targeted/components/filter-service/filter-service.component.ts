@@ -59,8 +59,8 @@ export class FilterServiceComponent implements OnInit, OnDestroy {
         this.getChecked();
         this.getId();
         // TODO, DEVTEAM, make router work properly
-        // this._router.navigate(['/mainfiltered/' + this._generatedId, { data: this._sids }]);
-        window.location.href = '/mainfiltered/' + this._generatedId + ';data=' + this._sids.join(',');
+        this._router.navigate(['/mainfiltered/' + this._generatedId, { data: this._sids }]);
+        // window.location.href = '/mainfiltered/' + this._generatedId + ';data=' + this._sids.join(',');
     }
     private getId() {
         this._generatedId = this._sids.join('');

@@ -5,12 +5,12 @@ export class Constants {
     public static readonly SEARCH_KEY: string = 'search';
     public static readonly IMAGE_LOADING_URL = '../../assets/img/preload640-640.png';
     public static readonly IMAGE_LOADING_URL16_9 = '../../assets/img/preload_640-360.png';
-    //public static readonly DATA_DOMAIN = 'http://localhost/Nana10MVC/';
-    public static readonly DATA_DOMAIN = 'http://api-dev.nana10.co.il/';
+
+    public static DATA_DOMAIN = 'http://api-dev.nana10.co.il/';
     public static readonly NANA_IMAGES_DOMAIN: string = 'http://f.nanafiles.co.il';
     public static readonly SCROLL_POSITION: number = 1000;
     public static readonly GOOGLEDFPID: string = '/9243695/';
-    public static readonly MAAVARONTIMEOUT: number = 5000;
+    public static readonly MAAVARONTIMEOUT: number = 20000;
 
     public static readonly DFPADUNITS: any = Constants.InitDfpAdUnits();
     public static readonly HEADLINETYPES: any = Constants.InitHeadlineTypes();
@@ -104,4 +104,8 @@ export class Constants {
             + Math.floor((mediaStockImageID % 1000000) / 1000) + '/' + mediaStockImageID + '_THUMBNAIL.' + mediaStockImageExt;
 
     }
+}
+if ('development' === ENV) {
+    // Dev
+    Constants.DATA_DOMAIN = 'http://localhost/Nana10MVC/';
 }

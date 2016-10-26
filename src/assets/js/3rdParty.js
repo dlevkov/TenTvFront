@@ -18,6 +18,41 @@ $nana(document).ready(function() {
 
 });
 
+//casttime native player
+function casttimePlayer() {
+    this.platform = "unknown";
+    this.init = function() {
+        this.platform = this.getMobileOperatingSystem();
+        if (this.platform === "android" && typeof Android !== "undefined") {
+            Android.showWebToast(JSON.stringify(this.casttimeObject));
+        } else if (this.platform === "ios" && typeof webkit !== "undefined") {
+            webkit.messageHandlers.callbackHandler.postMessage(JSON.stringify(this.casttimeObject))
+        } else {
+            console.log("Platform: " + this.platform);
+        }
+    };
+
+    this.casttimeObject = {
+        Title: "האם ג'ודי הלכה רחוק מדי כדי להגן על בעלה?",
+        SubTitle: "היא חלמה להיות הגברת הראשונה של ישראל, אשת הנשיא או ראש הממשלה - אבל כאשר התפוצצה ב\"הארץ\" הפרשה האחרונה, שהובילה לפרישתו של בעלה סילבן שלום - נראה שגם ג'ודי שלום ניר מוזס הרשתה לעצמה לעשות דברים שלא עשתה בעבר. איפה עובר הגבול בין התייצבות לצד בן הזוג, לבין מעשים הפוגעים באחרים?",
+        SeasonId: 84,
+        UserID: "45E4A9FB-FCE8-88BF-93CC-3650C39DDF28",
+        VideoId: 1031083,
+        DfpAdUnit: "CDN_10TV",
+        DfpAdUnitLive: "CDN_Live"
+    };
+    this.getMobileOperatingSystem = function() {
+        var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        if (/android/i.test(userAgent)) {
+            return "android";
+        }
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            return "ios";
+        }
+        return "unknown";
+    };
+};
+
 var NanaTaboola = {
     objectType: "home",
     headerObject: {},

@@ -2,18 +2,20 @@
 <div class="rsvp_fullwidth">
 
     <div *ngIf='item?.StripImagePathShow' class="rsvp_image_with_caption">
-        <a href="article_gallery.html" class="rsvp_imag_expand"></a>
-        <img  [src]='item?.StripImagePath' />
+        <!--<a href="article_gallery.html" class="rsvp_imag_expand"></a>-->
+        <img [src]='item?.StripImagePath' />
         <p class="oedoopror">{{item?.MediaStockImageAlt}} צילום {{item?.MediaStockImageCredit}}</p>
     </div>
+
+    <videocasttime></videocasttime>
 
     <!-- image with caption start -->
     <div style="clear:both;"></div>
     <div *ngIf='item?.TitlePic' class="rsvp_image_with_caption">
-            <a href="article_gallery.html" class="rsvp_imag_expand"></a>
-            <img [src]="_loadingUrl"  [alt]="item?.MediaStockImageAlt" />
-            <p class="oedoopror">{{item?.MediaStockImageAlt}} צילום {{item?.MediaStockImageCredit}}</p>
-        </div>
+        <!--<a href="article_gallery.html" class="rsvp_imag_expand"></a>-->
+        <img [src]="_loadingUrl" [alt]="item?.MediaStockImageAlt" />
+        <p class="oedoopror">{{item?.MediaStockImageAlt}} צילום {{item?.MediaStockImageCredit}}</p>
+    </div>
 
     <div style="clear:both;"></div>
     <!-- image with caption end -->
@@ -33,7 +35,7 @@
         <div class="rsvp_flc"></div>
         <paragraph [item]='paragraph' [index]='i' *ngFor="let paragraph of item?.Paragraphs; let i = index"></paragraph>
     </div>
-    <taboola [placeHolderId]='"taboola-under-article"' [placement]='"Under Article"'  [mode] ='"thumbnails-c"' [objectType] ='"article"'></taboola>
+    <taboola [placeHolderId]='"taboola-under-article"' [placement]='"Under Article"' [mode]='"thumbnails-c"' [objectType]='"article"'></taboola>
     <main [showTwitter]='false'></main>
 </div>
 

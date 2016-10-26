@@ -26,6 +26,7 @@ export class ArticleComponent implements OnDestroy {
         this._routeSubscriber = this.route.params.subscribe(x => {
             this._currentId = +x['id'];
             this.getItems();
+            window.scrollTo(0, 0); // fix scroll in case of article to article navigation
         });
 
     }

@@ -133,6 +133,13 @@ var AdUnitsCollectionIndex = {
             this.currentId = i;
             this.list[i].init();
         }
+        this.reset();
+    },
+
+    reset: function() {
+        this.list.length = 0;
+        this.currentId = 0;
+        this.count = 0;
     },
 
     getUnitsCount: function() {

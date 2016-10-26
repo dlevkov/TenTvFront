@@ -13,6 +13,7 @@ import { Constants } from '../../../common/Constants';
 })
 export class ArticleComponent implements OnDestroy {
     item: ArticleModel;
+    parser: any = window['contentParser'];
     private _currentId: number;
     private _service: ArticleService;
     private _subscriber: Subscription;
@@ -34,6 +35,7 @@ export class ArticleComponent implements OnDestroy {
         this._subscriber = this._service.GetItemsByUri('TenTvAppFront/article/' + this._currentId)
             .subscribe(data => {
                 this.item = data;
+                this.parser.length = this.item.Paragraphs.length;
                 this._loadingUrl = this.item.TitlePic;
             });
 
@@ -42,7 +44,6 @@ export class ArticleComponent implements OnDestroy {
     ngOnDestroy() {
         this._subscriber.unsubscribe();
         this._routeSubscriber.unsubscribe();
-
     }
 
     // ***************************************************************************************************************************//

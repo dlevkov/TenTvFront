@@ -8,10 +8,10 @@ export class ThirdPartyComponent {
     constructor(private myElement: ElementRef) { }
 
     ngAfterViewInit() {
-        let instagram = document.createElement('script');
-        instagram.type = 'text/javascript';
-        instagram.src = 'http://platform.instagram.com/en_US/embeds.js';
-        this.myElement.nativeElement.appendChild(instagram);
+        // let instagram = document.createElement('script');
+        // instagram.type = 'text/javascript';
+        // instagram.src = 'http://platform.instagram.com/en_US/embeds.js';
+        // this.myElement.nativeElement.appendChild(instagram);
 
         let twitter = document.createElement('script');
         twitter.type = 'text/javascript';

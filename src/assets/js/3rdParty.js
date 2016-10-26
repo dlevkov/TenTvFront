@@ -1,7 +1,7 @@
 // Load DFP --
 var googletag = googletag || {};
 googletag.cmd = googletag.cmd || [];
-(function() {
+(function () {
     var gads = document.createElement('script');
     gads.async = true;
     gads.type = 'text/javascript';
@@ -11,8 +11,8 @@ googletag.cmd = googletag.cmd || [];
     node.parentNode.insertBefore(gads, node);
 })();
 
-$nana(document).ready(function() {
-    setTimeout(function() {
+$nana(document).ready(function () {
+    setTimeout(function () {
         AdUnitsCollectionIndex.init();
     }, 100);
 
@@ -21,7 +21,7 @@ $nana(document).ready(function() {
 //casttime native player
 function casttimePlayer() {
     this.platform = "unknown";
-    this.init = function() {
+    this.init = function () {
         this.platform = this.getMobileOperatingSystem();
         if (this.platform === "android" && typeof Android !== "undefined") {
             Android.showWebToast(JSON.stringify(this.casttimeObject));
@@ -41,7 +41,7 @@ function casttimePlayer() {
         DfpAdUnit: "CDN_10TV",
         DfpAdUnitLive: "CDN_Live"
     };
-    this.getMobileOperatingSystem = function() {
+    this.getMobileOperatingSystem = function () {
         var userAgent = navigator.userAgent || navigator.vendor || window.opera;
         if (/android/i.test(userAgent)) {
             return "android";
@@ -56,7 +56,7 @@ function casttimePlayer() {
 var NanaTaboola = {
     objectType: "home",
     headerObject: {},
-    insertHeader: function() {
+    insertHeader: function () {
         switch (this.objectType) {
             case "home":
                 this.headerObject = { home: 'auto' };
@@ -70,20 +70,20 @@ var NanaTaboola = {
         }
         window._taboola = window._taboola || [];
         _taboola.push(this.headerObject);
-        ! function(e, f, u, i) {
+        ! function (e, f, u, i) {
             if (!document.getElementById(i)) {
                 e.async = 1;
                 e.src = u;
                 e.id = i;
                 f.parentNode.insertBefore(e, f);
             }
-        }(document.createElement('script'),
+        } (document.createElement('script'),
             document.getElementsByTagName('script')[0],
             '//cdn.taboola.com/libtrc/nana10tv-app/loader.js',
             'tb_loader_script');
     },
 
-    insertFooter: function() {
+    insertFooter: function () {
         window._taboola = window._taboola || [];
         _taboola.push({ flush: true });
     },
@@ -105,7 +105,7 @@ var nanaHelper = {
     fontInterval: 2,
     fontSelectors: ['.rsvp_article_inner_content p:not(p.oedoopror)', '.rsvp_article_body_h1', '.rsvp_article_body_h2', '.rsvp_feed_item_title'],
 
-    changeFontSize: function(zoomin) {
+    changeFontSize: function (zoomin) {
         console.log('zoomin: ' + zoomin);
         this.currentFontSize = parseInt($nana(this.fontSelectors[0]).css("font-size"));
         if ((this.currentFontSize >= this.maxFontSize && zoomin) || (this.currentFontSize <= this.minFontSize && !zoomin))
@@ -125,7 +125,7 @@ var AdUnitsCollectionIndex = {
     list: [],
     currentId: 0,
     count: 0,
-    init: function() {
+    init: function () {
         //
         console.log('dfp init');
         this.getUnitsCount();
@@ -135,7 +135,7 @@ var AdUnitsCollectionIndex = {
         }
     },
 
-    getUnitsCount: function() {
+    getUnitsCount: function () {
         this.count = document.getElementsByTagName('dfp').length;
     }
 };
@@ -147,13 +147,13 @@ function AdUnitsCollection() {
     this.adSize = [];
     this.adUnitName = "";
 
-    this.init = function() {
+    this.init = function () {
         this.initGeneral();
     };
 
     //
-    this.initGeneral = function() {
-        googletag.cmd.push(function() {
+    this.initGeneral = function () {
+        googletag.cmd.push(function () {
             // Infinite scroll requires SRA
             googletag.pubads().enableSingleRequest();
 
@@ -177,7 +177,7 @@ function AdUnitsCollection() {
     };
 
     //
-    this.validPosition = function() {
+    this.validPosition = function () {
         var res = true;
         res = document.getElementById(this.slotName) !== null ? true : false;
         return res;
@@ -229,17 +229,17 @@ function AdUnitsCollection() {
 var castTimeHelper = {
 
     //
-    init: function() {
+    init: function () {
 
     },
 
     //
-    toggleServiceFilter: function() {
+    toggleServiceFilter: function () {
         window.angularComponentRef.zone.run(() => { window.angularComponentRef.component.showFilter(); })
     },
 
     //
-    changeFontSize: function(zoomin) {
+    changeFontSize: function (zoomin) {
         nanaHelper.changeFontSize(zoomin);
     }
 
@@ -247,27 +247,22 @@ var castTimeHelper = {
 
 var contentParser = {
     scriptList: [],
-    resultScriptList: [],
+    scriptSrcList: [],
     count: 0,
     length: 0,
     contentScript: function (content) {
-        let script = $nana(content);
+        let script = $nana(content).filter('script').attr('class', 'third-party');
         contentParser.count++;
-        contentParser.scriptList.push($nana(script).filter('script'));
-        console.log('count: ' + contentParser.count);
-        console.log('length: ' + contentParser.length);
+        contentParser.scriptList.push(script);
         if (contentParser.count === contentParser.length) {
-            // $nana.each(contentParser.scriptList, function (i, item) {
-            //     console.log(item);
-            //     if ($nana.inArray(item, contentParser.resultScriptList) == -1) {
-            //         console.log('inArray');
-            //         contentParser.resultScriptList.push(item);
-            //     }
-
-            //     $nana("head").append(contentParser.resultScriptList);
-            // });
-            contentParser.scriptList = $nana.unique(contentParser.scriptList);
-            $nana("head").append(contentParser.scriptList);
+            let result = [];
+            $nana.each(contentParser.scriptList, function (i, item) {
+                if ($nana.inArray(item.attr('src'), contentParser.scriptSrcList) == -1) {
+                    contentParser.scriptSrcList.push(item.attr('src'));
+                    result.push(item);
+                }
+            });
+            $nana("head").append(result);
         }
     }
 };

@@ -36,7 +36,6 @@ export class ArticleComponent implements OnDestroy {
             .subscribe(data => {
                 this.item = data;
                 this.parser.length = this.item.Paragraphs.length;
-                console.log(this.item.Paragraphs);
                 this._loadingUrl = this.item.TitlePic;
             });
 

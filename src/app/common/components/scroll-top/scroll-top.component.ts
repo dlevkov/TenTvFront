@@ -16,6 +16,7 @@ export class ScrollTop {
 
     scrolleEvent(event) {
         this._isVisible = (Constants.SCROLL_POSITION < window.pageYOffset) ? true : false;
+
     }
 
     onClick() {

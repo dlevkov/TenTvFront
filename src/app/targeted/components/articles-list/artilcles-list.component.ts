@@ -26,14 +26,6 @@ export class ArticlesListComponent implements OnInit, AfterViewInit {
         this._routeSubscriber = this.route.params.subscribe(x => {
             this.init(x['data']);
         });
-        // this._router.events.forEach((event: NavigationEnd) => {
-        //     // Do whatever in here
-
-        //     if (event instanceof NavigationEnd ) {
-        //         this.init();
-        //         this._keepGoing = false;
-        //     }
-        // });
     }
 
     getItems() {

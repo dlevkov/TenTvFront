@@ -8,7 +8,7 @@ import { Maavaron } from './maavaron.component';
 @Component({
     selector: 'dfp',
     template: `
-    <div id="{{placeHolderId}}" [ngStyle]="dfpStyle" [class]='"mainDfpItem"'></div>
+    <div *ngIf='!_isDisabled' id="{{placeHolderId}}" [ngStyle]="dfpStyle" [class]='"mainDfpItem"'></div>
   `
 })
 export class DfpMain implements OnInit, OnDestroy, AfterViewInit {
@@ -20,6 +20,7 @@ export class DfpMain implements OnInit, OnDestroy, AfterViewInit {
 
     private _dfpRef: any[];
     private _isVisible: boolean = false;
+    private _isDisabled: boolean = true;
     private _currentResolution: number[] = [];
     private slotName: string;
     private adSize: number[] = [];

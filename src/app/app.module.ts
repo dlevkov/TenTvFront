@@ -31,6 +31,7 @@ import { DfpMain } from './common/components/3rdParty/dfp.component';
 import { Maavaron } from './common/components/3rdParty/maavaron.component';
 import { ArticlesListComponent } from './targeted/components/articles-list/artilcles-list.component';
 import { Video } from './common/components/video/video.component';
+import { Controller } from './common/components/global/controller.component';
 
 import { ArticleComponent } from './targeted/components/article/article.component';
 import { ParagraphComponent } from './targeted/components/paragraph/paragraph.component';
@@ -79,7 +80,8 @@ type StoreType = {
     ArticlesListComponent,
     FilterServiceComponent,
     FilterServiceItemComponent,
-    Video
+    Video,
+    Controller
   ],
   imports: [ // import Angular's modules
     BrowserModule,

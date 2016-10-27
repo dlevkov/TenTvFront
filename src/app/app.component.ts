@@ -16,7 +16,10 @@ import { AppState } from './app.service';
     './app.style.css'
   ],
   template: `
-          <router-outlet></router-outlet>        
+          <scroll-top></scroll-top>
+          <controller></controller>
+          <router-outlet>
+          </router-outlet>        
 
   `
 })

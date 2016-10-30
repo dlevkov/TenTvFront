@@ -12,11 +12,30 @@ googletag.cmd = googletag.cmd || [];
 })();
 
 $nana(document).ready(function() {
-    // setTimeout(function() {
-    //     AdUnitsCollectionIndex.init();
-    // }, 1000);
-
+    nanaRoute.init();
 });
+
+var TopFour = {
+    url: 'http://m-dev.nana10.co.il/complex/home',
+    elementId: 'topFour',
+    init: function() {
+        //$nana("#" + TopFour.elementId).load(TopFour.url);
+        $nana.ajax({
+                method: "GET",
+                url: TopFour.url,
+                dataType: "html",
+                jsonp: true,
+            })
+            .done(function(data) {
+                $nana("#" + TopFour.elementId).html(data);
+            });
+    },
+    hide: function() {
+        $nana("#" + TopFour.elementId).hide();
+    }
+};
+
+TopFour.init();
 
 //casttime native player
 function casttimePlayer() {
@@ -191,29 +210,43 @@ function AdUnitsCollection() {
     };
 }
 
-var castTimeHelper = {
-
+var nanaRoute = {
+    initialized: false,
     routeEvent: document.createEvent("Event"),
 
-    //register
-    //window.addEventListener("RouteEvent", myEventHandler, false);
-
-    invokeRouteEvent: function() {
+    invokeRouteEvent: function(url) {
         //invoke
-        window.dispatchEvent(this.routeEvent);
-    },
-
-    init: function() {
-        initRouteEvents();
-    },
-
-    //
-    toggleServiceFilter: function() {
-        window.angularComponentRef.zone.run(() => { window.angularComponentRef.component.showFilter(); })
+        if (!this.initialized) return false;
+        this.routeEvent.routeUrl = url;
+        document.dispatchEvent(this.routeEvent);
     },
 
     initRouteEvents: function() {
         this.routeEvent.initEvent("RouteEvent", true, true);
+        this.initialized = true;
+    },
+
+    init: function() {
+        this.initRouteEvents();
+        document.addEventListener("RouteEvent", castTimeHelper.routeHandler, false);
+    },
+};
+
+var castTimeHelper = {
+    platform: '',
+    routeHandler: function(data) {
+        this.platform = casttimePlayer.getMobileOperatingSystem();
+        if (this.platform === "android" && typeof Android !== "undefined") {
+            Android.webPageUpdated(data.routeUrl);
+        } else if (this.platform === "ios" && typeof webkit !== "undefined") {
+            webkit.messageHandlers.callbackHandler.postMessage(JSON.stringify({'routeData': data.routeUrl}));
+        } else {
+            console.log("Route: " + data.routeUrl);
+        }
+    },
+    //
+    toggleServiceFilter: function() {
+        window.angularComponentRef.zone.run(() => { window.angularComponentRef.component.showFilter(); })
     },
 
     //

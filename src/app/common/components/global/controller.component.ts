@@ -9,13 +9,17 @@ import { Subscription, BehaviorSubject } from 'rxjs/Rx';
 })
 export class Controller implements OnDestroy {
     private _routeSubscriber: Subscription;
-    
+    private _isVisible: boolean = true;
+    private _nanaRouteRef: any;
+
     constructor(/*private pubSubService: PubSubService,**/ private _router: Router, private _ngZone: NgZone) {
-window.angularComponentRef = { component: this, zone: _ngZone };
+        window.angularComponentRef = { component: this, zone: _ngZone };
+        this._nanaRouteRef = window['nanaRoute'];
         this._router.events.forEach((x) => {
             // Do whatever in here
-            if (x instanceof NavigationEnd ) {
-                 console.log(x);
+            if (x instanceof NavigationEnd) {
+                this._nanaRouteRef.invokeRouteEvent(x.url);
+                this.handleStatickTopFour(x.url);
             }
         });
     }
@@ -30,12 +34,17 @@ window.angularComponentRef = { component: this, zone: _ngZone };
         });
     }
 
+    ngOnDestroy() {
+        //console.log('Controller dtor');
+    }
+
+    private handleStatickTopFour(path: string) {
+        if (path === '/' || path === '/main') {
+            window['TopFour'].hide();
+        }
+    }
     private setVisible() {
         this._isVisible = true;
         window.scrollTo(0, 0);
-    }
-
-    ngOnDestroy() {
-        //console.log('Controller dtor');
     }
 }

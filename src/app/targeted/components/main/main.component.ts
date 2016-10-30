@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewChecked } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription, BehaviorSubject } from 'rxjs/Rx';
@@ -12,7 +12,7 @@ import { FilterServiceComponent } from '../filter-service/filter-service.compone
     selector: 'main',
     templateUrl: 'main.component.html'
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, AfterViewChecked {
     @Input() showTwitter: boolean = true;
     item: MainModel;
     DfpId: number = 0;
@@ -36,6 +36,10 @@ export class MainComponent implements OnInit {
         this.getItems();
     }
 
+    ngAfterViewChecked() {
+        //window['TopFour'].hide();
+    }
+
     getItems() {
         this._subscriber = this._service
             .GetItemsByUri('TenTvAppFront/main?%24orderby=DisplayOrder%20asc')
@@ -48,12 +52,5 @@ export class MainComponent implements OnInit {
     ngOnDestroy() {
         this._subscriber.unsubscribe();
         console.log('main detor');
-        
-        
-    }
-
-    parentFn() {
-        console.log('parent');
-
     }
 }

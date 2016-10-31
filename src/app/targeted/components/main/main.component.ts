@@ -40,6 +40,10 @@ export class MainComponent implements OnInit, AfterViewChecked {
         //window['TopFour'].hide();
     }
 
+    isSafary() {
+        return navigator.userAgent.indexOf('Safari') > -1;
+    }
+   
     getItems() {
         this._subscriber = this._service
             .GetItemsByUri('TenTvAppFront/main?%24orderby=DisplayOrder%20asc')
@@ -52,5 +56,9 @@ export class MainComponent implements OnInit, AfterViewChecked {
     ngOnDestroy() {
         this._subscriber.unsubscribe();
         console.log('main detor');
+    }
+
+     private handleFilter() {
+        window['castTimeHelper'].toggleServiceFilter();
     }
 }

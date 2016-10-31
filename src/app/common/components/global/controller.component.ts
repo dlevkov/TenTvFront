@@ -40,6 +40,8 @@ export class Controller implements OnDestroy {
 
     private handleStatickTopFour(path: string) {
         if (path === '/' || path === '/main') {
+            //window['TopFour'].hide();
+        } else {
             window['TopFour'].hide();
         }
     }

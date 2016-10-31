@@ -16,7 +16,7 @@ $nana(document).ready(function() {
 });
 
 var TopFour = {
-    url: 'http://m-dev.nana10.co.il/complex/home',
+    url: 'http://m.nana10.co.il/complex/home',
     elementId: 'topFour',
     init: function() {
         //$nana("#" + TopFour.elementId).load(TopFour.url);
@@ -234,12 +234,13 @@ var nanaRoute = {
 
 var castTimeHelper = {
     platform: '',
+    casttimePlayerRef: new casttimePlayer(),
     routeHandler: function(data) {
-        this.platform = casttimePlayer.getMobileOperatingSystem();
-        if (this.platform === "android" && typeof Android !== "undefined") {
+        castTimeHelper.platform = castTimeHelper.casttimePlayerRef.getMobileOperatingSystem();
+        if (castTimeHelper.platform === "android" && typeof Android !== "undefined") {
             Android.webPageUpdated(data.routeUrl);
-        } else if (this.platform === "ios" && typeof webkit !== "undefined") {
-            webkit.messageHandlers.callbackHandler.postMessage(JSON.stringify({'routeData': data.routeUrl}));
+        } else if (castTimeHelper.platform === "ios" && typeof webkit !== "undefined") {
+            webkit.messageHandlers.callbackHandler.postMessage(JSON.stringify({ 'routeData': data.routeUrl }));
         } else {
             console.log("Route: " + data.routeUrl);
         }

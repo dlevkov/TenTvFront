@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, NgZone } from '@angular/core';
+import { Component, Input, OnDestroy, NgZone, AfterViewInit } from '@angular/core';
 import { PubSubService } from '../../Global/PubSubService';
 import { Router, ActivatedRoute, Params, NavigationEnd } from '@angular/router';
 import { Subscription, BehaviorSubject } from 'rxjs/Rx';
@@ -7,7 +7,7 @@ import { Subscription, BehaviorSubject } from 'rxjs/Rx';
     selector: 'controller',
     template: ''
 })
-export class Controller implements OnDestroy {
+export class Controller implements OnDestroy, AfterViewInit {
     private _routeSubscriber: Subscription;
     private _isVisible: boolean = true;
     private _nanaRouteRef: any;
@@ -36,6 +36,10 @@ export class Controller implements OnDestroy {
 
     ngOnDestroy() {
         //console.log('Controller dtor');
+    }
+
+    ngAfterViewInit() {
+        console.log('Controller AfterViewChecked');
     }
 
     private handleStatickTopFour(path: string) {

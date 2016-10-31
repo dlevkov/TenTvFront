@@ -20,7 +20,7 @@ export class DfpMain implements OnInit, OnDestroy, AfterViewInit {
 
     private _dfpRef: any[];
     private _isVisible: boolean = false;
-    private _isDisabled: boolean = true;
+    private _isDisabled: boolean = false;
     private _currentResolution: number[] = [];
     private slotName: string;
     private adSize: number[] = [];
@@ -44,6 +44,8 @@ export class DfpMain implements OnInit, OnDestroy, AfterViewInit {
 
         this.generateDfpParams();
         let unit = this.setDfpParams();
+        //reinit dfp
+        this._adUnitsCollectionIndex.init();
 
     }
 
@@ -57,7 +59,7 @@ export class DfpMain implements OnInit, OnDestroy, AfterViewInit {
         unit.adSize = this.adSize;
         unit.adUnitName = this.adUnitName;
 
-        this._adUnitsCollectionIndex.list.push(unit);
+        this._adUnitsCollectionIndex.add(unit);
         return unit;
     }
 

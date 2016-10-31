@@ -1,4 +1,4 @@
-import { Component, OnDestroy, ElementRef, NgZone } from '@angular/core';
+import { Component, OnDestroy, ElementRef, NgZone, AfterViewInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription, BehaviorSubject } from 'rxjs/Rx';
@@ -11,7 +11,7 @@ import { Constants } from '../../../common/Constants';
     selector: 'article',
     templateUrl: 'article.component.html',
 })
-export class ArticleComponent implements OnDestroy {
+export class ArticleComponent implements OnDestroy, AfterViewInit {
     item: ArticleModel;
     parser: any = window['contentParser'];
     private _currentId: number;
@@ -26,6 +26,7 @@ export class ArticleComponent implements OnDestroy {
         this._routeSubscriber = this.route.params.subscribe(x => {
             this._currentId = +x['id'];
             this.getItems();
+            // window['AdUnitsCollectionIndex'].reset();
             window.scrollTo(0, 0); // fix scroll in case of article to article navigation
         });
 
@@ -41,9 +42,15 @@ export class ArticleComponent implements OnDestroy {
 
     }
 
+
+
     ngOnDestroy() {
         this._subscriber.unsubscribe();
         this._routeSubscriber.unsubscribe();
+    }
+
+    ngAfterViewInit() {
+        console.log('article view');
     }
 
     // ***************************************************************************************************************************//

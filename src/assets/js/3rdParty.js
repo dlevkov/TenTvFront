@@ -13,6 +13,7 @@ googletag.cmd = googletag.cmd || [];
 
 $nana(document).ready(function() {
     nanaRoute.init();
+    //AdUnitsCollectionIndex.init();
 });
 
 var TopFour = {
@@ -147,12 +148,32 @@ var AdUnitsCollectionIndex = {
     init: function() {
         //
         console.log('dfp init');
-        this.getUnitsCount();
-        for (let i = 0; i < this.count; i++) {
+        //this.getUnitsCount();
+        for (let i = 0; i < this.list.length; i++) {
             this.currentId = i;
             this.list[i].init();
         }
-        this.reset();
+        //this.reset();
+    },
+
+    add: function(unit) {
+        //  unit.objectName = this.dfpObjectName;
+        //         unit.slotName = this.placeHolderId;
+        //         unit.adSize = this.adSize;
+        //         unit.adUnitName = this.adUnitName;
+        if (this.isUnique(unit)) {
+            this.list.push(unit)
+        }
+    },
+
+    isUnique: function(unit) {
+        this.list.forEach(function(element) {
+            if (this.slotName === unit.slotName) {
+                return false;
+            }
+        }, this);
+
+        return true;
     },
 
     reset: function() {
@@ -172,6 +193,7 @@ function AdUnitsCollection() {
     this.objectName = "main";
     this.adSize = [];
     this.adUnitName = "";
+    this.initialized = false;
 
     this.init = function() {
         this.initGeneral();
@@ -180,6 +202,9 @@ function AdUnitsCollection() {
     //
     this.initGeneral = function() {
         googletag.cmd.push(function() {
+            var unit = AdUnitsCollectionIndex.list[AdUnitsCollectionIndex.currentId];
+
+            if (unit.initialized) return false;
             // Infinite scroll requires SRA
             googletag.pubads().enableSingleRequest();
 
@@ -191,7 +216,8 @@ function AdUnitsCollection() {
             // Enable services
             googletag.enableServices();
 
-            var unit = AdUnitsCollectionIndex.list[AdUnitsCollectionIndex.currentId];
+
+
 
             unit.slot = googletag.defineSlot(unit.adUnitName, unit.adSize, unit.slotName).addService(googletag.pubads());
             // Display has to be called before
@@ -199,6 +225,8 @@ function AdUnitsCollection() {
             googletag.display(unit.slotName);
             googletag.pubads().refresh([unit.slot]);
             googletag.pubads().collapseEmptyDivs();
+
+            unit.initialized = true;
         });
     };
 

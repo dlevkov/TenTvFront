@@ -1,4 +1,4 @@
-import { Input, Component } from '@angular/core';
+import { Input, Component, EventEmitter, Output } from '@angular/core';
 import { FilterServiceModel } from '../../../common/models/filter-service.model';
 
 
@@ -8,4 +8,11 @@ import { FilterServiceModel } from '../../../common/models/filter-service.model'
 })
 export class FilterServiceItemComponent {
     @Input() item: FilterServiceModel;
+    @Output() itemChecked = new EventEmitter();
+
+    nandleClick() {
+        this.itemChecked.emit();
+        console.log('child click');
+
+    }
 }

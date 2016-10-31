@@ -19,6 +19,7 @@ export class FilterServiceComponent implements OnInit, OnDestroy {
     private _isVisible: boolean = false;
     private _sids: number[] = [];
     private _generatedId: string;
+    private _classUpdated: string = '';
 
     constructor(http: Http, private _router: Router, private _ngZone: NgZone) {
         this._service = new FilterServiceService(http);
@@ -41,6 +42,12 @@ export class FilterServiceComponent implements OnInit, OnDestroy {
     getChecked() {
         this._sids = this._items.filter(x => x.Checked === true).map(x => x.ServiceID);
     }
+
+    clickCheckbox() {
+        this._classUpdated = 'rsvp_changed_status';
+        console.log('parent click');
+    }
+
 
     showFilter(data: String) {
         this._ngZone.run(() => {

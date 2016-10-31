@@ -1,26 +1,26 @@
 <!--  filter start  -->
-<div class="rsvp_filter" *ngIf="_isVisible" [ngStyle]="{'position': 'fixed'}">
+<div class="rsvp_filter" *ngIf="_isVisible">
     <div class="rsvp_filter_mask"></div>
     <div class="rsvp_filter_outer">
-        <div class="rsvp_filter_title" style="float:right;">מה מעניין אותך?</div>
-        <div class="rsvp_twitter_button" style="float:left;height:66px;background-color:transparent;" (click)="Redirect()">
+        <div class="rsvp_filter_title">מה מעניין אותך?
+            <a class="fll rsvp_update_feed_prom" [ngClass]="_classUpdated" (click)="Redirect()">עדכן פיד מותאם אישית</a>
+            <!--<div class="rsvp_twitter_button" style="float:left;height:66px;background-color:transparent;" (click)="Redirect()">-->
             <!--<a [routerLink]="['/mainfiltered', { data: this.getChecked() }]"><img src="../../../../assets/icons/twitter_left.png" style="margin: 50% 0;" /></a>-->
-            <img src="../../../../assets/icons/twitter_left.png" style="margin: 50% 0;" />
+            <!--<img src="../../../../assets/icons/twitter_left.png" style="margin: 50% 0;" />-->
         </div>
-        <div style="clear:both;"></div>
-        <div class="rsvp_filter_loader" id="loadingFilterImage" style="display:none;">
-            <img [src]="_loadingUrl" />
-        </div>
-        <div style="clear:both;"></div>
-        <div class="rsvp_filter_list rscp_filter_checked">
-            <ul class="rsvp_filter_ul" *ngFor="let item of _items">
-                <filter-service-item [item]='item'></filter-service-item>
-                <li style="clear:both;"></li>
-            </ul>
-            <div style="clear:both;"></div>
-        </div>
+    </div>
+    <div style="clear:both;"></div>
+    <div class="rsvp_filter_loader" id="loadingFilterImage" style="display:none;">
+        <img [src]="_loadingUrl" />
+    </div>
+    <div style="clear:both;"></div>
+    <div class="rsvp_filter_list rscp_filter_checked">
+        <ul class="rsvp_filter_ul" *ngFor="let item of _items">
+            <filter-service-item [item]='item' (itemChecked)="clickCheckbox($event)"></filter-service-item>
+            <li style="clear:both;"></li>
+        </ul>
         <div style="clear:both;"></div>
     </div>
-
+    <div style="clear:both;"></div>
 </div>
 <!--  filter end  -->

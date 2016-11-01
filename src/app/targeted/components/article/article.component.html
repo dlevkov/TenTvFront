@@ -1,17 +1,19 @@
 <maavaron [suffix]='item?.ArticleID'></maavaron>
 <div class="rsvp_fullwidth">
 
+
+
     <div *ngIf='item?.StripImagePathShow' class="rsvp_image_with_caption">
         <!--<a href="article_gallery.html" class="rsvp_imag_expand"></a>-->
         <img [src]='item?.StripImagePath' />
         <p class="oedoopror">{{item?.MediaStockImageAlt}} צילום {{item?.MediaStockImageCredit}}</p>
     </div>
 
-    <videocasttime></videocasttime>
+    <videocasttime [article]='item'></videocasttime>
 
     <!-- image with caption start -->
     <div style="clear:both;"></div>
-    <div *ngIf='item?.TitlePic' class="rsvp_image_with_caption">
+    <div *ngIf='item?.TitlePic  && !item?.IsVideo' class="rsvp_image_with_caption">
         <!--<a href="article_gallery.html" class="rsvp_imag_expand"></a>-->
         <img [src]="_loadingUrl" [alt]="item?.MediaStockImageAlt" />
         <p class="oedoopror">{{item?.MediaStockImageAlt}} צילום {{item?.MediaStockImageCredit}}</p>

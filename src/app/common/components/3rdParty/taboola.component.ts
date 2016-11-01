@@ -12,14 +12,14 @@ import { Taboola } from '../../Taboola';
 export class TaboolaMain implements OnInit, OnDestroy, AfterViewInit {
     taboolaRef: Taboola;
     @Input() placeHolderId: string = 'taboola-under-article';
-    @Input() placement: string =  'Under Article';
+    @Input() placement: string = 'Under Article';
     @Input() mode: string = 'thumbnails-c';
     @Input() objectType: string = 'article';
 
     constructor(
         public route: ActivatedRoute, http: Http, private myElement: ElementRef
-            //
-        ) {
+        //
+    ) {
     }
 
     ngOnInit() {
@@ -30,11 +30,11 @@ export class TaboolaMain implements OnInit, OnDestroy, AfterViewInit {
     ngAfterViewInit() {
         this.taboolaRef.objectType = this.objectType;
         this.taboolaRef.placeHolderId = this.placeHolderId;
-        this.taboolaRef.placement =  this.placement;
+        this.taboolaRef.placement = this.placement;
         this.taboolaRef.mode = this.mode;
-        this.taboolaRef.appendTaboolaHead();
-        this.taboolaRef.appendTabolaBodyEnd();
-        this.taboolaRef.appendTaboolaContent();
+        // this.taboolaRef.appendTaboolaHead();
+        // this.taboolaRef.appendTabolaBodyEnd();
+        // this.taboolaRef.appendTaboolaContent();
     }
 
     ngOnDestroy() {

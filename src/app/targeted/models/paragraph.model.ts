@@ -21,7 +21,7 @@ export class ParagraphModel {
         this.DisplayOrder = data.DisplayOrder;
         this.MediaStockImageAlt = data.MediaStockImageAlt;
         this.MediaStockImageCredit = data.MediaStockImageCredit;
-        this.PicMediaStockImageID = data.PicMediaStockImageID,
+        this.PicMediaStockImageID = data.PicMediaStockImageID;
         this.ParagraphTitle = data.ParagraphTitle;
         this.ArticleID = data.ArticleID;
         this.ServiceName = data.ServiceName;

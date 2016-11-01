@@ -5,6 +5,7 @@ import { Constants } from '../../Constants';
 import { Subscription, BehaviorSubject } from 'rxjs/Rx';
 import { VideoService } from '../../services/video.service';
 import { VideoModel } from '../../models/video.model';
+import { ArticleModel } from '../../../targeted/models/article.model';
 
 
 @Component({
@@ -13,6 +14,7 @@ import { VideoModel } from '../../models/video.model';
 })
 export class Video implements OnInit, OnDestroy, AfterViewInit {
     item: VideoModel;
+    @Input() article: ArticleModel;
     private _casttimeRef: any = window[''];
     private _currentId: number;
     private _subscriber: Subscription;
@@ -44,6 +46,9 @@ export class Video implements OnInit, OnDestroy, AfterViewInit {
         this._subscriber = this._service.GetItemsByUri('vod/episode/getall?%24top=1&%24filter=Id%20eq%20' + this._currentId)
             .subscribe(data => {
                 this.item = data;
+                if (typeof data.Id !== 'undefined' && data.Id !== undefined) {
+                    this.article.IsVideo = true;
+                }
             });
 
     }

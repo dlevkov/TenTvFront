@@ -268,7 +268,7 @@ var castTimeHelper = {
         if (castTimeHelper.platform === "android" && typeof Android !== "undefined") {
             Android.webPageUpdated(data.routeUrl);
         } else if (castTimeHelper.platform === "ios" && typeof webkit !== "undefined") {
-            webkit.messageHandlers.callbackHandler.postMessage(JSON.stringify({ 'routeData': data.routeUrl }));
+            //webkit.messageHandlers.callbackHandler.postMessage(JSON.stringify({ 'routeData': data.routeUrl }));
         } else {
             console.log("Route: " + data.routeUrl);
         }

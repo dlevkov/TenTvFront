@@ -53,6 +53,7 @@ declare var System: SystemJS;
 
 
 interface Window { angularComponentRef : any; }
+interface Window { angularComponentNav : any; }
 
 
 interface SystemJS {

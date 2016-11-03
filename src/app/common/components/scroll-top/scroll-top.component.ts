@@ -13,10 +13,8 @@ import { Routes, Router } from '@angular/router';
 export class ScrollTop {
     private _isVisible: boolean = false;
 
-
     scrolleEvent(event) {
         this._isVisible = (Constants.SCROLL_POSITION < window.pageYOffset) ? true : false;
-
     }
 
     onClick() {

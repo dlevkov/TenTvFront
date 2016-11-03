@@ -253,7 +253,9 @@ var nanaRoute = {
         this.routeEvent.initEvent("RouteEvent", true, true);
         this.initialized = true;
     },
-
+    navigateBack: function () {
+        window.angularComponentNav.zone.run(() => { window.angularComponentNav.component.navigateBack(); })
+    },
     init: function () {
         this.initRouteEvents();
         document.addEventListener("RouteEvent", castTimeHelper.routeHandler, false);
@@ -281,8 +283,10 @@ var castTimeHelper = {
     //
     changeFontSize: function (zoomin) {
         nanaHelper.changeFontSize(zoomin);
+    },
+    navigateBack:function(){
+        nanaRoute.navigateBack();
     }
-
 };
 
 var contentParser = {

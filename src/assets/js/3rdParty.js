@@ -283,6 +283,9 @@ var castTimeHelper = {
     //
     changeFontSize: function (zoomin) {
         nanaHelper.changeFontSize(zoomin);
+    },
+    navigateBack:function(){
+        nanaRoute.navigateBack();
     }
 };
 

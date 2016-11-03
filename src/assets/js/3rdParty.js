@@ -284,7 +284,7 @@ var castTimeHelper = {
     changeFontSize: function (zoomin) {
         nanaHelper.changeFontSize(zoomin);
     },
-    navigateBack:function(){
+    navigateBack: function () {
         nanaRoute.navigateBack();
     }
 };
@@ -295,14 +295,18 @@ var contentParser = {
     count: 0,
     length: 0,
     contentHref: function (content) {
-        content = '<div>' + content + '</div>'; /*Wrapping income html string for jquery */
-        let paragraphContent = $nana(content);
-        $nana.each(paragraphContent.find('a[href*="nana.co.il"],a[href*="nana10.co.il"]'), function (i, item) {
-            item.href = item.pathname + item.search.match(/\d+/); /*Get the first set of numbers in the string (example: ArticleID=123456)*/
-            item.target = '_self'; /* removes target _blank */
-        });
-        return paragraphContent.html();
-
+        try {
+            content = '<div>' + content + '</div>'; /*Wrapping income html string for jquery */
+            let paragraphContent = $nana(content);
+            $nana.each(paragraphContent.find('a[href*="nana.co.il"],a[href*="nana10.co.il"]'), function (i, item) {
+                item.href = item.pathname + item.search.match(/\d+/); /*Get the first set of numbers in the string (example: ArticleID=123456)*/
+                item.target = '_self'; /* removes target _blank */
+            });
+            return paragraphContent.html();
+        } catch (error) {
+            console.log('contentParser.contentHref failed to parse')
+            return content;
+        }
     },
     contentScript: function (content) {
         let script;
@@ -314,8 +318,7 @@ var contentParser = {
             if (contentParser.count === contentParser.length) {
                 let result = [];
                 $nana.each(contentParser.scriptList, function (i, item) {
-                    if ($nana.inArray(item.attr('src'), contentParser.scriptSrcList) == -1) /** -1  means - not found*/
-                     { 
+                    if ($nana.inArray(item.attr('src'), contentParser.scriptSrcList) == -1) /** -1  means - not found*/ {
                         contentParser.scriptSrcList.push(item.attr('src'));
                         result.push(item);
                     }

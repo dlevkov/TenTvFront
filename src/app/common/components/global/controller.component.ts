@@ -2,6 +2,7 @@ import { Component, Input, OnDestroy, NgZone, AfterViewInit } from '@angular/cor
 import { PubSubService } from '../../Global/PubSubService';
 import { Router, ActivatedRoute, Params, NavigationEnd } from '@angular/router';
 import { Subscription, BehaviorSubject } from 'rxjs/Rx';
+import { Location } from '@angular/common';
 
 @Component({
     selector: 'controller',
@@ -12,8 +13,9 @@ export class Controller implements OnDestroy, AfterViewInit {
     private _isVisible: boolean = true;
     private _nanaRouteRef: any;
 
-    constructor(/*private pubSubService: PubSubService,**/ private _router: Router, private _ngZone: NgZone) {
+    constructor(/*private pubSubService: PubSubService,**/ private _router: Router, private _ngZone: NgZone, private _location: Location) {
         window.angularComponentRef = { component: this, zone: _ngZone };
+        window.angularComponentNav = { component: this, zone: _ngZone };
         this._nanaRouteRef = window['nanaRoute'];
         this._router.events.forEach((x) => {
             // Do whatever in here
@@ -35,13 +37,18 @@ export class Controller implements OnDestroy, AfterViewInit {
     }
 
     ngOnDestroy() {
-        //console.log('Controller dtor');
+        // console.log('Controller dtor');
     }
 
     ngAfterViewInit() {
         console.log('Controller AfterViewChecked');
     }
-
+    navigateBack(data: string) {
+        this._ngZone.run(() => {
+            //console.log('navigation back');
+            this._location.back(); // in HTML5 window.history.back(); works fine
+        });
+    }
     private handleStatickTopFour(path: string) {
         if (path === '/' || path === '/main') {
             //window['TopFour'].hide();
@@ -52,5 +59,9 @@ export class Controller implements OnDestroy, AfterViewInit {
     private setVisible() {
         this._isVisible = true;
         window.scrollTo(0, 0);
+    }
+
+    private navigateForward() {
+        this._location.forward();
     }
 }

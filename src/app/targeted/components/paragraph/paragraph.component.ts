@@ -24,7 +24,7 @@ export class ParagraphComponent implements OnInit {
 
     ngOnInit() {
         this._loadingUrl = this.item.ImageSrc;
-        this.safeHtml = this._sanitizer.bypassSecurityTrustHtml(this.HTMLEncode(this.item.ParagraphContent));
+        this.safeHtml = this._sanitizer.bypassSecurityTrustHtml(this.parser.contentHref(this.HTMLEncode(this.item.ParagraphContent)));
         this.parser.contentScript(this.HTMLEncode(this.item.ParagraphContent));
     }
 

@@ -1,7 +1,5 @@
-import { Component, OnInit, Input, ElementRef, Sanitizer } from '@angular/core';
+import { Component, OnInit, Input, Sanitizer } from '@angular/core';
 import { Http } from '@angular/http';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Subscription, BehaviorSubject } from 'rxjs/Rx';
 import { ParagraphModel } from '../../models/paragraph.model';
 import { Constants } from '../../../common/Constants';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
@@ -18,7 +16,7 @@ export class ParagraphComponent implements OnInit {
     private _loadingUrl: string = Constants.IMAGE_LOADING_URL16_9;
     private safeHtml: SafeHtml;
 
-    constructor(private myElement: ElementRef, private _sanitizer: DomSanitizer) {
+    constructor(private _sanitizer: DomSanitizer) {
 
     }
 

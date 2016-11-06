@@ -1,5 +1,5 @@
-import { Injectable, Inject } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { Constants } from '../../common/Constants';
 import { ArticleModel } from '../models/article.model';
@@ -13,7 +13,7 @@ export class ArticleService {
         this._dal = new Dal(http);
     }
 
-    GetItemsByUri(uri: string) {
+    GetItemsByUri(uri: string): Observable<ArticleModel> {
         return this._dal.GetItemsByUri(uri)
             .map(data => {
                 return new ArticleModel(data);

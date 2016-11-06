@@ -1,6 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef, Input } from '@angular/core';
-import { Http } from '@angular/http';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Component, AfterViewInit, Input } from '@angular/core';
 import { Constants } from '../../Constants';
 import { Maavaron } from './maavaron.component';
 
@@ -11,7 +9,7 @@ import { Maavaron } from './maavaron.component';
     <div *ngIf='!_isDisabled' id="{{placeHolderId}}" [ngStyle]="dfpStyle" [class]='"mainDfpItem"'></div>
   `
 })
-export class DfpMain implements OnInit, OnDestroy, AfterViewInit {
+export class DfpMain implements AfterViewInit {
     @Input() serviceName: string = '10tv';
     @Input() placeHolderId: string = '';
     @Input() dfpObjectName: string = 'main';
@@ -29,16 +27,6 @@ export class DfpMain implements OnInit, OnDestroy, AfterViewInit {
     private _count: number = 0;
     private _adUnitsCollectionIndex: any;
 
-    constructor(
-        public route: ActivatedRoute, http: Http, private myElement: ElementRef
-    ) {
-        //
-    }
-
-    ngOnInit() {
-        //
-
-    }
 
     ngAfterViewInit() {
 
@@ -63,10 +51,6 @@ export class DfpMain implements OnInit, OnDestroy, AfterViewInit {
         return unit;
     }
 
-    //
-    ngOnDestroy() {
-        //
-    }
 
     //
     getResolution() {

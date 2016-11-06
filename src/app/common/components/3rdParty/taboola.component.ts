@@ -1,6 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef, Input } from '@angular/core';
-import { Http } from '@angular/http';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
 import { Taboola } from '../../Taboola';
 
 @Component({
@@ -9,18 +7,12 @@ import { Taboola } from '../../Taboola';
     <div id="{{placeHolderId}}"></div>
   `
 })
-export class TaboolaMain implements OnInit, OnDestroy, AfterViewInit {
+export class TaboolaMain implements OnInit, AfterViewInit {
     taboolaRef: Taboola;
     @Input() placeHolderId: string = 'taboola-under-article';
     @Input() placement: string = 'Under Article';
     @Input() mode: string = 'thumbnails-c';
     @Input() objectType: string = 'article';
-
-    constructor(
-        public route: ActivatedRoute, http: Http, private myElement: ElementRef
-        //
-    ) {
-    }
 
     ngOnInit() {
         //
@@ -37,7 +29,4 @@ export class TaboolaMain implements OnInit, OnDestroy, AfterViewInit {
         // this.taboolaRef.appendTaboolaContent();
     }
 
-    ngOnDestroy() {
-        //
-    }
 }

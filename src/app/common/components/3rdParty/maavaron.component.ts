@@ -15,7 +15,7 @@ export class Maavaron implements OnInit, OnDestroy, AfterViewInit {
     @Input() suffix: string = '';
 
     private _isVisible: boolean = true;
-    private _isDisabled: boolean = false;
+    private _isDisabled: boolean = true;
     private width: number = 0;
     private height: number = 0;
 

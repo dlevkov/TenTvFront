@@ -32,9 +32,9 @@ export class TaboolaMain implements OnInit, OnDestroy, AfterViewInit {
         this.taboolaRef.placeHolderId = this.placeHolderId;
         this.taboolaRef.placement = this.placement;
         this.taboolaRef.mode = this.mode;
-        // this.taboolaRef.appendTaboolaHead();
-        // this.taboolaRef.appendTabolaBodyEnd();
-        // this.taboolaRef.appendTaboolaContent();
+        this.taboolaRef.appendTaboolaHead();
+        this.taboolaRef.appendTabolaBodyEnd();
+        this.taboolaRef.appendTaboolaContent();
     }
 
     ngOnDestroy() {

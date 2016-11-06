@@ -1,5 +1,7 @@
-<div *ngIf="isVisible">
-    <div *ngFor="let item of items; let i=index;">
-        <headline-small [item]='item.Headline'></headline-small>
-    </div>
+<a href="#" class="rsvp_feed_filter_prom">
+	<img src="assets/icons/filtericon.png" alt="filter" />
+	<span>ערוך את ערוצי התוכן</span>
+</a>
+<div *ngFor="let item of items; let i=index;">
+	<headline-small [item]='item.Headline'></headline-small>
 </div>

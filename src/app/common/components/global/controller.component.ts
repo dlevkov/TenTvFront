@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, NgZone, AfterViewInit } from '@angular/core';
 import { PubSubService } from '../../Global/PubSubService';
-import { Router, ActivatedRoute, Params, NavigationEnd } from '@angular/router';
+import { Router, ActivatedRoute, Params, NavigationStart } from '@angular/router';
 import { Subscription, BehaviorSubject } from 'rxjs/Rx';
 import { Location } from '@angular/common';
 
@@ -16,14 +16,28 @@ export class Controller implements OnDestroy, AfterViewInit {
     constructor(/*private pubSubService: PubSubService,**/ private _router: Router, private _ngZone: NgZone, private _location: Location) {
         window.angularComponentRef = { component: this, zone: _ngZone };
         window.angularComponentNav = { component: this, zone: _ngZone };
+
         this._nanaRouteRef = window['nanaRoute'];
         this._router.events.forEach((x) => {
             // Do whatever in here
-            if (x instanceof NavigationEnd) {
+            if (x instanceof NavigationStart) {
                 this._nanaRouteRef.invokeRouteEvent(x.url, this.isArticle(x.url));
                 this.handleStatickTopFour(x.url);
             }
         });
+        this._router.events
+            .filter(event => event instanceof NavigationStart)
+            .subscribe(evt => {
+                if (!evt.url.includes('/mainfiltered/'))
+                    console.log('maavaron on:' + evt.url);
+            });
+        // this._router.events.forEach((x) => {
+        //     // Do whatever in here
+        //     if (x instanceof NavigationEnd) {
+        //         this._nanaRouteRef.invokeRouteEvent(x.url);
+        //         this.handleStatickTopFour(x.url);
+        //     }
+        // });
     }
 
 

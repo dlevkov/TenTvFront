@@ -31,18 +31,6 @@ export class TwitterToolbarComponent implements OnInit, OnDestroy, AfterViewChec
 
 
     ngOnInit() {
-        this.getItems();
-    }
-    ngAfterViewChecked() {
-        if (this.items != null && !this._isPolled) {
-            console.log('checked change');
-            this._subscriber.unsubscribe();
-            this.pollItems();
-        }
-
-    }
-
-    getItems() {
         this._subscriber = this._service
             .getTwitts()
             .subscribe(data => {
@@ -51,16 +39,21 @@ export class TwitterToolbarComponent implements OnInit, OnDestroy, AfterViewChec
                     this._currentItem = data[0];
             });
     }
-    pollItems() {
-        this._subscriber = this._service
-            .pollITwitts()
-            .subscribe(data => {
-                this.items = data;
-                if (!this._currentItem || this._currentItem.CounterId === 0) // is first time or last DB value
-                    this._currentItem = data[0];
-            });
-        this._isPolled = true;
+    ngAfterViewChecked() {
+        if (this.items != null && !this._isPolled) {
+            console.log('checked change');
+            this._subscriber.unsubscribe();
+            this._subscriber = this._service
+                .pollITwitts()
+                .subscribe(data => {
+                    this.items = data;
+                    if (!this._currentItem || this._currentItem.CounterId === 0) // is first time or last DB value
+                        this._currentItem = data[0];
+                });
+            this._isPolled = true;
+        }
     }
+
     getNext(id: number) {
         id++;
         if (this.items.length >= id)

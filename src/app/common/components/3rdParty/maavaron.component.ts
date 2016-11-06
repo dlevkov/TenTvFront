@@ -24,8 +24,7 @@ export class Maavaron {
 
 
     constructor(
-        public route: ActivatedRoute, http: Http, private myElement: ElementRef
-    ) {
+        public route: ActivatedRoute) {
         //
         this._routeSubscriber = this.route.params.subscribe(x => {
             this._isVisible = true;

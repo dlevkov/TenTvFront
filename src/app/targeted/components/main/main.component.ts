@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Http } from '@angular/http';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Subscription, BehaviorSubject } from 'rxjs/Rx';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Subscription } from 'rxjs/Rx';
 
 import { MainService } from '../../services/main.service';
 import { HeadlineModel } from '../../../common/models/headline.model';
@@ -12,7 +12,7 @@ import { FilterServiceComponent } from '../filter-service/filter-service.compone
     selector: 'main',
     templateUrl: 'main.component.html'
 })
-export class MainComponent implements OnInit, AfterViewChecked {
+export class MainComponent implements OnInit {
     @Input() showTwitter: boolean = true;
     item: MainModel;
     DfpId: number = 0;
@@ -35,11 +35,6 @@ export class MainComponent implements OnInit, AfterViewChecked {
         }
         this.getItems();
     }
-
-    ngAfterViewChecked() {
-        // window['TopFour'].hide();
-    }
-
     isSafary() {
         return false;
     }

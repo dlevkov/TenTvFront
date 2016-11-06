@@ -268,21 +268,21 @@ line-height:48px; color:#fff; float:right; font-size:24px; }
 	-khtml-opacity: 0.9;
 	opacity:0.9
 } 
-.rsvp_filter_outer{width:100%; padding:0 10px;}
+.rsvp_filter_outer{width:100%;  }
 .rsvp_filter_loader{text-align:center; margin:10px 0;}
 .rsvp_filter_loader img{display:inline-block;}
-.rsvp_filter_title{color:#fff; font-size:30px; line-height:65px;}
- 
+.rsvp_filter_title{color:#fff; font-size:15px; padding:0 10px;  line-height:65px;}
+ .rsvp_filter_list{padding:0 10px; border-top:1px solid #b5b5b5;width:100%;}
 .rsvp_filter_list.rscp_filter_checked{background-color:rgba(51,51,51,0.7);}
 .rsvp_filter_checked{float:left;}
 .rsvp_filter_li label{ width:100%; float:right;}
-.rsvp_update_feed_prom{margin-top: 15px; float:left;font-family:'OEDooPro-Bold',arial;color:#fff;  line-height:30px; padding:0 10px;
+.rsvp_update_feed_prom{margin-top: 19px; float:left;font-family:'OEDooPro-Bold',arial;color:#fff;  line-height:30px; padding:0 10px;
 			background-color:#585756; color:#a9a9a9; font-size:13px;}
 .rsvp_changed_status.rsvp_update_feed_prom{background-color:#ff2929; color:#fff;}
-.rsvp_filter_li label .rsvp_label_inner{padding:25px 30px;  line-height:47px; color:#fff; font-size:30px;}
+.rsvp_filter_li label .rsvp_label_inner{    padding:18px 15px 17px 15px;  line-height:47px; color:#fff; font-size:30px;}
 .rsvp_filter_li{border-bottom:1px solid #b5b5b5;  float:right; width:100%; }
 .rsvp_filter_border{height:3px;width:100%; background-color:transparent;}
-.rsvp_filter_ul{float:right; width:100%; list-style:none;}
+.rsvp_filter_ul{  float:right; width:100%; list-style:none;}
 .rsvp_filter_checkbox{width:47px; margin-left:20px;  fill: white;     float: right; height:47px; }
 .rsvp_filter_li input[type="checkbox"]{display:none;}
 .rsvp_filter_li input[type="checkbox"] + label .rsvp_filter_checkbox.rsvp_checked{display:none;}
@@ -346,11 +346,19 @@ line-height:48px; color:#fff; float:right; font-size:24px; }
 .rsvp_write_us_back{float:left;}
 .rsvp_form_write_us{margin-bottom:60px;}
 .rsvp_form_write_us input[type="checkbox"]{display:none;}
-.rsvp_agreecond_check{    margin-top: 12px; float:right; text-align:center; line-height:44px; width:44px; height:44px; border:1px solid #fff;  margin-left:35px;}
+.rsvp_agreecond_check{ right:0; position:absolute; text-align:center; line-height:44px; width:44px; height:44px; border:1px solid #fff;
+	position:absolute;
+	top:50%;
+	  -webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+    	-ms-transform: translateY(-50%);
+    	-o-transform: translateY(-50%);
+    	transform: translateY(-50%);
+}
 .rsvp_agreecond_check_v{width:38px; line-height:44px;height:27px; display:inline-block;    vertical-align: middle; background:url('../icons/rsvp_agreecond_check_v.png') no-repeat; background-size:100% 100%; }
-.rsvp_form_write_us label span,.rsvp_form_write_us label *{color:#fff; line-height:36px; font-size:32px; }
+.rsvp_form_write_us label span,.rsvp_form_write_us label *{color:#fff; line-height:39px; font-size:32px; }
 .rsvp_form_write_us label span a{text-decoration:underline;}
-
+.rsvp_agreecond_label{float: right; position:relative; width:100%; padding-right:79px;}
 .rsvp_form_write_us input[type="checkbox"] + label .rsvp_agreecond_check_v{display:none;}
 .rsvp_form_write_us input[type="checkbox"]:checked + label .rsvp_agreecond_check_v{display:inline-block;}
 .write_us_targets{text-align:center; float:right; margin-bottom:25px; width:100%;  background-color:#ff2929;  }
@@ -474,8 +482,8 @@ border-bottom:1px solid #d8d8d8; border-top:1px solid #d8d8d8;}
 	.rsvp_main_article_updates_item_time{width:60px;  top: 1px;  font-size:15px; line-height:22px; }
 	.rsvp_secondary_lisiting .rsvp_money_article_title{margin-top:12px;}
    .rsvp_twitter_right,.rsvp_twitter_right *{    line-height: 22px;    font-size: 14px;}
-   .rsvp_filter_li label .rsvp_label_inner{padding:10px 15px; line-height:30px; font-size:20px;}
- 	.rsvp_filter_checkbox{width:30px; height:30px;}
+   .rsvp_filter_li label .rsvp_label_inner{ line-height:24px; font-size:15px;}
+ 	.rsvp_filter_checkbox{width:24px; height:24px;}
 }
 
 
@@ -515,10 +523,10 @@ border-bottom:1px solid #d8d8d8; border-top:1px solid #d8d8d8;}
 	.rsvp_checkbox_toggle{height:27px; top:1px; right:1px; width:27px; }
 	.rsvp_settings_field input[type="checkbox"]:checked + label .rsvp_checkbox_toggle{right:20px;}
 	.rsvp_settings_agree_link img{    margin-top: 7px;margin-top:15px;width: 9px;}
-	
+	.rsvp_agreecond_label{padding-right:39px;}
 	.rsvp_write_us_content p{font-size:13px; line-height:18px; margin-bottom:15px; }
 	.rsvp_form_write_us label span, .rsvp_form_write_us label *{font-size:16px; line-height:18px;}
-	.rsvp_agreecond_check{margin-top:6px; margin-left:17px; width:22px; height:22px; }
+	.rsvp_agreecond_check{ width:22px; height:22px; }
 	.rsvp_agreecond_check_v{width:19px; height:14px;}
 	.write_us_targets{margin-bottom:13px; }
 	.write_us_targets *{line-height:48px; font-size:12px; }

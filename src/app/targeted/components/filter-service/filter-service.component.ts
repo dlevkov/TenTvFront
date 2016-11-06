@@ -67,6 +67,7 @@ export class FilterServiceComponent implements OnInit, OnDestroy {
         this.getId();
         // TODO, DEVTEAM, make router work properly
         this._router.navigate(['/mainfiltered/' + this._generatedId, { data: this._sids }]);
+        window['castTimeHelper'].toggleServiceFilter(false);
         // window.location.href = '/mainfiltered/' + this._generatedId + ';data=' + this._sids.join(',');
     }
     private getId() {

@@ -1,7 +1,7 @@
 // Load DFP --
 var googletag = googletag || {};
 googletag.cmd = googletag.cmd || [];
-(function () {
+(function() {
     var gads = document.createElement('script');
     gads.async = true;
     gads.type = 'text/javascript';
@@ -11,7 +11,7 @@ googletag.cmd = googletag.cmd || [];
     node.parentNode.insertBefore(gads, node);
 })();
 
-$nana(document).ready(function () {
+$nana(document).ready(function() {
     nanaRoute.init();
     //AdUnitsCollectionIndex.init();
 });
@@ -19,29 +19,29 @@ $nana(document).ready(function () {
 var TopFour = {
     url: 'http://m.nana10.co.il/complex/home',
     elementId: 'topFour',
-    init: function () {
+    init: function() {
         //$nana("#" + TopFour.elementId).load(TopFour.url);
         $nana.ajax({
-            method: "GET",
-            url: TopFour.url,
-            dataType: "html",
-            jsonp: true,
-        })
-            .done(function (data) {
+                method: "GET",
+                url: TopFour.url,
+                dataType: "html",
+                jsonp: true,
+            })
+            .done(function(data) {
                 $nana("#" + TopFour.elementId).html(data);
             });
     },
-    hide: function () {
-        $nana("#" + TopFour.elementId).hide();
+    hide: function() {
+        //$nana("#" + TopFour.elementId).hide();
     }
 };
 
-TopFour.init();
+//TopFour.init();
 
 //casttime native player
 function casttimePlayer() {
     this.platform = "unknown";
-    this.init = function () {
+    this.init = function() {
         this.platform = this.getMobileOperatingSystem();
         if (this.platform === "android" && typeof Android !== "undefined") {
             Android.showWebToast(JSON.stringify(this.casttimeObject));
@@ -61,7 +61,7 @@ function casttimePlayer() {
         DfpAdUnit: "CDN_10TV",
         DfpAdUnitLive: "CDN_Live"
     };
-    this.getMobileOperatingSystem = function () {
+    this.getMobileOperatingSystem = function() {
         var userAgent = navigator.userAgent || navigator.vendor || window.opera;
         if (/android/i.test(userAgent)) {
             return "android";
@@ -76,7 +76,7 @@ function casttimePlayer() {
 var NanaTaboola = {
     objectType: "home",
     headerObject: {},
-    insertHeader: function () {
+    insertHeader: function() {
         switch (this.objectType) {
             case "home":
                 this.headerObject = { home: 'auto' };
@@ -90,20 +90,20 @@ var NanaTaboola = {
         }
         window._taboola = window._taboola || [];
         _taboola.push(this.headerObject);
-        ! function (e, f, u, i) {
+        ! function(e, f, u, i) {
             if (!document.getElementById(i)) {
                 e.async = 1;
                 e.src = u;
                 e.id = i;
                 f.parentNode.insertBefore(e, f);
             }
-        } (document.createElement('script'),
+        }(document.createElement('script'),
             document.getElementsByTagName('script')[0],
             '//cdn.taboola.com/libtrc/nana10tv-app/loader.js',
             'tb_loader_script');
     },
 
-    insertFooter: function () {
+    insertFooter: function() {
         window._taboola = window._taboola || [];
         _taboola.push({ flush: true });
     },
@@ -125,7 +125,7 @@ var nanaHelper = {
     fontInterval: 2,
     fontSelectors: ['.rsvp_article_inner_content p:not(p.oedoopror)', '.rsvp_article_body_h1', '.rsvp_article_body_h2', '.rsvp_feed_item_title'],
 
-    changeFontSize: function (zoomin) {
+    changeFontSize: function(zoomin) {
         console.log('zoomin: ' + zoomin);
         this.currentFontSize = parseInt($nana(this.fontSelectors[0]).css("font-size"));
         if ((this.currentFontSize >= this.maxFontSize && zoomin) || (this.currentFontSize <= this.minFontSize && !zoomin))
@@ -145,7 +145,7 @@ var AdUnitsCollectionIndex = {
     list: [],
     currentId: 0,
     count: 0,
-    init: function () {
+    init: function() {
         //
         console.log('dfp init');
         //this.getUnitsCount();
@@ -156,7 +156,7 @@ var AdUnitsCollectionIndex = {
         //this.reset();
     },
 
-    add: function (unit) {
+    add: function(unit) {
         //  unit.objectName = this.dfpObjectName;
         //         unit.slotName = this.placeHolderId;
         //         unit.adSize = this.adSize;
@@ -166,8 +166,8 @@ var AdUnitsCollectionIndex = {
         }
     },
 
-    isUnique: function (unit) {
-        this.list.forEach(function (element) {
+    isUnique: function(unit) {
+        this.list.forEach(function(element) {
             if (this.slotName === unit.slotName) {
                 return false;
             }
@@ -176,13 +176,13 @@ var AdUnitsCollectionIndex = {
         return true;
     },
 
-    reset: function () {
+    reset: function() {
         this.list.length = 0;
         this.currentId = 0;
         this.count = 0;
     },
 
-    getUnitsCount: function () {
+    getUnitsCount: function() {
         this.count = document.getElementsByTagName('dfp').length;
     }
 };
@@ -195,13 +195,13 @@ function AdUnitsCollection() {
     this.adUnitName = "";
     this.initialized = false;
 
-    this.init = function () {
+    this.init = function() {
         this.initGeneral();
     };
 
     //
-    this.initGeneral = function () {
-        googletag.cmd.push(function () {
+    this.initGeneral = function() {
+        googletag.cmd.push(function() {
             var unit = AdUnitsCollectionIndex.list[AdUnitsCollectionIndex.currentId];
 
             if (unit.initialized) return false;
@@ -231,7 +231,7 @@ function AdUnitsCollection() {
     };
 
     //
-    this.validPosition = function () {
+    this.validPosition = function() {
         var res = true;
         res = document.getElementById(this.slotName) !== null ? true : false;
         return res;
@@ -242,21 +242,22 @@ var nanaRoute = {
     initialized: false,
     routeEvent: document.createEvent("Event"),
 
-    invokeRouteEvent: function (url) {
+    invokeRouteEvent: function(url, isArticle) {
         //invoke
         if (!this.initialized) return false;
         this.routeEvent.routeUrl = url;
+        this.routeEvent.isArticle = isArticle;
         document.dispatchEvent(this.routeEvent);
     },
 
-    initRouteEvents: function () {
+    initRouteEvents: function() {
         this.routeEvent.initEvent("RouteEvent", true, true);
         this.initialized = true;
     },
-    navigateBack: function () {
+    navigateBack: function() {
         window.angularComponentNav.zone.run(() => { window.angularComponentNav.component.navigateBack(); })
     },
-    init: function () {
+    init: function() {
         this.initRouteEvents();
         document.addEventListener("RouteEvent", castTimeHelper.routeHandler, false);
     },
@@ -265,26 +266,52 @@ var nanaRoute = {
 var castTimeHelper = {
     platform: '',
     casttimePlayerRef: new casttimePlayer(),
-    routeHandler: function (data) {
+    routerHelper: {},
+    routeHandler: function(data) {
         castTimeHelper.platform = castTimeHelper.casttimePlayerRef.getMobileOperatingSystem();
+        castTimeHelper.routerHelper = { url: data.routeUrl, isArticle: data.isArticle };
         if (castTimeHelper.platform === "android" && typeof Android !== "undefined") {
-            Android.webPageUpdated(data.routeUrl);
+            Android.webPageUpdated(castTimeHelper.routerHelper);
         } else if (castTimeHelper.platform === "ios" && typeof webkit !== "undefined") {
-            //webkit.messageHandlers.callbackHandler.postMessage(JSON.stringify({ 'routeData': data.routeUrl }));
+            webkit.messageHandlers.callbackHandler.postMessage(JSON.stringify(castTimeHelper.routerHelper));
         } else {
-            console.log("Route: " + data.routeUrl);
+            console.log(data);
         }
     },
-    //
-    toggleServiceFilter: function () {
-        window.angularComponentRef.zone.run(() => { window.angularComponentRef.component.showFilter(); })
+
+    showNativeMaavaron: function() {
+        castTimeHelper.platform = castTimeHelper.casttimePlayerRef.getMobileOperatingSystem();
+        if (castTimeHelper.platform === "android" && typeof Android !== "undefined") {
+            Android.sendInterstatialAd();
+        } else if (castTimeHelper.platform === "ios" && typeof webkit !== "undefined") {
+            //webkit.messageHandlers.callbackHandler.postMessage(JSON.stringify(castTimeHelper.routerHelper));
+        } else {
+            console.log('maavaron shown!');
+        }
     },
 
     //
-    changeFontSize: function (zoomin) {
+    toggleServiceFilter: function() {
+        window.angularComponentRef.zone.run(() => { window.angularComponentRef.component.showFilter(); })
+        this.triggerFilter(true);
+    },
+
+    triggerFilter: function(isVisible) {
+        castTimeHelper.platform = castTimeHelper.casttimePlayerRef.getMobileOperatingSystem();
+        if (this.platform === "android" && typeof Android !== "undefined") {
+            Android.filterStateChanged(isVisible);
+        } else if (this.platform === "ios" && typeof webkit !== "undefined") {
+            //webkit.messageHandlers.callbackHandler.postMessage(JSON.stringify(this.casttimeObject))
+        } else {
+            console.log('filter shown!');
+        }
+    },
+
+    //
+    changeFontSize: function(zoomin) {
         nanaHelper.changeFontSize(zoomin);
     },
-    navigateBack: function () {
+    navigateBack: function() {
         nanaRoute.navigateBack();
     }
 };
@@ -294,11 +321,11 @@ var contentParser = {
     scriptSrcList: [],
     count: 0,
     length: 0,
-    contentHref: function (content) {
+    contentHref: function(content) {
         try {
             content = '<div>' + content + '</div>'; /*Wrapping income html string for jquery */
             let paragraphContent = $nana(content);
-            $nana.each(paragraphContent.find('a[href*="nana.co.il"],a[href*="nana10.co.il"]'), function (i, item) {
+            $nana.each(paragraphContent.find('a[href*="nana.co.il"],a[href*="nana10.co.il"]'), function(i, item) {
                 item.href = item.pathname + item.search.match(/\d+/); /*Get the first set of numbers in the string (example: ArticleID=123456)*/
                 item.target = '_self'; /* removes target _blank */
             });
@@ -308,7 +335,7 @@ var contentParser = {
             return content;
         }
     },
-    contentScript: function (content) {
+    contentScript: function(content) {
         let script;
         try {
             content = '<div>' + content + '</div>'; /*Wrapping income html string for jquery */
@@ -317,7 +344,7 @@ var contentParser = {
             contentParser.scriptList.push(script);
             if (contentParser.count === contentParser.length) {
                 let result = [];
-                $nana.each(contentParser.scriptList, function (i, item) {
+                $nana.each(contentParser.scriptList, function(i, item) {
                     if ($nana.inArray(item.attr('src'), contentParser.scriptSrcList) == -1) /** -1  means - not found*/ {
                         contentParser.scriptSrcList.push(item.attr('src'));
                         result.push(item);
@@ -325,8 +352,7 @@ var contentParser = {
                 });
                 $nana("head").append(result);
             }
-        }
-        catch (error) {
+        } catch (error) {
             console.log("contentParser.contentScript failed to parse");
         }
     }

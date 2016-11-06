@@ -20,11 +20,14 @@ export class Controller implements OnDestroy, AfterViewInit {
         this._router.events.forEach((x) => {
             // Do whatever in here
             if (x instanceof NavigationEnd) {
-                this._nanaRouteRef.invokeRouteEvent(x.url);
+                this._nanaRouteRef.invokeRouteEvent(x.url, this.isArticle(x.url));
                 this.handleStatickTopFour(x.url);
             }
         });
     }
+
+
+
     createCustomer() {
 
         //this.pubSubService.Stream.emit(customer);
@@ -45,7 +48,6 @@ export class Controller implements OnDestroy, AfterViewInit {
     }
     navigateBack(data: string) {
         this._ngZone.run(() => {
-            //console.log('navigation back');
             this._location.back(); // in HTML5 window.history.back(); works fine
         });
     }
@@ -56,6 +58,11 @@ export class Controller implements OnDestroy, AfterViewInit {
             window['TopFour'].hide();
         }
     }
+
+    private isArticle(url: string) {
+        return url.search('article') >= 0;
+    }
+
     private setVisible() {
         this._isVisible = true;
         window.scrollTo(0, 0);

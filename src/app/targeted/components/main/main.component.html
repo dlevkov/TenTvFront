@@ -12,13 +12,7 @@
         </div>
 
     </div>
-    <div *ngIf="item?.isFiltered">
-        <a href="#" class="rsvp_feed_filter_prom">
-            <img src="assets/icons/filtericon.png" alt="filter" />
-            <span>ערוך את ערוצי התוכן</span>
-        </a>
-    </div>
-    <articles-list [isVisible]="item?.isFiltered" [sids]=[(item?.sids)]></articles-list>
+    <articles-list *ngIf="item?.isFiltered" [sids]=[(item?.sids)]></articles-list>
     <twitter-toolbar *ngIf='showTwitter'></twitter-toolbar>
     <filter-service [mainModel]='item'></filter-service>
 

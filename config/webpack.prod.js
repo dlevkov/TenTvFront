@@ -16,7 +16,7 @@ const IgnorePlugin = require('webpack/lib/IgnorePlugin');
 const DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
-
+const CompressionPlugin = require("compression-webpack-plugin");
 /**
  * Webpack Constants
  */
@@ -111,7 +111,7 @@ module.exports = function(env) {
        * See: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
        * See: https://github.com/webpack/docs/wiki/optimization#deduplication
        */
-      // new DedupePlugin(), // see: https://github.com/angular/angular-cli/issues/1587
+       // new DedupePlugin(), // see: https://github.com/angular/angular-cli/issues/1587
 
       /**
        * Plugin: DefinePlugin
@@ -192,10 +192,10 @@ module.exports = function(env) {
        * See: https://github.com/webpack/compression-webpack-plugin
        */
       //  install compression-webpack-plugin
-      // new CompressionPlugin({
-      //   regExp: /\.css$|\.html$|\.js$|\.map$/,
-      //   threshold: 2 * 1024
-      // })
+      new CompressionPlugin({
+        regExp: /\.css$|\.html$|\.js$|\.map$/,
+        threshold: 2 * 1024
+      })
 
     ],
 

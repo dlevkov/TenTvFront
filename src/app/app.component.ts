@@ -2,7 +2,6 @@
  * Angular 2 decorators and services
  */
 import { Component, ViewEncapsulation } from '@angular/core';
-
 import { AppState } from './app.service';
 
 /*
@@ -13,7 +12,9 @@ import { AppState } from './app.service';
   selector: 'app',
   encapsulation: ViewEncapsulation.None,
   styleUrls: [
-    './app.style.css'
+    './app.style.css',
+    '../assets/css/rsvp_fonts.css',
+    '../assets/css/rsvp_main.css'
   ],
   template: `
           <scroll-top></scroll-top>

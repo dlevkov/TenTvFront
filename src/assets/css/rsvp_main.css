@@ -1186,7 +1186,7 @@ strong * {
   height: 27px;
   display: inline-block;
   vertical-align: middle;
-  background: url('../icons/rsvp_agreecond_check_v.png') no-repeat;
+  /*background: url('../icons/rsvp_agreecond_check_v.png') no-repeat;*/
   background-size: 100% 100%;
 }
 

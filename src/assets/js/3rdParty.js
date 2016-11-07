@@ -35,6 +35,7 @@ var TopFour = {
     }
 };
 
+
 //TopFour.init();
 
 //casttime native player
@@ -43,9 +44,9 @@ function casttimePlayer() {
     this.init = function() {
         this.platform = this.getMobileOperatingSystem();
         if (this.platform === "android" && typeof Android !== "undefined") {
-            //Android.showWebToast(JSON.stringify(this.casttimeObject));
+            Android.showWebToast(JSON.stringify(this.casttimeObject));
         } else if (this.platform === "ios" && typeof webkit !== "undefined") {
-            //webkit.messageHandlers.callbackHandler.postMessage(JSON.stringify(this.casttimeObject))
+            webkit.messageHandlers.callbackHandler.postMessage(JSON.stringify(this.casttimeObject))
         } else {
             console.log("Platform: " + this.platform);
         }
@@ -147,19 +148,13 @@ var AdUnitsCollectionIndex = {
     init: function() {
         //
         console.log('dfp init');
-        //this.getUnitsCount();
         for (var i = 0; i < this.list.length; i++) {
             this.currentId = i;
             this.list[i].init();
         }
-        //this.reset();
     },
 
     add: function(unit) {
-        //  unit.objectName = this.dfpObjectName;
-        //         unit.slotName = this.placeHolderId;
-        //         unit.adSize = this.adSize;
-        //         unit.adUnitName = this.adUnitName;
         if (this.isUnique(unit)) {
             this.list.push(unit)
         }
@@ -254,9 +249,11 @@ var nanaRoute = {
         this.initialized = true;
     },
     navigateBack: function() {
-        // window.angularComponentNav.zone.run(
-        //     () => { window.angularComponentNav.component.navigateBack(); }
-        //     );
+        window.angularComponentNav.zone.run(
+            function() {
+                window.angularComponentNav.component.navigateBack();
+            }
+        );
     },
     init: function() {
         this.initRouteEvents();
@@ -272,9 +269,9 @@ var castTimeHelper = {
         castTimeHelper.platform = castTimeHelper.casttimePlayerRef.getMobileOperatingSystem();
         castTimeHelper.routerHelper = { url: data.routeUrl, isArticle: data.isArticle };
         if (castTimeHelper.platform === "android" && typeof Android !== "undefined") {
-            //Android.webPageUpdated(castTimeHelper.routerHelper);
+            Android.webPageUpdated(castTimeHelper.routerHelper);
         } else if (castTimeHelper.platform === "ios" && typeof webkit !== "undefined") {
-            //webkit.messageHandlers.callbackHandler.postMessage(JSON.stringify(castTimeHelper.routerHelper));
+            webkit.messageHandlers.callbackHandler.postMessage(JSON.stringify(castTimeHelper.routerHelper));
         } else {
             console.log(data);
         }
@@ -283,7 +280,7 @@ var castTimeHelper = {
     showNativeMaavaron: function() {
         castTimeHelper.platform = castTimeHelper.casttimePlayerRef.getMobileOperatingSystem();
         if (castTimeHelper.platform === "android" && typeof Android !== "undefined") {
-            //Android.sendInterstatialAd();
+            Android.sendInterstatialAd();
         } else if (castTimeHelper.platform === "ios" && typeof webkit !== "undefined") {
             //webkit.messageHandlers.callbackHandler.postMessage(JSON.stringify(castTimeHelper.routerHelper));
         } else {
@@ -293,15 +290,16 @@ var castTimeHelper = {
 
     //
     toggleServiceFilter: function() {
-        // window.angularComponentRef.zone.run(
-        //     () => { window.angularComponentRef.component.showFilter(); })
+        window.angularComponentRef.zone.run(function() {
+            window.angularComponentRef.component.showFilter()
+        });
         this.triggerFilter(true);
     },
 
     triggerFilter: function(isVisible) {
         castTimeHelper.platform = castTimeHelper.casttimePlayerRef.getMobileOperatingSystem();
         if (this.platform === "android" && typeof Android !== "undefined") {
-            //Android.filterStateChanged(isVisible);
+            Android.filterStateChanged(isVisible);
         } else if (this.platform === "ios" && typeof webkit !== "undefined") {
             //webkit.messageHandlers.callbackHandler.postMessage(JSON.stringify(this.casttimeObject))
         } else {
@@ -359,3 +357,5 @@ var contentParser = {
         }
     }
 };
+
+nanaRoute.init();

@@ -21,6 +21,13 @@ export class HeadlineAlertComponent implements OnInit {
     private _lastModifiedTime: string;
 
     ngOnInit() {
-        this._lastModifiedTime = new Date(this.item.LastModifyDate).toLocaleTimeString();
+        let ttime = this.item.LastModifyDate.split('T');
+        if (ttime.length > 1) {
+            let ttimear = ttime[1].split(':');
+            ttimear.pop();
+            this._lastModifiedTime = ttimear.join(':');
+        }
     }
+
+
 }

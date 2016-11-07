@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef, Input } from '@angular/core';
+import { Component, ElementRef, Input } from '@angular/core';
 import { Http } from '@angular/http';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Constants } from '../../Constants';
-import { Subscription, BehaviorSubject } from 'rxjs/Rx';
+import { Subscription } from 'rxjs/Rx';
 import { VideoService } from '../../services/video.service';
 import { VideoModel } from '../../models/video.model';
 import { ArticleModel } from '../../../targeted/models/article.model';
@@ -12,7 +12,7 @@ import { ArticleModel } from '../../../targeted/models/article.model';
     selector: 'videocasttime',
     templateUrl: 'video.component.html'
 })
-export class Video implements OnInit, OnDestroy, AfterViewInit {
+export class Video {
     item: VideoModel;
     @Input() article: ArticleModel;
     private _casttimeRef: any = window[''];
@@ -32,21 +32,11 @@ export class Video implements OnInit, OnDestroy, AfterViewInit {
         });
     }
 
-    ngOnInit() {
-        //
-
-    }
-
-    ngAfterViewInit() {
-        //
-        // this.init();
-    }
-
     getItems() {
         this._subscriber = this._service.GetItemsByUri('vod/episode/getall?%24top=1&%24filter=Id%20eq%20' + this._currentId)
             .subscribe(data => {
                 this.item = data;
-                if (typeof data.Id !== 'undefined' && data.Id !== undefined) {
+                if (typeof this.article !== 'undefined' && typeof data.Id !== 'undefined' && data.Id !== undefined) {
                     this.article.IsVideo = true;
                 }
             });
@@ -63,10 +53,6 @@ export class Video implements OnInit, OnDestroy, AfterViewInit {
         videoUnit.casttimeObject.VideoId = this.item.VideoId;
 
         videoUnit.init();
-    }
-
-    ngOnDestroy() {
-        //
     }
 
 }

@@ -18,6 +18,13 @@ export class Controller implements OnDestroy, AfterViewInit {
         window.angularComponentNav = { component: this, zone: _ngZone };
 
         this._nanaRouteRef = window['nanaRoute'];
+        this._router.events.forEach((x) => {
+            // Do whatever in here
+            if (x instanceof NavigationStart) {
+                //this._nanaRouteRef.invokeRouteEvent(x.url, this.isArticle(x.url));
+                this.handleStatickTopFour(x.url);
+            }
+        });
         this._router.events
             .filter(event => event instanceof NavigationStart)
             .subscribe(evt => {
@@ -32,6 +39,9 @@ export class Controller implements OnDestroy, AfterViewInit {
         //     }
         // });
     }
+
+
+
     createCustomer() {
 
         //this.pubSubService.Stream.emit(customer);
@@ -62,6 +72,11 @@ export class Controller implements OnDestroy, AfterViewInit {
             window['TopFour'].hide();
         }
     }
+
+    private isArticle(url: string) {
+        return url.search('article') >= 0;
+    }
+
     private setVisible() {
         this._isVisible = true;
         window.scrollTo(0, 0);

@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef, Input } from '@angular/core';
+import { Component, ElementRef, Input } from '@angular/core';
 import { Http } from '@angular/http';
-import { Subscription, BehaviorSubject } from 'rxjs/Rx';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Subscription } from 'rxjs/Rx';
+import { ActivatedRoute } from '@angular/router';
 import { Constants } from '../../Constants';
 
 
@@ -10,7 +10,7 @@ import { Constants } from '../../Constants';
     templateUrl: 'maavaron.component.html',
     styleUrls: ['maavaron.component.css'],
 })
-export class Maavaron implements OnInit, OnDestroy, AfterViewInit {
+export class Maavaron {
     @Input() serviceName: string = '10tv';
     @Input() suffix: string = '';
 
@@ -24,26 +24,13 @@ export class Maavaron implements OnInit, OnDestroy, AfterViewInit {
 
 
     constructor(
-        public route: ActivatedRoute, http: Http, private myElement: ElementRef
-    ) {
+        public route: ActivatedRoute) {
         //
         this._routeSubscriber = this.route.params.subscribe(x => {
             this._isVisible = true;
+            window['castTimeHelper'].showNativeMaavaron();
+            console.log('route activated maavaron');
         });
-    }
-
-    ngOnInit() {
-        //
-
-    }
-
-    ngAfterViewInit() {
-        //
-        this.setClosingTimeout();
-    }
-
-    ngOnDestroy() {
-        //
     }
 
     setSize(size: number[]) {

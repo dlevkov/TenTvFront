@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Constants } from '../../Constants';
-import { Routes, Router } from '@angular/router';
 
 @Component({
     selector: 'scroll-top',

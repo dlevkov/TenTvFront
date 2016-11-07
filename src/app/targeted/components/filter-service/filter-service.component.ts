@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs/Rx';
 import { FilterServiceService } from '../../services/filter-service.service';
 import { MainModel } from '../../../targeted/models/main.model';
 import { Http } from '@angular/http';
-import { Router, Params, Data } from '@angular/router';
+import { Router } from '@angular/router';
 @Component({
     selector: 'filter-service',
     templateUrl: 'filter-service.component.html'
@@ -26,16 +26,13 @@ export class FilterServiceComponent implements OnInit, OnDestroy {
         window.angularComponentRef = { component: this, zone: _ngZone };
     }
     ngOnInit() {
-        this.getItems();
-    }
-
-    getItems() {
         this._subscriber = this._service
             .GetItemsByUri('TenTvAppFront/service')
             .subscribe(data => {
                 this._items = data;
             });
     }
+
     ngOnDestroy() {
         this._subscriber.unsubscribe();
     }
@@ -67,6 +64,7 @@ export class FilterServiceComponent implements OnInit, OnDestroy {
         this.getId();
         // TODO, DEVTEAM, make router work properly
         this._router.navigate(['/mainfiltered/' + this._generatedId, { data: this._sids }]);
+        window['castTimeHelper'].toggleServiceFilter(false);
         // window.location.href = '/mainfiltered/' + this._generatedId + ';data=' + this._sids.join(',');
     }
     private getId() {

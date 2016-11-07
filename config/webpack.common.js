@@ -15,7 +15,7 @@ const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin
 const HtmlElementsPlugin = require('./html-elements-plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
 const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
-
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 /*
  * Webpack Constants
  */
@@ -249,14 +249,15 @@ module.exports = function (options) {
           'humans.txt',
           'robots.txt',
           '*.css',
-          'fonts',
+          '*fonts*',
           'mock-data',
           'service-worker'
         ]
       }),
       new CopyWebpackPlugin([{
         from: 'src/assets/robots.txt'
-      }, {
+      },
+       {
         from: 'src/assets/humans.txt'
       }]),
 
@@ -298,7 +299,6 @@ module.exports = function (options) {
       new HtmlElementsPlugin({
         headTags: require('./head-config.common')
       }),
-
     ],
 
     /*
@@ -315,6 +315,5 @@ module.exports = function (options) {
       clearImmediate: false,
       setImmediate: false
     }
-
   };
 }

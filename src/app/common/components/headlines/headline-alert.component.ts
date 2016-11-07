@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HeadlineModel } from '../../models/headline.model';
 
 @Component({
@@ -15,7 +15,12 @@ import { HeadlineModel } from '../../models/headline.model';
         `
     ]
 })
-export class HeadlineAlertComponent {
+export class HeadlineAlertComponent implements OnInit {
     @Input() item: HeadlineModel;
     @Input() countId: number = 0;
+    private _lastModifiedTime: string;
+
+    ngOnInit() {
+        this._lastModifiedTime = new Date(this.item.LastModifyDate).toLocaleTimeString();
+    }
 }

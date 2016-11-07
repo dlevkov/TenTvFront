@@ -21,7 +21,7 @@ export class Controller implements OnDestroy, AfterViewInit {
         this._router.events.forEach((x) => {
             // Do whatever in here
             if (x instanceof NavigationStart) {
-                this._nanaRouteRef.invokeRouteEvent(x.url, this.isArticle(x.url));
+                //this._nanaRouteRef.invokeRouteEvent(x.url, this.isArticle(x.url));
                 this.handleStatickTopFour(x.url);
             }
         });

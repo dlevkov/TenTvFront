@@ -1,5 +1,5 @@
 // Load DFP --
-var googletag = googletag || {};
+/*var googletag = googletag || {};
 googletag.cmd = googletag.cmd || [];
 (function() {
     var gads = document.createElement('script');
@@ -9,10 +9,10 @@ googletag.cmd = googletag.cmd || [];
     gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
     var node = document.getElementsByTagName('script')[0];
     node.parentNode.insertBefore(gads, node);
-})();
+})();*/
 
 $nana(document).ready(function() {
-    nanaRoute.init();
+    //nanaRoute.init();
     //AdUnitsCollectionIndex.init();
 });
 
@@ -20,19 +20,18 @@ var TopFour = {
     url: 'http://m.nana10.co.il/complex/home',
     elementId: 'topFour',
     init: function() {
-        //$nana("#" + TopFour.elementId).load(TopFour.url);
-        $nana.ajax({
-                method: "GET",
-                url: TopFour.url,
-                dataType: "html",
-                jsonp: true,
-            })
-            .done(function(data) {
-                $nana("#" + TopFour.elementId).html(data);
-            });
+        // $nana.ajax({
+        //         method: "GET",
+        //         url: TopFour.url,
+        //         dataType: "html",
+        //         jsonp: true,
+        //     })
+        //     .done(function(data) {
+        //         $nana("#" + TopFour.elementId).html(data);
+        //     });
     },
     hide: function() {
-        //$nana("#" + TopFour.elementId).hide();
+        // $nana("#" + TopFour.elementId).hide();
     }
 };
 
@@ -44,9 +43,9 @@ function casttimePlayer() {
     this.init = function() {
         this.platform = this.getMobileOperatingSystem();
         if (this.platform === "android" && typeof Android !== "undefined") {
-            Android.showWebToast(JSON.stringify(this.casttimeObject));
+            //Android.showWebToast(JSON.stringify(this.casttimeObject));
         } else if (this.platform === "ios" && typeof webkit !== "undefined") {
-            webkit.messageHandlers.callbackHandler.postMessage(JSON.stringify(this.casttimeObject))
+            //webkit.messageHandlers.callbackHandler.postMessage(JSON.stringify(this.casttimeObject))
         } else {
             console.log("Platform: " + this.platform);
         }
@@ -108,7 +107,7 @@ var NanaTaboola = {
         _taboola.push({ flush: true });
     },
 
-    initContent(id, placement, mode) {
+    initContent: function(id, placement, mode) {
         window._taboola = window._taboola || [];
         _taboola.push({
             mode: mode,
@@ -149,7 +148,7 @@ var AdUnitsCollectionIndex = {
         //
         console.log('dfp init');
         //this.getUnitsCount();
-        for (let i = 0; i < this.list.length; i++) {
+        for (var i = 0; i < this.list.length; i++) {
             this.currentId = i;
             this.list[i].init();
         }
@@ -255,7 +254,9 @@ var nanaRoute = {
         this.initialized = true;
     },
     navigateBack: function() {
-        window.angularComponentNav.zone.run(() => { window.angularComponentNav.component.navigateBack(); })
+        // window.angularComponentNav.zone.run(
+        //     () => { window.angularComponentNav.component.navigateBack(); }
+        //     );
     },
     init: function() {
         this.initRouteEvents();
@@ -271,9 +272,9 @@ var castTimeHelper = {
         castTimeHelper.platform = castTimeHelper.casttimePlayerRef.getMobileOperatingSystem();
         castTimeHelper.routerHelper = { url: data.routeUrl, isArticle: data.isArticle };
         if (castTimeHelper.platform === "android" && typeof Android !== "undefined") {
-            Android.webPageUpdated(castTimeHelper.routerHelper);
+            //Android.webPageUpdated(castTimeHelper.routerHelper);
         } else if (castTimeHelper.platform === "ios" && typeof webkit !== "undefined") {
-            webkit.messageHandlers.callbackHandler.postMessage(JSON.stringify(castTimeHelper.routerHelper));
+            //webkit.messageHandlers.callbackHandler.postMessage(JSON.stringify(castTimeHelper.routerHelper));
         } else {
             console.log(data);
         }
@@ -282,7 +283,7 @@ var castTimeHelper = {
     showNativeMaavaron: function() {
         castTimeHelper.platform = castTimeHelper.casttimePlayerRef.getMobileOperatingSystem();
         if (castTimeHelper.platform === "android" && typeof Android !== "undefined") {
-            Android.sendInterstatialAd();
+            //Android.sendInterstatialAd();
         } else if (castTimeHelper.platform === "ios" && typeof webkit !== "undefined") {
             //webkit.messageHandlers.callbackHandler.postMessage(JSON.stringify(castTimeHelper.routerHelper));
         } else {
@@ -292,14 +293,15 @@ var castTimeHelper = {
 
     //
     toggleServiceFilter: function() {
-        window.angularComponentRef.zone.run(() => { window.angularComponentRef.component.showFilter(); })
+        // window.angularComponentRef.zone.run(
+        //     () => { window.angularComponentRef.component.showFilter(); })
         this.triggerFilter(true);
     },
 
     triggerFilter: function(isVisible) {
         castTimeHelper.platform = castTimeHelper.casttimePlayerRef.getMobileOperatingSystem();
         if (this.platform === "android" && typeof Android !== "undefined") {
-            Android.filterStateChanged(isVisible);
+            //Android.filterStateChanged(isVisible);
         } else if (this.platform === "ios" && typeof webkit !== "undefined") {
             //webkit.messageHandlers.callbackHandler.postMessage(JSON.stringify(this.casttimeObject))
         } else {
@@ -324,7 +326,7 @@ var contentParser = {
     contentHref: function(content) {
         try {
             content = '<div>' + content + '</div>'; /*Wrapping income html string for jquery */
-            let paragraphContent = $nana(content);
+            var paragraphContent = $nana(content);
             $nana.each(paragraphContent.find('a[href*="nana.co.il"],a[href*="nana10.co.il"]'), function(i, item) {
                 item.href = item.pathname + item.search.match(/\d+/); /*Get the first set of numbers in the string (example: ArticleID=123456)*/
                 item.target = '_self'; /* removes target _blank */
@@ -336,14 +338,14 @@ var contentParser = {
         }
     },
     contentScript: function(content) {
-        let script;
+        var script;
         try {
             content = '<div>' + content + '</div>'; /*Wrapping income html string for jquery */
             script = $nana(content).find('script').attr('class', 'third-party');
             contentParser.count++;
             contentParser.scriptList.push(script);
             if (contentParser.count === contentParser.length) {
-                let result = [];
+                var result = [];
                 $nana.each(contentParser.scriptList, function(i, item) {
                     if ($nana.inArray(item.attr('src'), contentParser.scriptSrcList) == -1) /** -1  means - not found*/ {
                         contentParser.scriptSrcList.push(item.attr('src'));

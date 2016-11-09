@@ -8,9 +8,13 @@ import { HeadlineModel } from '../../models/headline.model';
         `
         .AlertItemLast{
             margin-bottom: 12px; 
+             border-top: 1px solid #d8d8d8;
         }
         .AlertItem{
-            border-bottom: 1px solid #d8d8d8;
+            border-top: 1px solid #d8d8d8;
+        }
+        .AlertItemFirst{
+            margin-top: -12px; 
         }
         `
     ]
@@ -26,6 +30,16 @@ export class HeadlineAlertComponent implements OnInit {
             let ttimear = ttime[1].split(':');
             ttimear.pop();
             this._lastModifiedTime = ttimear.join(':');
+        }
+    }
+
+    private getItemClass() {
+        if (this.countId === (this.item.AlertId + 1)) {
+            return 'rsvp_main_article_updates AlertItemLast';
+        } else if (this.item.AlertId === 0) {
+            return 'rsvp_main_article_updates AlertItemFirst';
+        } else {
+            return 'rsvp_main_article_updates AlertItem';
         }
     }
 

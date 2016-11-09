@@ -269,11 +269,11 @@ var castTimeHelper = {
         castTimeHelper.platform = castTimeHelper.casttimePlayerRef.getMobileOperatingSystem();
         castTimeHelper.routerHelper = { url: data.routeUrl, isArticle: data.isArticle };
         if (castTimeHelper.platform === "android" && typeof Android !== "undefined") {
-            Android.webPageUpdated(castTimeHelper.routerHelper);
+            Android.webPageUpdated(JSON.stringify(castTimeHelper.routerHelper));
         } else if (castTimeHelper.platform === "ios" && typeof webkit !== "undefined") {
             webkit.messageHandlers.callbackHandler.postMessage(JSON.stringify(castTimeHelper.routerHelper));
         } else {
-            console.log(data);
+            console.log(castTimeHelper.routerHelper);
         }
     },
 
@@ -282,7 +282,7 @@ var castTimeHelper = {
         if (castTimeHelper.platform === "android" && typeof Android !== "undefined") {
             Android.sendInterstatialAd();
         } else if (castTimeHelper.platform === "ios" && typeof webkit !== "undefined") {
-            //webkit.messageHandlers.callbackHandler.postMessage(JSON.stringify(castTimeHelper.routerHelper));
+            webkit.messageHandlers.callbackHandler.postMessage(JSON.stringify({ activateMaavaron: true }));
         } else {
             console.log('maavaron shown!');
         }
@@ -291,9 +291,10 @@ var castTimeHelper = {
     //
     toggleServiceFilter: function() {
         window.angularComponentRef.zone.run(function() {
-            window.angularComponentRef.component.showFilter()
+            window.angularComponentRef.component.toggleFilter()
         });
-        this.triggerFilter(true);
+        // this.triggerFilter(true);
+
     },
 
     triggerFilter: function(isVisible) {

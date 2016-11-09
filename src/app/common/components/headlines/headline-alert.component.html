@@ -1,4 +1,4 @@
-<div [class]='countId === (item.AlertId + 1) ? "rsvp_main_article_updates AlertItemLast" : "rsvp_main_article_updates AlertItem"'>
+<div [class]='getItemClass()'>
     <ul class="rsvp_main_article_updates_items">
         <li>
             <a [routerLink]="['/article', item.DestArticleID]">

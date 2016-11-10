@@ -46,25 +46,25 @@ export class FilterServiceComponent implements OnInit, OnDestroy {
     }
 
 
-    showFilter(data: String) {
+    toggleFilter() {
         this._ngZone.run(() => {
             this.setVisible();
         });
     }
 
     private setVisible() {
-        this._isVisible = true;
+        this._isVisible = !this._isVisible;
+        window['castTimeHelper'].triggerFilter(this._isVisible);
         window.scrollTo(0, 0);
     }
     private Redirect() {
-        this._isVisible = false;
+        this.setVisible();
         this.mainModel.setFiltered();
         let seed = new Date().getMilliseconds();
         this.getChecked();
         this.getId();
         // TODO, DEVTEAM, make router work properly
         this._router.navigate(['/mainfiltered/' + this._generatedId, { data: this._sids }]);
-        window['castTimeHelper'].toggleServiceFilter(false);
         // window.location.href = '/mainfiltered/' + this._generatedId + ';data=' + this._sids.join(',');
     }
     private getId() {

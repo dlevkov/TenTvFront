@@ -28,7 +28,7 @@ export class HeadlineModel {
     }
 
     getClass(i: any): string {
-        return i + '_' + this.CounterId;
+        return this.HeadlineType;
     }
 
     isMain(): boolean {

@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, NgZone, AfterViewInit } from '@angular/core';
+import { Component, Input, NgZone } from '@angular/core';
 import { PubSubService } from '../../Global/PubSubService';
 import { Router, ActivatedRoute, Params, NavigationStart } from '@angular/router';
 import { Subscription, BehaviorSubject } from 'rxjs/Rx';
@@ -8,7 +8,7 @@ import { Location } from '@angular/common';
     selector: 'controller',
     template: ''
 })
-export class Controller implements OnDestroy, AfterViewInit {
+export class Controller {
     private _routeSubscriber: Subscription;
     private _isVisible: boolean = true;
     private _nanaRouteRef: any;
@@ -21,7 +21,7 @@ export class Controller implements OnDestroy, AfterViewInit {
         this._router.events.forEach((x) => {
             // Do whatever in here
             if (x instanceof NavigationStart) {
-                //this._nanaRouteRef.invokeRouteEvent(x.url, this.isArticle(x.url));
+                this._nanaRouteRef.invokeRouteEvent(x.url, this.isArticle(x.url));
                 this.handleStatickTopFour(x.url);
             }
         });
@@ -40,26 +40,12 @@ export class Controller implements OnDestroy, AfterViewInit {
         // });
     }
 
-
-
-    createCustomer() {
-
-        //this.pubSubService.Stream.emit(customer);
-    }
-
     getRouteUrl(data: String) {
         this._ngZone.run(() => {
             this.setVisible();
         });
     }
 
-    ngOnDestroy() {
-        // console.log('Controller dtor');
-    }
-
-    ngAfterViewInit() {
-        console.log('Controller AfterViewChecked');
-    }
     navigateBack(data: string) {
         this._ngZone.run(() => {
             this._location.back(); // in HTML5 window.history.back(); works fine

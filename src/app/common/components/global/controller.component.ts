@@ -21,7 +21,7 @@ export class Controller {
         this._router.events.forEach((x) => {
             // Do whatever in here
             if (x instanceof NavigationStart) {
-                this._nanaRouteRef.invokeRouteEvent(x.url, this.isArticle(x.url));
+                this._nanaRouteRef.invokeRouteEvent(x.url, this.isArticle(x.url), this.isSection(x.url));
                 this.handleStatickTopFour(x.url);
             }
         });
@@ -48,6 +48,7 @@ export class Controller {
 
     navigateBack(data: string) {
         this._ngZone.run(() => {
+            window.scrollTo(0, 0);
             this._location.back(); // in HTML5 window.history.back(); works fine
         });
     }
@@ -62,6 +63,11 @@ export class Controller {
     private isArticle(url: string) {
         return url.search('article') >= 0;
     }
+
+    private isSection(url: string) {
+        return url.search('section') >= 0;
+    }
+
 
     private setVisible() {
         this._isVisible = true;

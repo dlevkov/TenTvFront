@@ -1,8 +1,8 @@
 <!--  twitter widget start here  -->
 <div *ngIf='_isVisible'>
     <div style="clear:both;"></div>
-    <div class="rsvp_twitter_widget" [@openClose]="animationState" [ngStyle]="{'bottom': '-35px', 'position': 'fixed', 'z-index': '100' }">
-        <div class="rsvp_twitter_right" [routerLink]="['/twitter']" >
+    <div class="rsvp_twitter_widget" [@openClose]="animationState" [ngStyle]="{'bottom': '-35px', 'position': 'fixed', 'z-index': '1000' }">
+        <div class="rsvp_twitter_right" [routerLink]="['/twitter']">
             <img src="./../../../../assets/icons/twitter_bird.png" />
             <span>{{_currentItem?.TimeBefore}}</span> {{_currentItem?.TitleTrimed}}
         </div>

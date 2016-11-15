@@ -14,7 +14,8 @@ import { AppState } from './app.service';
   styleUrls: [
     './app.style.css',
     '../assets/css/rsvp_fonts.css',
-    '../assets/css/rsvp_main.css'
+    '../assets/css/rsvp_main.css',
+    '../assets/css/custom_nana.css'
   ],
   template: `
           <scroll-top></scroll-top>

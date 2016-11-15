@@ -16,6 +16,7 @@ export class Constants {
     public static readonly HEADLINETYPES: any = Constants.InitHeadlineTypes();
     public static readonly DFPADUNITSNAMES: any = Constants.InitDfpAdUnitsName();
     public static readonly DFPLOADINGTIMEOUT: number = 1000;
+    public static readonly TWITTERTICKERINTERVAL: number = 10000;
 
 
     public static InitHeadlineTypes(): any {

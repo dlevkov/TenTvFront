@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewChecked, trigger, state, style, transition, animate } from '@angular/core';
 import { Http } from '@angular/http';
 import { Subscription } from 'rxjs/Rx';
 import { TwitterService } from '../../services/twitter.service';
@@ -10,16 +10,29 @@ import { Constants } from '../../Constants';
     templateUrl: 'twitter-toolbar.component.html',
     host: {
         '(window:scroll)': 'scrolleEvent($event)'
-    }
+    },
+    animations: [
+        trigger('openClose', [
+            state('collapsed, void',
+                style({ width: '0px', opacity: 0})),
+            state('expanded',
+                style({ width: '100%', opacity: 1 })),
+            transition('collapsed <=> expanded', [
+                animate(500)
+            ])
+        ])
+    ]
 })
 export class TwitterToolbarComponent implements OnInit, OnDestroy, AfterViewChecked {
     items: TwitterModel[];
+    animationState: string = 'collapsed';
     private _currentItem: TwitterModel;
     private _currentId: number;
     private _service: TwitterService;
     private _subscriber: Subscription;
     private _isVisible: boolean = true;
     private _isPolled = false;
+    private _itemId: number = 0;
 
     constructor(http: Http) {
         this._service = new TwitterService(http);
@@ -38,7 +51,9 @@ export class TwitterToolbarComponent implements OnInit, OnDestroy, AfterViewChec
                 if (!this._currentItem || this._currentItem.CounterId === 0) // is first time or last DB value
                     this._currentItem = data[0];
             });
+        this.initInterval();
     }
+
     ngAfterViewChecked() {
         if (this.items != null && !this._isPolled) {
             console.log('checked change');
@@ -54,13 +69,40 @@ export class TwitterToolbarComponent implements OnInit, OnDestroy, AfterViewChec
         }
     }
 
-    getNext(id: number) {
-        id++;
-        if (this.items.length >= id)
+    getNext() {
+        if (this.items.length <= this._itemId + 1) {
             this._currentItem = this.items[0];
-        this._currentItem = this.items[id];
+        } else {
+            this._itemId++;
+        }
+        this.animateTransition();
+
+        this._currentItem = this.items[this._itemId];
     }
     ngOnDestroy() {
         this._subscriber.unsubscribe();
     }
+    private animateTransition() {
+        if (this.animationState === 'collapsed') {
+            this.animationState = 'expanded';
+        } else {
+            this.animationState = 'collapsed';
+            window.setTimeout(() => {
+                this.affectChange();
+            }, 500);
+
+        }
+
+    }
+
+    private affectChange() {
+        this.animationState = 'expanded';
+    }
+
+    private initInterval() {
+        window.setInterval(() => {
+            this.getNext();
+        }, Constants.TWITTERTICKERINTERVAL);
+    }
+
 }

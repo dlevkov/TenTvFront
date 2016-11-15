@@ -14,7 +14,6 @@ const DefinePlugin = require('webpack/lib/DefinePlugin');
 const IgnorePlugin = require('webpack/lib/IgnorePlugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const NormalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplacementPlugin');
-const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const CompressionPlugin = require("compression-webpack-plugin");
@@ -24,7 +23,9 @@ const CompressionPlugin = require("compression-webpack-plugin");
 const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 8080;
-const METADATA = webpackMerge(commonConfig({env: ENV}).metadata, {
+const METADATA = webpackMerge(commonConfig({
+  env: ENV
+}).metadata, {
   host: HOST,
   port: PORT,
   ENV: ENV,
@@ -32,7 +33,9 @@ const METADATA = webpackMerge(commonConfig({env: ENV}).metadata, {
 });
 
 module.exports = function (env) {
-  return webpackMerge(commonConfig({env: ENV}), {
+  return webpackMerge(commonConfig({
+    env: ENV
+  }), {
 
     /**
      * Developer tool to enhance debugging
@@ -157,7 +160,12 @@ module.exports = function (env) {
           keep_fnames: true
         }, //prod
         compress: {
-          screw_ie8: true
+          screw_ie8: true,
+          drop_debugger: true,
+          dead_code: true,
+          unused: true,
+          drop_console: true,
+          passes: 5
         }, //prod
         comments: false //prod
       }),
@@ -195,7 +203,6 @@ module.exports = function (env) {
         regExp: /\.css$|\.html$|\.js$|\.map$/,
         threshold: 2 * 1024
       }),
-
       /**
        * Plugin LoaderOptionsPlugin (experimental)
        *

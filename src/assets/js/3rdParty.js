@@ -1,5 +1,5 @@
 // Load DFP --
-/*var googletag = googletag || {};
+var googletag = googletag || {};
 googletag.cmd = googletag.cmd || [];
 (function() {
     var gads = document.createElement('script');
@@ -9,7 +9,7 @@ googletag.cmd = googletag.cmd || [];
     gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
     var node = document.getElementsByTagName('script')[0];
     node.parentNode.insertBefore(gads, node);
-})();*/
+})();
 
 $nana(document).ready(function() {
     //nanaRoute.init();
@@ -34,9 +34,6 @@ var TopFour = {
         // $nana("#" + TopFour.elementId).hide();
     }
 };
-
-
-//TopFour.init();
 
 //casttime native player
 function casttimePlayer() {
@@ -124,6 +121,16 @@ var nanaHelper = {
     minFontSize: 16,
     fontInterval: 2,
     fontSelectors: ['.rsvp_article_inner_content p:not(p.oedoopror)', '.rsvp_article_body_h1', '.rsvp_article_body_h2', '.rsvp_feed_item_title'],
+
+    animateslideUp: function(selector) {
+        //$nana(selector).slideDown(400);
+        $nana(selector).hide("slide", { direction: "down" }, 400);
+        window.setTimeout(function() {
+            $nana(selector).show("slide", { direction: "up" }, 700);
+            //$nana(selector).slideUp(700);
+        }, 450);
+    },
+
 
     changeFontSize: function(zoomin) {
         console.log('zoomin: ' + zoomin);

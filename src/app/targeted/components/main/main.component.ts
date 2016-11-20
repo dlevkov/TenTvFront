@@ -14,6 +14,7 @@ import { FilterServiceComponent } from '../filter-service/filter-service.compone
 })
 export class MainComponent implements OnInit {
     @Input() showTwitter: boolean = true;
+    @Input() isInArticle: boolean = false;
     item: MainModel;
     DfpId: number = 0;
     isFiltered: boolean = false;
@@ -24,9 +25,19 @@ export class MainComponent implements OnInit {
         this._service = new MainService(http);
     }
 
-    generateDfpId(): number {
-        return this.DfpId++;
+    generateDfpId(): any {
+        let newid = this.DfpId;
+        return newid;
     }
+
+    addCounter() {
+        this.DfpId++;
+    }
+
+
+    // set generateDfpId(newid: number): any {
+    //     this.DfpId = newid;
+    // }
 
     ngOnInit() {
         let data: string = this.route.snapshot.params['data']; // get list of id's as a string splited by ','
@@ -34,6 +45,7 @@ export class MainComponent implements OnInit {
             this.isFiltered = true;
         }
         this.getItems();
+        this.addCounter();
     }
     isSafary() {
         return false;
@@ -50,7 +62,7 @@ export class MainComponent implements OnInit {
 
     ngOnDestroy() {
         this._subscriber.unsubscribe();
-        // this['AdUnitsCollectionIndex'].reset();
+        window['AdUnitsCollectionIndex'].reset();
         console.log('main detor');
     }
 

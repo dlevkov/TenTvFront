@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewChecked, trigger, state, style, transition, animate } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewChecked, trigger, state, style, transition, animate, ElementRef } from '@angular/core';
 import { Http } from '@angular/http';
 import { Subscription } from 'rxjs/Rx';
 import { TwitterService } from '../../services/twitter.service';
@@ -14,9 +14,9 @@ import { Constants } from '../../Constants';
     animations: [
         trigger('openClose', [
             state('collapsed, void',
-                style({ width: '0px', opacity: 0})),
+                style({ top: '-60px', color: 'white' })),
             state('expanded',
-                style({ width: '100%', opacity: 1 })),
+                style({ top: '0', color: 'black' })),
             transition('collapsed <=> expanded', [
                 animate(500)
             ])
@@ -34,7 +34,7 @@ export class TwitterToolbarComponent implements OnInit, OnDestroy, AfterViewChec
     private _isPolled = false;
     private _itemId: number = 0;
 
-    constructor(http: Http) {
+    constructor(http: Http, private myElement: ElementRef) {
         this._service = new TwitterService(http);
     }
 
@@ -51,6 +51,7 @@ export class TwitterToolbarComponent implements OnInit, OnDestroy, AfterViewChec
                 if (!this._currentItem || this._currentItem.CounterId === 0) // is first time or last DB value
                     this._currentItem = data[0];
             });
+        this.animationState = 'expanded';
         this.initInterval();
     }
 
@@ -83,6 +84,36 @@ export class TwitterToolbarComponent implements OnInit, OnDestroy, AfterViewChec
         this._subscriber.unsubscribe();
     }
     private animateTransition() {
+        let nanaHelper = window['nanaHelper'];
+        nanaHelper.animateslideUp( '#twiiterItemUn');
+
+        // this.animateNonSafari();
+        // let casttimePlayer = new window['casttimePlayer']();
+
+        // casttimePlayer.platform = casttimePlayer.getMobileOperatingSystem();
+        // if (casttimePlayer.platform === "android") {
+        //     //animate non safari
+        //     this.animateNonSafari();
+        // } else if (casttimePlayer.platform === "ios") {
+        //     //animate safari
+        //     this.animateNonSafari();
+        // } else {
+        //     this.animateNonSafari();
+        // }
+
+    }
+
+    // private isIphone5() {
+    //     function iOSVersion() {
+    //         let agent = window.navigator.userAgent,
+    //             start = agent.indexOf('OS ');
+    //         if ((agent.indexOf('iPhone') > -1) && start > -1)
+    //             return window.Number(agent.substr(start + 3, 3).replace('_', '.'));  else return 0;
+    //     }
+    //     return iOSVersion() >= 6 && window.devicePixelRatio >= 2 && screen.availHeight === 548 ? true : false;
+    // }
+
+    private animateNonSafari() {
         if (this.animationState === 'collapsed') {
             this.animationState = 'expanded';
         } else {
@@ -92,7 +123,10 @@ export class TwitterToolbarComponent implements OnInit, OnDestroy, AfterViewChec
             }, 500);
 
         }
+    }
 
+    private animateSafari() {
+        //
     }
 
     private affectChange() {

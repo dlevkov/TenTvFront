@@ -15,10 +15,11 @@ export class DfpMain implements AfterViewInit {
     @Input() dfpObjectName: string = 'main';
     @Input() dfpStyle: string = '';
     @Input() maavaron: Maavaron;
+    @Input() dfpId: number;
 
     private _dfpRef: any[];
     private _isVisible: boolean = false;
-    private _isDisabled: boolean = true;
+    private _isDisabled: boolean = false;
     private _currentResolution: number[] = [];
     private slotName: string;
     private adSize: number[] = [];
@@ -33,7 +34,7 @@ export class DfpMain implements AfterViewInit {
         this.generateDfpParams();
         let unit = this.setDfpParams();
         //reinit dfp
-        //this._adUnitsCollectionIndex.init();
+        this._adUnitsCollectionIndex.init();
 
     }
 
@@ -114,7 +115,7 @@ export class DfpMain implements AfterViewInit {
         this.getResolution();
         switch (this.dfpObjectName) {
             case 'main':
-                this.adUnitName = Constants.DFPADUNITSNAMES['strip'];
+                this.adUnitName = Constants.DFPADUNITSNAMES['strip'] + this.dfpId;
                 this.adSize = this.getMainAdUnitSize();
                 break;
             case 'article':

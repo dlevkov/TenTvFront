@@ -38,5 +38,5 @@
         <paragraph [item]='paragraph' [index]='i' *ngFor="let paragraph of item?.Paragraphs; let i = index"></paragraph>
     </div>
     <taboola [placeHolderId]='"taboola-under-article"' [placement]='"Under Article"' [mode]='"thumbnails-c"' [objectType]='"article"'></taboola>
-    <main [showTwitter]='false'></main>
+    <main [showTwitter]='false' [isInArticle]='true'></main>
 </div>

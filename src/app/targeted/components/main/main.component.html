@@ -8,7 +8,8 @@
             <headline-pair [item]='headline' *ngIf="headline.isPair()" [nextItem]='headline.PairStart ? item.Headlines[i+1] : null'></headline-pair>
             <headline-ad [item]='headline' *ngIf="headline.isAd()"></headline-ad>
             <headline-adsecond [item]='headline' *ngIf="headline.isAdSecond()"></headline-adsecond>
-            <dfp *ngIf="headline.isDfp(i,item?.TopFourEndIndex)" [placeHolderId]='"ad-div-upper-strip-" + i' [dfpStyle]='{"width":"320px","height": "50px","margin":"0 auto","margin-top":"10px","margin-bottom":"10px", "background-color":"#efedb6"}' [dfpObjectName]='"main"'></dfp>
+            <dfp *ngIf="!isInArticle && DfpId <= 5 && headline.isDfp(i,item?.TopFourEndIndex)" [placeHolderId]='"ad-div-upper-strip-" + i' [dfpId]='generateDfpId()' [dfpStyle]='{"width":"320px","height": "50px","margin":"0 auto","margin-top":"10px","margin-bottom":"10px", "background-color":"#efedb6"}'
+                [dfpObjectName]='"main"'></dfp>
         </div>
 
     </div>

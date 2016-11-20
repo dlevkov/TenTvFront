@@ -50,7 +50,7 @@ export class Constants {
         let units = {
             'maavaron': Constants.GOOGLEDFPID + 'Channel10_Interstitial_Ros_test1',
             // liveBox: googleDfpID + 'MOBILE_NANA10_LiveBoxVideo_300x250',
-            'strip': Constants.GOOGLEDFPID + 'Channel10_Banner_General_2',
+            'strip': Constants.GOOGLEDFPID + 'Channel10_Strip_General_',
             'box': Constants.GOOGLEDFPID + 'Channel10_Box_300X250',
         };
         return units;

@@ -5,7 +5,9 @@ import { Subscription } from 'rxjs/Rx';
 import { FilterServiceService } from '../../services/filter-service.service';
 import { MainModel } from '../../../targeted/models/main.model';
 import { Http } from '@angular/http';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+// import { CookieService } from 'angular2-cookie/core';
+import { Cookies } from '../../../common/Cookies'
 @Component({
     selector: 'filter-service',
     templateUrl: 'filter-service.component.html'
@@ -26,13 +28,20 @@ export class FilterServiceComponent implements OnInit, OnDestroy {
     };
     private _clearFilter: boolean = false;
     private _updateButtonStyle = { 'color': '#585756', 'border-color': '#585756' };
+    private _filterCookie: Cookies;
+    private _filterCookieData: string;
+    private _filterCookieName: string = 'tentvappfilter';
+    private _routeSubscriber: Subscription;
 
-    constructor(http: Http, private _router: Router, private _ngZone: NgZone) {
+    constructor(http: Http, private _router: Router, private _ngZone: NgZone, public route: ActivatedRoute) {
         this._service = new FilterServiceService(http);
         window.angularComponentRef = { component: this, zone: _ngZone };
+        this._routeSubscriber = this.route.params.subscribe(x => {
+            //this.init();
+        });
     }
     ngOnInit() {
-        this.initItems();
+        //this.init();
         // this._subscriber = this._service
         //     .GetItemsByUri('TenTvAppFront/service')
         //     .subscribe(data => {
@@ -40,12 +49,22 @@ export class FilterServiceComponent implements OnInit, OnDestroy {
         //     });
     }
 
+    init() {
+        this.initItems();
+        this.initUserData();
+    }
 
     ngOnDestroy() {
-        //this._subscriber.unsubscribe();
+        // this._subscriber.unsubscribe();
     }
     getChecked() {
         this._sids = this._items.filter(x => x.Checked === true).map(x => x.ServiceID);
+    }
+
+    applyChecked() {
+        this._items.filter(it => this._sids.indexOf(it.ServiceID) >= 0).forEach(element => {
+            element.Checked = true;
+        });
     }
 
     clickCheckbox() {
@@ -59,6 +78,23 @@ export class FilterServiceComponent implements OnInit, OnDestroy {
     toggleFilter() {
         this._ngZone.run(() => {
             this.setVisible();
+        });
+    }
+
+    private initUserData() {
+        this._filterCookie = new Cookies();
+        this._filterCookie.sCookieName = this._filterCookieName;
+        this._filterCookieData = this._filterCookie.getCookie();
+        //this._filterCookieData = this._cookieService.get(this._filterCookieName);
+        if (this._filterCookieData !== '') {
+            this.filterCookieParse();
+        }
+        this.applyChecked();
+    }
+
+    private filterCookieParse() {
+        this._filterCookieData.split(',').forEach(element => {
+            this._sids.push(+element);
         });
     }
 
@@ -94,6 +130,7 @@ export class FilterServiceComponent implements OnInit, OnDestroy {
     private setVisible() {
         this._isVisible = !this._isVisible;
         window['castTimeHelper'].triggerFilter(this._isVisible);
+        if (this._isVisible) this.init();
         window.scrollTo(0, 0);
     }
     private Redirect() {
@@ -103,10 +140,13 @@ export class FilterServiceComponent implements OnInit, OnDestroy {
         this.getChecked();
         this.getId();
         // TODO, DEVTEAM, make router work properly
-        this._router.navigate(['/mainfiltered/' + this._generatedId, { data: this._sids}]);
+        this._router.navigate(['/mainfiltered/' + this._generatedId, { data: this._sids }]);
         // window.location.href = '/mainfiltered/' + this._generatedId + ';data=' + this._sids.join(',');
     }
     private getId() {
-        this._generatedId = this._sids.join('');
+        this._generatedId = this._sids.join(',');
+        this._filterCookie.setCookie(this._generatedId, 2000, 'nana10.co.il');
+        //let opt: CookieOptionsArgs = { domain: 'nana10.co.il' }
+        //this._cookieService.put(this._filterCookieName, this._generatedId);
     }
 }

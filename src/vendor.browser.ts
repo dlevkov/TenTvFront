@@ -14,12 +14,16 @@ import '@angular/forms';
 import '@angular/http';
 import '@angular/router';
 
+// angular2 cookie
+//import 'angular2-cookie/core';
+
 // AngularClass
 import '@angularclass/hmr';
 
 // RxJS
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
+
 
 if ('production' === ENV) {
   // Production

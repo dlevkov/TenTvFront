@@ -41,6 +41,9 @@ import { TwitterComponent } from './common/components/twitter/twitter.component'
 
 import { FilterServiceComponent } from './targeted/components/filter-service/filter-service.component';
 import { FilterServiceItemComponent } from './targeted/components/filter-service/filter-service-item.component';
+// import { CookieService } from 'angular2-cookie/core';
+// import { CookieOptions } from 'angular2-cookie/core';
+
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
@@ -92,6 +95,7 @@ type StoreType = {
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
     APP_PROVIDERS
+
   ]
 })
 export class AppModule {

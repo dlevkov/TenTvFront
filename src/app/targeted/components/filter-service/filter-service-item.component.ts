@@ -10,9 +10,19 @@ export class FilterServiceItemComponent {
     @Input() item: FilterServiceModel;
     @Output() itemChecked = new EventEmitter();
 
-    nandleClick() {
+    handleClick() {
         this.itemChecked.emit();
         console.log('child click');
 
+    }
+
+    private add3Dots(word: string, limit: number) {
+        let dots = '...';
+        if (word.length > limit) {
+            // you can also use substr instead of substring
+            word = word.substring(0, limit) + dots;
+        }
+
+        return word;
     }
 }

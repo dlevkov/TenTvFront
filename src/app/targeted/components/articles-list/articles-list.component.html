@@ -1,7 +1,8 @@
 <a href="#" class="rsvp_feed_filter_prom">
-	<img src="assets/icons/filtericon.png" alt="filter" />
-	<span>ערוך את ערוצי התוכן</span>
+    <img src="assets/icons/filtericon.png" alt="filter" />
+    <span>ערוך את ערוצי התוכן</span>
 </a>
+<div id="articleList"></div>
 <div *ngFor="let item of items; let i=index;">
-	<headline-small [item]='item.Headline'></headline-small>
+    <headline-small [item]='item.Headline'></headline-small>
 </div>

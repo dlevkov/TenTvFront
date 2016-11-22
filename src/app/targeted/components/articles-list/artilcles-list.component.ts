@@ -42,7 +42,15 @@ export class ArticlesListComponent {
         this._subscriber = this._service.GetItemsByUri('TenTvAppFront/article-list?' + this._url + '$orderby=DestArticleID')
             .subscribe(d => {
                 this.items = d;
+                this.scrollIntoView('articleList');
             });
+    }
+
+    scrollIntoView(eleID) {
+        let e = document.getElementById(eleID);
+        if (!!e && e.scrollIntoView) {
+            e.scrollIntoView();
+        }
     }
 
     ngOnDestroy() {

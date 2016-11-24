@@ -1,6 +1,7 @@
 import { ParagraphModel } from '../models/paragraph.model';
 import { Constants } from '../../common/Constants';
 import { ImageTypes } from '../../common/Enums';
+import { FilterServiceComponent } from '../../targeted/components/filter-service/filter-service.component';
 
 export class ArticleModel {
     Paragraphs: Array<ParagraphModel> = [];
@@ -35,9 +36,9 @@ export class ArticleModel {
         this.ArticleID = data[0].ArticleID;
         this.SectionID = data[0].SectionID;
         this.IconHref2 = data[0].IconHref2;
-        this.StripeColor = data[0].StripeColor;
         this.ServiceName = data[0].ServiceName;
         this.ServiceID = data[0].ServiceID;
+        this.StripeColor = (FilterServiceComponent.getColorBySid( this.ServiceID) !== '' ? FilterServiceComponent.getColorBySid( this.ServiceID) : data[0].StripeColor;
         this.ParagraphID = data[0].ParagraphID;
 
         if (this.ServiceID === 160) {

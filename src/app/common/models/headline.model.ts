@@ -2,6 +2,7 @@
  * MainModel
  */
 import { Constants } from '../../common/Constants';
+import { FilterServiceComponent } from '../../targeted/components/filter-service/filter-service.component';
 
 export class HeadlineModel {
     DestArticleID?: number;
@@ -71,8 +72,8 @@ export class HeadlineModel {
         this.Title = parameters.Title;
         this.PrimeTag = parameters.PrimeTag;
         this.SubTitle = parameters.SubTitle;
-        this.StripeColor = parameters.StripeColor;
         this.ServiceID = parameters.ServiceID;
+        this.StripeColor = FilterServiceComponent.getColorBySid( this.ServiceID) !== '' ? FilterServiceComponent.getColorBySid( this.ServiceID) : parameters.StripeColor;
         this.HebServiceName = parameters.HebServiceName;
         this.MediaStockImageID = parameters.MediaStockImageID;
         this.MediaStockImageAlt = parameters.MediaStockImageAlt;

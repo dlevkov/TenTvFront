@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, NgZone } from '@angular/core';
 import { Http } from '@angular/http';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
-
+import { Cookies } from '../../../common/Cookies'
 import { MainService } from '../../services/main.service';
 import { HeadlineModel } from '../../../common/models/headline.model';
 import { MainModel } from '../../../targeted/models/main.model';
@@ -21,8 +21,8 @@ export class MainComponent implements OnInit {
     private _service: MainService;
     private _subscriber: Subscription;
 
-    constructor(public route: ActivatedRoute, http: Http) {
-        this._service = new MainService(http);
+    constructor(private http: Http, private _router: Router, private _ngZone: NgZone, public route: ActivatedRoute) {
+        this._service = new MainService(this.http);
     }
 
     generateDfpId(): any {
@@ -46,6 +46,7 @@ export class MainComponent implements OnInit {
         }
         this.getItems();
         this.addCounter();
+        this.initFilter();
     }
     isSafary() {
         return false;
@@ -64,6 +65,11 @@ export class MainComponent implements OnInit {
         this._subscriber.unsubscribe();
         window['AdUnitsCollectionIndex'].reset();
         console.log('main detor');
+    }
+
+    initFilter() {
+        Cookies.getNanaCookie();
+        if (Cookies.nanaFilterSids.length > 0) this.isFiltered = true; else this.isFiltered = false;
     }
 
     private handleFilter() {

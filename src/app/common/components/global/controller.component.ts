@@ -21,7 +21,7 @@ export class Controller {
         this._router.events.forEach((x) => {
             // Do whatever in here
             if (x instanceof NavigationStart) {
-                this._nanaRouteRef.invokeRouteEvent(x.url, this.isArticle(x.url), this.isSection(x.url));
+                this._nanaRouteRef.invokeRouteEvent(x.url, this.isArticle(x.url), this.isSection(x.url), this.isTwitter(x.url));
                 this.handleStatickTopFour(x.url);
             }
         });
@@ -62,6 +62,10 @@ export class Controller {
 
     private isArticle(url: string) {
         return url.search('article') >= 0;
+    }
+
+    private isTwitter(url: string) {
+        return url.search('twitter') >= 0;
     }
 
     private isSection(url: string) {

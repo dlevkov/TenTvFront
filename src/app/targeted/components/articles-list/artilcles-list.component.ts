@@ -1,11 +1,13 @@
-import { Component, OnDestroy, Input } from '@angular/core';
+import { Component, OnDestroy, Input, NgZone } from '@angular/core';
 import { Http } from '@angular/http';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Constants } from '../../../common/Constants';
+import { Cookies } from '../../../common/Cookies';
 import { Subscription } from 'rxjs/Rx';
 import { ArticleListService } from '../../services/artilce-list.service';
 import { ArticleListModel } from '../../../targeted/models/article-list.model';
 import { HeadlineSmallComponent } from '../../../common/components/headlines/headline-small.component';
+import { FilterServiceComponent } from '../filter-service/filter-service.component';
 
 @Component({
     selector: 'articles-list',
@@ -13,7 +15,7 @@ import { HeadlineSmallComponent } from '../../../common/components/headlines/hea
 })
 export class ArticlesListComponent {
     @Input() isVisible: boolean = false;
-    @Input() sids: string[] = [];
+    @Input() sids: number[] = [];
     private items: Array<ArticleListModel> = [];
     private _subscriber: Subscription;
     private _service: ArticleListService;
@@ -21,8 +23,8 @@ export class ArticlesListComponent {
     private _keepGoing: boolean = true;
     private _routeSubscriber: Subscription;
 
-    constructor(public route: ActivatedRoute, http: Http) {
-        this._service = new ArticleListService(http);
+    constructor(private http: Http, private _router: Router, private _ngZone: NgZone, public route: ActivatedRoute) {
+        this._service = new ArticleListService(this.http);
         this._routeSubscriber = this.route.params.subscribe(x => {
             this.init(x['data']);
         });
@@ -30,8 +32,16 @@ export class ArticlesListComponent {
 
     init(data: string) {
         //
+
         if (typeof data !== 'undefined' && data) {
-            this.sids = data.split(',');
+            data.split(',').forEach(element => {
+                this.sids.push(+element);
+            });
+
+        } else if (Cookies.nanaFilterSids.length > 0) {
+            //
+            this.sids = Cookies.nanaFilterSids;
+
         } else {
             this.sids = [];
         }
@@ -39,11 +49,15 @@ export class ArticlesListComponent {
         this.sids.forEach((element, index) => {
             this._url += ('idsList=' + element + '&&');
         });
-        this._subscriber = this._service.GetItemsByUri('TenTvAppFront/article-list?' + this._url + '$orderby=DestArticleID')
+        this._subscriber = this._service.GetItemsByUri('TenTvAppFront/article-list?' + this._url + '$orderby=DestArticleID desc')
             .subscribe(d => {
                 this.items = d;
                 this.scrollIntoView('articleList');
             });
+    }
+
+    toggleFilter() {
+        window['castTimeHelper'].toggleServiceFilter();
     }
 
     scrollIntoView(eleID) {

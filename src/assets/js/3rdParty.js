@@ -243,12 +243,13 @@ var nanaRoute = {
     initialized: false,
     routeEvent: document.createEvent("Event"),
 
-    invokeRouteEvent: function(url, isArticle, isPromoted) {
+    invokeRouteEvent: function(url, isArticle, isPromoted, isTwitter) {
         //invoke
         if (!this.initialized) return false;
         this.routeEvent.routeUrl = url;
         this.routeEvent.isArticle = isArticle;
         this.routeEvent.isPromoted = isPromoted;
+        this.routeEvent.isTwitter = isTwitter;
         document.dispatchEvent(this.routeEvent);
     },
 
@@ -275,7 +276,7 @@ var castTimeHelper = {
     routerHelper: {},
     routeHandler: function(data) {
         castTimeHelper.platform = castTimeHelper.casttimePlayerRef.getMobileOperatingSystem();
-        castTimeHelper.routerHelper = { url: data.routeUrl, isArticle: data.isArticle, isPromoted: data.isPromoted };
+        castTimeHelper.routerHelper = { url: data.routeUrl, isArticle: data.isArticle, isPromoted: data.isPromoted, isTwitter: data.isTwitter };
         if (castTimeHelper.platform === "android" && typeof Android !== "undefined") {
             Android.webPageUpdated(JSON.stringify(castTimeHelper.routerHelper));
         } else if (castTimeHelper.platform === "ios" && typeof webkit !== "undefined") {

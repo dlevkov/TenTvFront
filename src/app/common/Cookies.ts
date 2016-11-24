@@ -1,3 +1,5 @@
+import { Constants } from './Constants';
+
 export class Cookies {
 
     // unction Cookie(this._sCookieName)
@@ -5,7 +7,31 @@ export class Cookies {
     // onerror=function (sError,sURL,iLine){	return ClassException('Cookie',sError,sURL,iLine); }
     // This function save cookie
 
-    sCookieName: string;
+    public static nanaFilterCookie: Cookies = new Cookies();
+    public static nanaFilterCookieName: string;
+    public static nanaFilterCookieData: string;
+    public static nanaFilterSids: number[] = [];
+
+    public sCookieName: string;
+
+    public static getNanaCookie() {
+        Cookies.nanaFilterCookie.sCookieName = Constants.FILTERCOOKIENAME;
+        Cookies.nanaFilterCookieData = Cookies.nanaFilterCookie.getCookie();
+
+        let sids: number[] = [];
+        if (Cookies.nanaFilterCookieData !== '') {
+            Cookies.nanaFilterCookieData.split(',').forEach(element => {
+                Cookies.nanaFilterSids.push(+element);
+            });
+        }
+        return sids;
+    }
+
+    public static setNanaCookie( sids: number[]) {
+        Cookies.nanaFilterSids = sids;
+        let generatedId = Cookies.nanaFilterSids.join(',');
+        Cookies.nanaFilterCookie.setCookie(generatedId, 2000, 'nana10.co.il');
+    }
 
     setCookie(sValue, exdays, sDomain) {
         let d = new Date();
@@ -30,14 +56,16 @@ export class Cookies {
     }
 
     checkCookie() {
-    let user = this.getCookie();
-    if (user !== '') {
-        alert('Welcome again ' + user);
-    } else {
-        user = prompt('Please enter your name:', '');
-        if (user !== '' && user != null) {
-            this.setCookie('username', user, 365);
+        let user = this.getCookie();
+        if (user !== '') {
+            alert('Welcome again ' + user);
+        } else {
+            user = prompt('Please enter your name:', '');
+            if (user !== '' && user != null) {
+                this.setCookie('username', user, 365);
+            }
         }
     }
-}
+
+
 }

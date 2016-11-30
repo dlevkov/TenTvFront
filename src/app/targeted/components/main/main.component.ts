@@ -2,7 +2,7 @@ import { Component, OnInit, Input, NgZone } from '@angular/core';
 import { Http } from '@angular/http';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
-import { Cookies } from '../../../common/Cookies'
+import { Cookies } from '../../../common/Cookies';
 import { MainService } from '../../services/main.service';
 import { HeadlineModel } from '../../../common/models/headline.model';
 import { MainModel } from '../../../targeted/models/main.model';
@@ -58,6 +58,11 @@ export class MainComponent implements OnInit {
             .subscribe(data => {
                 this.item = data;
                 this.item.isFiltered = this.isFiltered;
+                // if (!this.isInArticle){
+                //     window.setTimeout(() => {
+                //         window.scrollTo(0, 0);
+                //     }, 1000);
+                // }
             });
     }
 
@@ -69,7 +74,7 @@ export class MainComponent implements OnInit {
 
     initFilter() {
         Cookies.getNanaCookie();
-        if (Cookies.nanaFilterSids.length > 0) this.isFiltered = true; else this.isFiltered = false;
+        if (Cookies.nanaFilterSids.length > 0 && Cookies.nanaFilterSids.length !== FilterServiceComponent.filterServices.length) this.isFiltered = true; else this.isFiltered = false;
     }
 
     private handleFilter() {

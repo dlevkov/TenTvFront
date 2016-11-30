@@ -276,7 +276,12 @@ var castTimeHelper = {
     routerHelper: {},
     routeHandler: function(data) {
         castTimeHelper.platform = castTimeHelper.casttimePlayerRef.getMobileOperatingSystem();
-        castTimeHelper.routerHelper = { url: data.routeUrl, isArticle: data.isArticle, isPromoted: data.isPromoted, isTwitter: data.isTwitter };
+        castTimeHelper.routerHelper = {
+            url: data.routeUrl,
+            isArticle: data.isArticle,
+            isPromoted: data.isPromoted,
+            isTwitter: data.isTwitter
+        };
         if (castTimeHelper.platform === "android" && typeof Android !== "undefined") {
             Android.webPageUpdated(JSON.stringify(castTimeHelper.routerHelper));
         } else if (castTimeHelper.platform === "ios" && typeof webkit !== "undefined") {

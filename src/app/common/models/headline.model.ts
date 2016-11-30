@@ -24,8 +24,8 @@ export class HeadlineModel {
     HeadlineType: string;
     AlertId: number = -1;
     PairStart: boolean = false;
-    isDfp(i: any, TopFourEndIndex: any): boolean {
-        return i !== 0 && (i === TopFourEndIndex || (i - TopFourEndIndex) % 6 === 0);
+    isDfp(i: any, TopFourEndIndex: any, AlertsEndIndex: any): boolean {
+        return i !== 0 && (i === TopFourEndIndex || i === AlertsEndIndex || (i >= TopFourEndIndex && (i - TopFourEndIndex) % 5 === 0));
     }
 
     getClass(i: any): string {
@@ -73,7 +73,7 @@ export class HeadlineModel {
         this.PrimeTag = parameters.PrimeTag;
         this.SubTitle = parameters.SubTitle;
         this.ServiceID = parameters.ServiceID;
-        this.StripeColor = FilterServiceComponent.getColorBySid( this.ServiceID) !== '' ? FilterServiceComponent.getColorBySid( this.ServiceID) : parameters.StripeColor;
+        this.StripeColor = FilterServiceComponent.getColorBySid(this.ServiceID) !== '' ? FilterServiceComponent.getColorBySid(this.ServiceID) : parameters.StripeColor;
         this.HebServiceName = parameters.HebServiceName;
         this.MediaStockImageID = parameters.MediaStockImageID;
         this.MediaStockImageAlt = parameters.MediaStockImageAlt;

@@ -6,7 +6,15 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
     selector: 'paragraph',
-    templateUrl: 'paragraph.component.html'
+    templateUrl: 'paragraph.component.html',
+    styles: [
+        `
+        .paragraphContentWraper a{
+            color: blue; 
+            text-decoration: underline;
+        }
+        `
+    ]
 })
 
 export class ParagraphComponent implements OnInit {

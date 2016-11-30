@@ -1,4 +1,4 @@
-import { Component, OnDestroy, ElementRef, NgZone } from '@angular/core';
+import { Component, OnDestroy, ElementRef, NgZone, AfterViewInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
@@ -30,10 +30,14 @@ export class ArticleComponent implements OnDestroy {
                     this.item = data;
                     this.parser.length = this.item.Paragraphs.length;
                     this._loadingUrl = this.item.TitlePic;
+                    window.setTimeout(() => {
+                        window.scrollTo(0, 0); // fix scroll in case of article to article navigation
+                    }, 1000);
+
                 });
 
             // window['AdUnitsCollectionIndex'].reset();
-            window.scrollTo(0, 0); // fix scroll in case of article to article navigation
+
         });
 
     }

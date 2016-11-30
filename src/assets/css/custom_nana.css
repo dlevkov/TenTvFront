@@ -1,3 +1,8 @@
 .thumbnails-b .trc_rbox_header {
     width: 95% !important;
 }
+
+.paragraphContentWraper a {
+    color: blue;
+    text-decoration: underline;
+}

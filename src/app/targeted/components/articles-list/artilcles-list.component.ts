@@ -16,6 +16,7 @@ import { FilterServiceComponent } from '../filter-service/filter-service.compone
 export class ArticlesListComponent {
     @Input() isVisible: boolean = false;
     @Input() sids: number[] = [];
+    @Input() isInArticle: boolean = false;
     private items: Array<ArticleListModel> = [];
     private _subscriber: Subscription;
     private _service: ArticleListService;
@@ -52,9 +53,11 @@ export class ArticlesListComponent {
         this._subscriber = this._service.GetItemsByUri('TenTvAppFront/article-list?' + this._url + '$orderby=DestArticleID desc')
             .subscribe(d => {
                 this.items = d;
-                window.setTimeout(() => {
-                    this.scrollIntoView('articleList');
-                }, 1000);
+                if (!this.isInArticle) {
+                    window.setTimeout(() => {
+                        this.scrollIntoView('articleList');
+                    }, 1000);
+                }
 
             });
     }

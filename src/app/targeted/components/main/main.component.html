@@ -13,7 +13,7 @@
                 [dfpObjectName]='"main"'></dfp>
         </div>
     </div>
-    <articles-list *ngIf="item?.isFiltered" [sids]=[(item?.sids)]></articles-list>
+    <articles-list *ngIf="item?.isFiltered" [sids]=[(item?.sids)] [isInArticle]='isInArticle'></articles-list>
     <twitter-toolbar *ngIf='showTwitter'></twitter-toolbar>
     <filter-service [mainModel]='item'></filter-service>
 </div>

@@ -109,5 +109,5 @@ export class Constants {
 }
 if ('development' === ENV) {
     // Dev
-    Constants.DATA_DOMAIN = 'http://localhost/Nana10MVC/';
+    Constants.DATA_DOMAIN = 'http://api.nana10.co.il/';
 }

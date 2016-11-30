@@ -52,7 +52,10 @@ export class ArticlesListComponent {
         this._subscriber = this._service.GetItemsByUri('TenTvAppFront/article-list?' + this._url + '$orderby=DestArticleID desc')
             .subscribe(d => {
                 this.items = d;
-                this.scrollIntoView('articleList');
+                window.setTimeout(() => {
+                    this.scrollIntoView('articleList');
+                }, 1000);
+
             });
     }
 

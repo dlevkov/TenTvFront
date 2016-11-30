@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 import { Subscription } from '../../../../../node_modules/rxjs/src/Subscription';
 import { ArticleShareData } from '../../models/article-share-data.model';
 import { Component, OnDestroy, ElementRef, NgZone } from '@angular/core';
+=======
+import { Component, OnDestroy, ElementRef, NgZone, AfterViewInit } from '@angular/core';
+>>>>>>> 4cc516df7e3b1ead50f123ee3f8e775c8609ce3d
 import { Http } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleService } from '../../services/article.service';
@@ -34,10 +38,13 @@ export class ArticleComponent implements OnDestroy {
                     this.parser.length = this.item.Paragraphs.length;
                     this._loadingUrl = this.item.TitlePic;
                     this.sendArticleData();
+                    window.setTimeout(() => {
+                        window.scrollTo(0, 0); // fix scroll in case of article to article navigation
+                    }, 1000);
                 });
 
             // window['AdUnitsCollectionIndex'].reset();
-            window.scrollTo(0, 0); // fix scroll in case of article to article navigation
+
         });
 
     }

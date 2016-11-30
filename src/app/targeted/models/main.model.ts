@@ -10,6 +10,7 @@ export class MainModel {
     AlertCounter: number = 0;
     ItemCounter: number = 0;
     TopFourEndIndex: number = -1;
+    AlertsEndIndex: number = -1;
     isFiltered: boolean = false;
     sids: number[] = [];
 
@@ -38,11 +39,17 @@ export class MainModel {
         this.reorganizeAlerts();
         this.reorganizePairs();
         this.setTopFourEndIndex();
+        this.setAlertsEndIndex();
     }
 
     setTopFourEndIndex() {
         this.TopFourEndIndex = 3 + this.AlertHeadlines.length;
     }
+
+    setAlertsEndIndex() {
+        this.AlertsEndIndex = this.AlertHeadlines.length;
+    }
+
     reorganizeAlerts() {
         //
         let i = 1;
@@ -59,7 +66,7 @@ export class MainModel {
         if (this.PairtHeadlines.length % 2 > 0) this.PairtHeadlines.pop();
 
         this.PairtHeadlines.forEach(element => {
-            i = pairStart ? element.CounterId : i + 1;
+            i = pairStart ? element.CounterId + this.AlertCounter : i + 1;
             element.PairStart = pairStart;
             this.Headlines.splice(i, 0, element);
             pairStart = !pairStart;

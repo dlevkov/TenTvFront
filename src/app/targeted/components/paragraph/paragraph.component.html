@@ -5,10 +5,10 @@
     <div style="clear:both;"></div>
     <div *ngIf='item.PicMediaStockImageID' class="rsvp_image_with_caption">
         <!--<a href="article_gallery.html" class="rsvp_imag_expand"></a>-->
-        <img [src]="_loadingUrl" [alt]="item.PicMediaStockImageAlt" />
+        <img [src]="_loadingUrl" [alt]="item?.PicMediaStockImageAlt" />
 
-        <p class="oedoopror">{{item.PicMediaStockImageAlt}} צילום: {{item.PicMediaStockImageCredit}}</p>
+        <p class="oedoopror">{{item?.PicMediaStockImageAlt}} צילום: {{item?.PicMediaStockImageCredit}}</p>
     </div>
     <div style="clear:both;"></div>
 </div>
-<dfp *ngIf="index===2" [placeHolderId]='"ad-div-box" + item?.ArticleID' [dfpStyle]='{"width":"300px","height": "250px","margin":"0 auto","margin-top":"10px","margin-bottom":"10px"}' [dfpObjectName]='"article"'></dfp>
+<dfp *ngIf="index===1" [placeHolderId]='"ad-div-box" + item?.ArticleID' [dfpStyle]='{"width":"300px","height": "250px","margin":"0 auto","margin-top":"10px","margin-bottom":"10px"}' [dfpObjectName]='"article"'></dfp>

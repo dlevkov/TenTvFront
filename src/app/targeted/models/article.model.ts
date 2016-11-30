@@ -23,7 +23,7 @@ export class ArticleModel {
     StripImagePathShow: boolean = true;
     TitlePic: string;
     IsVideo: boolean = false;
-
+    ShareUrl: string;
 
 
     constructor(data: any[]) {
@@ -38,9 +38,9 @@ export class ArticleModel {
         this.IconHref2 = data[0].IconHref2;
         this.ServiceName = data[0].ServiceName;
         this.ServiceID = data[0].ServiceID;
-        this.StripeColor = (FilterServiceComponent.getColorBySid( this.ServiceID) !== '' ? FilterServiceComponent.getColorBySid( this.ServiceID) : data[0].StripeColor);
+        this.StripeColor = (FilterServiceComponent.getColorBySid(this.ServiceID) !== '' ? FilterServiceComponent.getColorBySid(this.ServiceID) : data[0].StripeColor);
         this.ParagraphID = data[0].ParagraphID;
-
+        this.ShareUrl = data[0].ShareURL;
         if (this.ServiceID === 160) {
             this.StripImagePath = data[0].ThumbPicPath;
         } else if (data[0].IconURL2 != null && data[0].IconURL2 !== '') {

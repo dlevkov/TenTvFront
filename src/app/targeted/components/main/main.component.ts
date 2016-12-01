@@ -46,7 +46,7 @@ export class MainComponent implements OnInit {
         }
         this.getItems();
         this.addCounter();
-        this.initFilter();
+        if (!this.isInArticle) this.initFilter();
     }
     isSafary() {
         return false;

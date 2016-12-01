@@ -38,7 +38,7 @@ export class ArticleModel {
         this.IconHref2 = data[0].IconHref2;
         this.ServiceName = data[0].ServiceName;
         this.ServiceID = data[0].ServiceID;
-        this.StripeColor = FilterServiceComponent.getColorBySid( this.ServiceID) !== '' ? FilterServiceComponent.getColorBySid( this.ServiceID) : data[0].StripeColor;
+        this.StripeColor = FilterServiceComponent.getColorBySid(this.ServiceID) !== '' ? FilterServiceComponent.getColorBySid(this.ServiceID) : data[0].StripeColor;
         this.ParagraphID = data[0].ParagraphID;
         this.ShareUrl = data[0].ShareURL;
         if (this.ServiceID === 160) {
@@ -50,10 +50,12 @@ export class ArticleModel {
         }
 
         this.ArticleMediaStockImageID = data[0].ArticleMediaStockImageID;
-        this.TitlePic = Constants.GetImagePathByType(this.ArticleMediaStockImageID, ImageTypes.Article_Default);
+
         console.log(this.TitlePic);
         data.forEach(element => {
             this.Paragraphs.push(new ParagraphModel(element));
         });
+
+        this.TitlePic = typeof this.Paragraphs[0].PicMediaStockImageID !== 'undefined' ? Constants.GetImagePathByType(this.Paragraphs[0].PicMediaStockImageID, ImageTypes.Article_Default) : '';
     }
 }

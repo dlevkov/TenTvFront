@@ -62,6 +62,17 @@ export class ArticlesListComponent {
             });
     }
 
+    generateDfpId(id: number): any {
+        let newid = id / 5;
+        return Math.floor(newid + 3);
+    }
+
+    isDfp(id: number): boolean {
+        // TODO: it's a magic, magic...
+        return id <= (5 * 3) && (id + 1) % 5 === 0;
+    }
+
+
     toggleFilter() {
         window['castTimeHelper'].toggleServiceFilter();
     }

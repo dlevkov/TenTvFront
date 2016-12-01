@@ -13,10 +13,10 @@
 
     <!-- image with caption start -->
     <div style="clear:both;"></div>
-    <div *ngIf='item?.ArticleMediaStockImageID  && !item?.IsVideo' class="rsvp_image_with_caption">
+    <div *ngIf='item?.Paragraphs[0]?.PicMediaStockImageID  && !item?.IsVideo' class="rsvp_image_with_caption">
         <!--<a href="article_gallery.html" class="rsvp_imag_expand"></a>-->
-        <img [src]="_loadingUrl" [alt]="item?.MediaStockImageAlt" />
-        <p class="oedoopror">{{item?.MediaStockImageAlt}} צילום {{item?.MediaStockImageCredit}}</p>
+        <img [src]="_loadingUrl" [alt]="item?.Paragraphs[0]?.PicMediaStockImageAlt" />
+        <p class="oedoopror">{{item?.Paragraphs[0]?.PicMediaStockImageAlt}} צילום {{item?.Paragraphs[0]?.PicMediaStockImageCredit}}</p>
     </div>
 
     <div style="clear:both;"></div>

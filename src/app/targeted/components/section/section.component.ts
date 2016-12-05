@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription, BehaviorSubject } from 'rxjs/Rx';
 import { SectionService } from '../../services/section.service';
 import { SectionModel } from '../../models/section.model';
+import { GoogleTagManager } from '../../../common/components/3rdParty/googleTagManager';
 
 @Component({
     selector: 'section',

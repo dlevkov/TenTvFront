@@ -1,7 +1,8 @@
+import { Subscription } from '../../../../../node_modules/rxjs/src/Subscription';
+import { ArticleShareData } from '../../models/article-share-data.model';
 import { Component, OnDestroy, ElementRef, NgZone, AfterViewInit } from '@angular/core';
 import { Http } from '@angular/http';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Subscription } from 'rxjs/Rx';
+import { ActivatedRoute } from '@angular/router';
 import { ArticleService } from '../../services/article.service';
 import { ArticleModel } from '../../models/article.model';
 import { Constants } from '../../../common/Constants';
@@ -19,9 +20,11 @@ export class ArticleComponent implements OnDestroy {
     private _subscriber: Subscription;
     private _routeSubscriber: Subscription;
     private _loadingUrl: string = Constants.IMAGE_LOADING_URL16_9;
+    private _nanaRouteRef: any;
 
     constructor(public route: ActivatedRoute, http: Http, private myElement: ElementRef, private _ngZone: NgZone) {
         window.angularComponentRef = { component: this, zone: _ngZone };
+        this._nanaRouteRef = window['nanaRoute'];
         this._service = new ArticleService(http);
         this._routeSubscriber = this.route.params.subscribe(x => {
             this._currentId = +x['id'];
@@ -30,10 +33,10 @@ export class ArticleComponent implements OnDestroy {
                     this.item = data;
                     this.parser.length = this.item.Paragraphs.length;
                     this._loadingUrl = this.item.TitlePic;
+                    this.sendArticleData();
                     window.setTimeout(() => {
                         window.scrollTo(0, 0); // fix scroll in case of article to article navigation
                     }, 1000);
-
                 });
 
             // window['AdUnitsCollectionIndex'].reset();
@@ -41,12 +44,14 @@ export class ArticleComponent implements OnDestroy {
         });
 
     }
-
     ngOnDestroy() {
         this._subscriber.unsubscribe();
         this._routeSubscriber.unsubscribe();
     }
-
+    private sendArticleData() {
+        this._nanaRouteRef.invokeRouteEvent(this.item.ShareUrl,
+            true, false, false, new ArticleShareData(this.item.ShareUrl, this.item.Title, this.item.SubTitle));
+    }
     // ***************************************************************************************************************************//
     // Get angular function from external JS:
     // Add to \src\custom-typings.d.ts -  interface Window { angularComponentRef : any; }

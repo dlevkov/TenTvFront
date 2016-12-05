@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, NgZone } from '@angular/core';
+import { Component, OnInit, Input, NgZone, OnChanges } from '@angular/core';
 import { Http } from '@angular/http';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
@@ -12,9 +12,10 @@ import { FilterServiceComponent } from '../filter-service/filter-service.compone
     selector: 'main',
     templateUrl: 'main.component.html'
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, OnChanges {
     @Input() showTwitter: boolean = true;
     @Input() isInArticle: boolean = false;
+    seed: string;
     item: MainModel;
     DfpId: number = 0;
     isFiltered: boolean = false;
@@ -39,14 +40,19 @@ export class MainComponent implements OnInit {
     //     this.DfpId = newid;
     // }
 
+    ngOnChanges() {
+        this.seed = new Date().getMilliseconds().toString();
+    }
+
     ngOnInit() {
+        this.seed = new Date().getMilliseconds().toString();
         let data: string = this.route.snapshot.params['data']; // get list of id's as a string splited by ','
         if (typeof data !== 'undefined' && data) {
             this.isFiltered = true;
         }
         this.getItems();
         this.addCounter();
-        this.initFilter();
+        if (!this.isInArticle) this.initFilter();
     }
     isSafary() {
         return false;

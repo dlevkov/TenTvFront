@@ -142,6 +142,7 @@ export class FilterServiceComponent implements OnInit, OnDestroy {
 
     private clearFilterTextGet() {
         let text = this._clearFilter ? 'true' : 'false';
+
         return this._clearFilterText[text];
     }
 
@@ -150,6 +151,8 @@ export class FilterServiceComponent implements OnInit, OnDestroy {
             element.Checked = !this._clearFilter;
         });
         this._clearFilter = !this._clearFilter;
+        this._classUpdated = 'rsvp_changed_status';
+        this._updateButtonStyle = { 'color': 'red', 'border-color': 'red' };
     }
 
     private initItems() {
@@ -170,7 +173,7 @@ export class FilterServiceComponent implements OnInit, OnDestroy {
         this.getId();
         // TODO, DEVTEAM, make router work properly
         if (this._sids.length > 0) this._router.navigate(['/mainfiltered/' + this._generatedId, { data: this._sids }]); else
-            this._router.navigate(['/']);
+            this._router.navigate(['/main/']);
         // window.location.href = '/mainfiltered/' + this._generatedId + ';data=' + this._sids.join(',');
     }
     private getId() {

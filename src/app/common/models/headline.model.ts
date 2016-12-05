@@ -24,8 +24,11 @@ export class HeadlineModel {
     HeadlineType: string;
     AlertId: number = -1;
     PairStart: boolean = false;
-    isDfp(i: any, TopFourEndIndex: any, AlertsEndIndex: any): boolean {
-        return i !== 0 && (i === TopFourEndIndex || i === AlertsEndIndex || (i >= TopFourEndIndex && (i - TopFourEndIndex) % 5 === 0));
+    isDfp(i: any, TopFourEndIndex: any, AlertsEndIndex: any, isFiltered: boolean): boolean {
+        let res: boolean = false;
+        if (isFiltered) res = i !== 0 && (i === TopFourEndIndex || i === AlertsEndIndex); else
+            res = i !== 0 && (i === TopFourEndIndex || i === AlertsEndIndex || (i >= TopFourEndIndex && (i - TopFourEndIndex) % 5 === 0));
+        return res;
     }
 
     getClass(i: any): string {

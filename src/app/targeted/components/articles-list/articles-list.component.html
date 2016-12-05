@@ -5,4 +5,6 @@
 <div id="articleList"></div>
 <div *ngFor="let item of items; let i=index;">
     <headline-small [item]='item.Headline'></headline-small>
+    <dfp *ngIf="isDfp(i)" [placeHolderId]='"ad-div-upper-strip-" + i + seed' [dfpId]='generateDfpId(i)' [dfpStyle]='{"width":"320px","height": "auto","overflow": "hidden","margin":"0 auto","margin-top":"10px","margin-bottom":"10px", "background-color":"#efedb6"}'
+        [dfpObjectName]='"main"'></dfp>
 </div>

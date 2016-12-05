@@ -16,12 +16,15 @@ import { FilterServiceComponent } from '../filter-service/filter-service.compone
 export class ArticlesListComponent {
     @Input() isVisible: boolean = false;
     @Input() sids: number[] = [];
+    @Input() isInArticle: boolean = false;
+    seed: string;
     private items: Array<ArticleListModel> = [];
     private _subscriber: Subscription;
     private _service: ArticleListService;
     private _url: string = '';
     private _keepGoing: boolean = true;
     private _routeSubscriber: Subscription;
+
 
     constructor(private http: Http, private _router: Router, private _ngZone: NgZone, public route: ActivatedRoute) {
         this._service = new ArticleListService(this.http);
@@ -32,7 +35,7 @@ export class ArticlesListComponent {
 
     init(data: string) {
         //
-
+        this.seed = new Date().getMilliseconds().toString();
         if (typeof data !== 'undefined' && data) {
             data.split(',').forEach(element => {
                 this.sids.push(+element);
@@ -52,12 +55,29 @@ export class ArticlesListComponent {
         this._subscriber = this._service.GetItemsByUri('TenTvAppFront/article-list?' + this._url + '$orderby=DestArticleID desc')
             .subscribe(d => {
                 this.items = d;
-                window.setTimeout(() => {
-                    this.scrollIntoView('articleList');
-                }, 1000);
+                if (!this.isInArticle) {
+                    window.setTimeout(() => {
+                        this.scrollIntoView('articleList');
+                    }, 1000);
+                }
 
             });
     }
+
+    generateDfpId(id: number): any {
+        let newid = id / 5;
+        return Math.floor(newid + 3);
+    }
+
+    ngOnChanges() {
+        this.seed = new Date().getMilliseconds().toPrecision();
+    }
+
+    isDfp(id: number): boolean {
+        // TODO: it's a magic, magic...
+        return id <= (5 * 3) && (id + 1) % 5 === 0;
+    }
+
 
     toggleFilter() {
         window['castTimeHelper'].toggleServiceFilter();

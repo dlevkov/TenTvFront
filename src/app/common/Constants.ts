@@ -81,10 +81,10 @@ export class Constants {
                 currentType = 693;
                 break;
             case ImageTypes.Article_Default:
-                currentType = 1868;
+                currentType = 11;
                 break;
             case ImageTypes.Headline_Small_303_165:
-                currentType = 493;
+                currentType = 14;
                 break;
             case ImageTypes.Main_450_450:
                 currentType = 76;

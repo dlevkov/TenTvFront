@@ -31,6 +31,6 @@ export class ParagraphModel {
         this.ThumbPicLink = data.ThumbPicLink;
         this.PicMediaStockImageAlt = data.PicMediaStockImageAlt;
         this.PicMediaStockImageCredit = data.PicMediaStockImageCredit;
-        this.ImageSrc = Constants.GetImagePathByType(data.PicMediaStockImageID, ImageTypes.Article_Default);
+        this.ImageSrc = Constants.GetImagePathByType(data.PicMediaStockImageID, ImageTypes.Main_450_450);
     }
 }

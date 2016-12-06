@@ -71,21 +71,23 @@ export class TwitterToolbarComponent implements OnInit, OnDestroy, AfterViewChec
     }
 
     getNext() {
-        if (this.items.length <= this._itemId + 1) {
-            this._currentItem = this.items[0];
-        } else {
-            this._itemId++;
-        }
-        this.animateTransition();
+        if (typeof this.items !== 'undefined') {
+            if (this.items.length <= this._itemId + 1) {
+                this._currentItem = this.items[0];
+            } else {
+                this._itemId++;
+            }
+            this.animateTransition();
 
-        this._currentItem = this.items[this._itemId];
+            this._currentItem = this.items[this._itemId];
+        }
     }
     ngOnDestroy() {
         this._subscriber.unsubscribe();
     }
     private animateTransition() {
         let nanaHelper = window['nanaHelper'];
-        nanaHelper.animateslideUp( '#twiiterItemUn');
+        nanaHelper.animateslideUp('#twiiterItemUn');
 
         // this.animateNonSafari();
         // let casttimePlayer = new window['casttimePlayer']();

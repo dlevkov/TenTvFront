@@ -11,7 +11,7 @@
             <headline-adsecond [item]='headline' *ngIf="headline.isAdSecond()"></headline-adsecond>
 
         </div>
-        <dfp *ngIf="!isInArticle && headline.isDfp(i,item?.TopFourEndIndex,item?.AlertsEndIndex,item?.isFiltered)" [placeHolderId]='"ad-div-upper-strip-" + i + seed' [dfpId]='generateDfpId()' [dfpStyle]='{"width":"320px","height": "50px","margin":"0 auto","margin-top":"10px","margin-bottom":"10px", "background-color":"#efedb6"}'
+        <dfp *ngIf="!isInArticle && headline.isDfp(i,item?.TopFourEndIndex,item?.AlertsEndIndex,item?.isFiltered)" [placeHolderId]='"ad-div-upper-strip-" + i + seed' [dfpId]='generateDfpId()' [dfpStyle]='{"width":"320px", "margin":"0 auto","margin-top":"10px","margin-bottom":"10px", "background-color":"transparent"}'
             [dfpObjectName]='"main"'></dfp>
     </div>
     <articles-list *ngIf="item?.isFiltered" [sids]=[(item?.sids)] [isInArticle]='isInArticle'></articles-list>

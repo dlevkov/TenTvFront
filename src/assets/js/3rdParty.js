@@ -237,7 +237,7 @@ function AdUnitsCollection() {
             // refresh and after the slot div is in the page.
             googletag.display(unit.slotName);
             googletag.pubads().refresh([unit.slot]);
-            googletag.pubads().collapseEmptyDivs();
+            googletag.pubads().collapseEmptyDivs(true);
 
             unit.initialized = true;
         });
@@ -389,14 +389,14 @@ var contentParser = {
     }
 };
 var NanaGoogleTag = {
-  groupName: '', //for article and section [SectionName] property of section, default/main value 'tentvapp'
-  ServiceName: '', // for article and section [ServiceName] property of Service, default/main value '0',
-  sponsorshipName: '', // for article and section [Tag] property of Sponsorship, default/main value '0',
-  setNanaGoogleTagParams: function (data) {
-    this.groupName = data.SectionName ? data.SectionName : 'tentvapp';
-    this.ServiceName = data.ServiceName ? data.ServiceName : '0';
-    this.sponsorshipName = data.SponsorShipName ? data.SponsorShipName : '0';
-  },
+    groupName: '', //for article and section [SectionName] property of section, default/main value 'tentvapp'
+    ServiceName: '', // for article and section [ServiceName] property of Service, default/main value '0',
+    sponsorshipName: '', // for article and section [Tag] property of Sponsorship, default/main value '0',
+    setNanaGoogleTagParams: function(data) {
+        this.groupName = data.SectionName ? data.SectionName : 'tentvapp';
+        this.ServiceName = data.ServiceName ? data.ServiceName : '0';
+        this.sponsorshipName = data.SponsorShipName ? data.SponsorShipName : '0';
+    },
 };
 
 nanaRoute.init();

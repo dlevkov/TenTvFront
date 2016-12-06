@@ -38,6 +38,7 @@ import { ParagraphComponent } from './targeted/components/paragraph/paragraph.co
 import { MainComponent } from './targeted/components/main/main.component';
 import { TwitterToolbarComponent } from './common/components/twitter/twitter-toolbar.component';
 import { TwitterComponent } from './common/components/twitter/twitter.component';
+import { GoogleTagManager } from '../app/common/components/3rdParty/googleTagManager';
 
 import { FilterServiceComponent } from './targeted/components/filter-service/filter-service.component';
 import { FilterServiceItemComponent } from './targeted/components/filter-service/filter-service-item.component';
@@ -84,7 +85,8 @@ type StoreType = {
     FilterServiceComponent,
     FilterServiceItemComponent,
     Video,
-    Controller
+    Controller,
+    GoogleTagManager
   ],
   imports: [ // import Angular's modules
     BrowserModule,

@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ArticleService } from '../../services/article.service';
 import { ArticleModel } from '../../models/article.model';
 import { Constants } from '../../../common/Constants';
-
+import { GoogleTagManager } from '../../../common/components/3rdParty/googleTagManager';
 
 @Component({
     selector: 'article',

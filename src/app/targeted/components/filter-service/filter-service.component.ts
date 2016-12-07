@@ -18,9 +18,9 @@ export class FilterServiceComponent implements OnInit, OnDestroy {
         new FilterServiceModel({ HebServiceName: 'חדשות', ServiceID: 126, ServiceName: 'news', StripeColor: '#f7892d' }),
         new FilterServiceModel({ HebServiceName: 'ערוץ 10', ServiceID: 169, ServiceName: 'news', StripeColor: '#f30373' }),
         new FilterServiceModel({ HebServiceName: 'תרבות ובידור', ServiceID: 123, ServiceName: 'news', StripeColor: '#e68479' }),
-        new FilterServiceModel({ HebServiceName: 'אופנה ולייפסטייל', ServiceID: 129, ServiceName: 'news', StripeColor: '#e33194' }),
+        new FilterServiceModel({ HebServiceName: 'לייף סטייל', ServiceID: 129, ServiceName: 'news', StripeColor: '#e33194' }),
         new FilterServiceModel({ HebServiceName: 'אונליין', ServiceID: 127, ServiceName: 'news', StripeColor: '#000000' }),
-        new FilterServiceModel({ HebServiceName: 'אוכל ורק אוכל', ServiceID: 142, ServiceName: 'news', StripeColor: '#bc024a' }),
+        new FilterServiceModel({ HebServiceName: 'אוכל', ServiceID: 142, ServiceName: 'news', StripeColor: '#bc024a' }),
         new FilterServiceModel({ HebServiceName: 'סלבס', ServiceID: 216, ServiceName: 'news', StripeColor: '#dcc608' }),
         new FilterServiceModel({ HebServiceName: 'גיימר', ServiceID: 212, ServiceName: 'news', StripeColor: '#5C9DC0' }),
         new FilterServiceModel({ HebServiceName: 'דוקו', ServiceID: 186, ServiceName: 'news', StripeColor: '#f30373' })

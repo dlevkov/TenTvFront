@@ -128,7 +128,7 @@ var nanaHelper = {
     maxFontSize: 50,
     minFontSize: 16,
     fontInterval: 2,
-    fontSelectors: ['.rsvp_article_inner_content p:not(p.oedoopror)', '.rsvp_article_body_h1', '.rsvp_article_body_h2', '.rsvp_feed_item_title', '.rsvp_article_inner_content strong'],
+    fontSelectors: ['.rsvp_article_inner_content p:not(p.oedoopror)', '.rsvp_article_body_h1', '.rsvp_article_body_h2', '.rsvp_feed_item_title', '.rsvp_article_inner_content *'],
 
     animateslideUp: function(selector) {
         //$nana(selector).slideDown(400);

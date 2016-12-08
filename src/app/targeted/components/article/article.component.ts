@@ -49,7 +49,7 @@ export class ArticleComponent implements OnDestroy {
         this._routeSubscriber.unsubscribe();
     }
     private sendArticleData() {
-        this._nanaRouteRef.invokeRouteEvent(this.item.ShareUrl,
+        this._nanaRouteRef.invokeRouteEvent('/article/' + this.item.ArticleID,
             true, false, false, new ArticleShareData(this.item.ShareUrl, this.item.Title, this.item.SubTitle));
     }
     // ***************************************************************************************************************************//

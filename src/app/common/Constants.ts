@@ -89,6 +89,9 @@ export class Constants {
             case ImageTypes.Main_450_450:
                 currentType = 76;
                 break;
+            case ImageTypes.Small_130_72:
+                currentType = 2;
+                break;
             default:
                 throw new EvalError('Not implemented ImageType:' + item);
         }

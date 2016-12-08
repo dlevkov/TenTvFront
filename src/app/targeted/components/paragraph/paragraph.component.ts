@@ -9,7 +9,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
     templateUrl: 'paragraph.component.html',
     styles: [
         `
-        .paragraphContentWraper a{
+        .paragraphContentWraper a *{
             color: blue; 
             text-decoration: underline;
         }

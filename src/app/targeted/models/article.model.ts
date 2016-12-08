@@ -52,7 +52,9 @@ export class ArticleModel {
         this.ArticleMediaStockImageID = data[0].ArticleMediaStockImageID;
 
         console.log(this.TitlePic);
+        let order: number = 1;
         data.forEach(element => {
+            element.DisplayOrder = order++;
             this.Paragraphs.push(new ParagraphModel(element));
         });
 

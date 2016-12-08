@@ -2,7 +2,7 @@
     width: 95% !important;
 }
 
-.paragraphContentWraper a {
+.paragraphContentWraper a * {
     color: blue;
     text-decoration: underline;
 }

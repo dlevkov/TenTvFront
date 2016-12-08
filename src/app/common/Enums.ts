@@ -20,7 +20,8 @@ export enum ImageTypes {
     Headline_Small_303_165,
     Article_Default,
     Main_450_450,
-    Main_303_165
+    Main_303_165,
+    Small_130_72
 
 }
 export enum HeadlineItemTypes {

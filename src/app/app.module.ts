@@ -1,10 +1,14 @@
-import { NgModule, ApplicationRef } from '@angular/core';
+import { NgModule, ApplicationRef, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 import { ThirdPartyComponent } from './common/components/3rdParty/third-party.component';
+
+// Logger
+import { CustomErrorHandler } from './app.error.handler';
+import { WebApiErrorLogger } from './common/services/webapi-error-logger.service';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -96,8 +100,9 @@ type StoreType = {
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
-    APP_PROVIDERS
-
+    APP_PROVIDERS,
+    // { provide: ErrorHandler, useClass: CustomErrorHandler },
+    // WebApiErrorLogger
   ]
 })
 export class AppModule {

@@ -100,9 +100,9 @@ type StoreType = {
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
-    APP_PROVIDERS,
-    // { provide: ErrorHandler, useClass: CustomErrorHandler },
-    // WebApiErrorLogger
+    APP_PROVIDERS ,
+    { provide: ErrorHandler, useClass: CustomErrorHandler },
+    WebApiErrorLogger
   ]
 })
 export class AppModule {

@@ -15,8 +15,8 @@ export class Dal {
         headers.append('Content-Type', 'application/json');
         return this._http.get(this._dataDomain + uri)
             .map((res: Response) => res.json())
-            .retry(5)
-            .catch(this.handleError);
+            .retry(5);
+            // .catch(this.handleError);
     }
     public handleError(error: Response) {
         console.error(error);

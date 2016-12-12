@@ -33,7 +33,7 @@ export class Video {
     }
 
     getItems() {
-        this._subscriber = this._service.GetItemsByUri('vod/episode/getall?%24top=1&%24filter=Id%20eq%20' + this._currentId)
+        this._subscriber = this._service.GetItemsByUri('vod/episode/getallnews?%24top=1&%24filter=Id%20eq%20' + this._currentId)
             .subscribe(data => {
                 this.item = data;
                 if (typeof this.article !== 'undefined' && typeof data.Id !== 'undefined' && data.Id !== undefined) {

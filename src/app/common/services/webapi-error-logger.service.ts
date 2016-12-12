@@ -3,7 +3,6 @@ import { Http } from '@angular/http';
 import { Observable, Subscription } from 'rxjs/Rx';
 import { Dal } from '../services/dal.service';
 import { Constants } from '../Constants';
-
 @Injectable()
 export class WebApiErrorLogger implements OnDestroy {
     private _dal: Dal;
@@ -13,20 +12,16 @@ export class WebApiErrorLogger implements OnDestroy {
         this._dal = new Dal(_http);
     }
 
-    Log(title: string, message: any): boolean {
-        // this._http.get('http://localhost/Nana10MVC/TenTvAppFront/errorlog?ErrorDesc=112235')
+    Log(title: string, message: any) {
         if (!this._subscriber)
             this._subscriber = this.sendMessage(message).subscribe();
-        return false;
     }
     sendMessage(message: string): Observable<any> {
         return this._http.get(this._dataDomain + 'TenTvAppFront/errorlog?ErrorDesc=' + message)
             .map((res) => {
-                return true;
-            })
-            ;
+                window.location.href = '/main';
+            });
     }
-
     ngOnDestroy() {
         this._subscriber.unsubscribe();
     }

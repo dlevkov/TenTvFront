@@ -49,7 +49,7 @@ export class FilterServiceComponent implements OnInit, OnDestroy {
         'false': 'סמן הכל',
         'true': 'נקה הכל',
     };
-    private _clearFilter: boolean = false;
+    private _clearFilter: boolean = true;
     private _updateButtonStyle = { 'color': '#585756', 'border-color': '#585756' };
     private _filterCookie: Cookies;
     private _filterCookieData: string;

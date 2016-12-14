@@ -56,8 +56,10 @@ export class ArticlesListComponent {
             .subscribe(d => {
                 this.items = d;
                 if (!this.isInArticle) {
-                    window.setTimeout(() => {
-                        this.scrollIntoView('articleList');
+                    setTimeout(() => {
+                        if (this.route.snapshot) {
+                            this.scrollIntoView('articleList');
+                        }
                     }, 1000);
                 }
 
@@ -84,9 +86,11 @@ export class ArticlesListComponent {
     }
 
     scrollIntoView(eleID) {
-        let e = document.getElementById(eleID);
-        if (!!e && e.scrollIntoView) {
-            e.scrollIntoView();
+        if (this.route.snapshot.url['0'].path !== 'main') {
+            let e = document.getElementById(eleID);
+            if (!!e && e.scrollIntoView) {
+                e.scrollIntoView();
+            }
         }
     }
 

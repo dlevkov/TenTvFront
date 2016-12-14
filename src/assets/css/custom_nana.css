@@ -6,3 +6,10 @@
     color: blue;
     text-decoration: underline;
 }
+
+.rsvp_main_article {
+    background: -moz-linear-gradient(top, rgba(26, 26, 26, 0) 0%, rgba(26, 26, 26, 0) 50%, rgba(26, 26, 26, 0.7) 90%, rgba(26, 26, 26, 0.7) 100%);
+    background: -webkit-linear-gradient(top, rgba(26, 26, 26, 0) 0%, rgba(26, 26, 26, 0) 50%, rgba(26, 26, 26, 0.7) 90%, rgba(26, 26, 26, 0.7) 100%);
+    background: linear-gradient(to bottom, rgba(26, 26, 26, 0) 0%, rgba(26, 26, 26, 0) 50%, rgba(26, 26, 26, 0.7) 90%, rgba(26, 26, 26, 0.7) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#001a1a1a', endColorstr='#b31a1a1a', GradientType=0);
+}

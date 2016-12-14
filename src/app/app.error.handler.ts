@@ -5,7 +5,10 @@ import { Response } from '@angular/http';
 export class CustomErrorHandler implements ErrorHandler {
     constructor(private logger: WebApiErrorLogger) { }
     handleError(error: Response) {
-        console.log('Error transferred to custom handler: ' + error);
-        this.logger.Log(error.statusText, error);
+        if ('development' === ENV) {
+            console.log('Error transferred to custom handler: ' + error);
+        } else {
+            this.logger.Log(error.statusText, error);
+        }
     }
 }

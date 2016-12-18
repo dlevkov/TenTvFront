@@ -2,38 +2,37 @@
 <html dir="rtl" lang="he-IL" prefix="og: http://ogp.me/ns#">
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-    crossorigin="anonymous"></script>
-  <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-    crossorigin="anonymous"></script>
-  <script>
-    var $nana = jQuery.noConflict();
-
-  </script>
-  <script src="/assets/js/3rdParty.js?ver=106"></script>
-  <title>
-    <%= webpackConfig.metadata.title %>
-  </title>
-  <meta name="description" content="<%= webpackConfig.metadata.title %>">
-  <% if (webpackConfig.htmlElements.headTags) { %>
-    <!-- Configured Head Tags  -->
-    <%= webpackConfig.htmlElements.headTags %>
-      <% } %>
-        <!-- base url -->
-        <base href="<%= webpackConfig.metadata.baseUrl %>">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <script>
+        var $nana = jQuery.noConflict();
+    </script>
+    <script src="/assets/js/3rdParty.js?ver=106"></script>
+    <title>
+        <%= webpackConfig.metadata.title %>
+    </title>
+    <meta name="description" content="<%= webpackConfig.metadata.title %>">
+    <% if (webpackConfig.htmlElements.headTags) { %>
+        <!-- Configured Head Tags  -->
+        <%= webpackConfig.htmlElements.headTags %>
+            <% } %>
+                <!-- base url -->
+                <base href="<%= webpackConfig.metadata.baseUrl %>">
 </head>
 
 <body>
-  <!--<div id="topFour"></div>-->
-  <img style="width:100%;z-index:-10; position:absolute; " src="/assets/Images/loader.gif" alt="loading...">
-  <app></app>
-  <% if (webpackConfig.metadata.isDevServer && webpackConfig.metadata.HMR !== true) { %>
-    <!-- Webpack Dev Server reload -->
-    <script src="/webpack-dev-server.js"></script>
-    <% } %>
+    <!--<div id="topFour"></div>-->
+    <img id="nanaLoader" style="width:100%;z-index:-10; position:absolute;right:0;top:0;" src="/assets/Images/loader.gif" alt="loading...">
+    <app></app>
+
+
+    <% if (webpackConfig.metadata.isDevServer && webpackConfig.metadata.HMR !== true) { %>
+        <!-- Webpack Dev Server reload -->
+        <script src="/webpack-dev-server.js"></script>
+        <% } %>
 </body>
 
 </html>

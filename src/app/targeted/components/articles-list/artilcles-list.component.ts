@@ -86,7 +86,7 @@ export class ArticlesListComponent {
     }
 
     scrollIntoView(eleID) {
-        if (this.route.snapshot.url['0'].path !== 'main') {
+        if ( typeof this.route.snapshot.url !== 'undefined' && this.route.snapshot.url.length > 0 && this.route.snapshot.url['0'].path !== 'main') {
             let e = document.getElementById(eleID);
             if (!!e && e.scrollIntoView) {
                 e.scrollIntoView();

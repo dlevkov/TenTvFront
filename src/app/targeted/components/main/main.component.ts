@@ -41,7 +41,7 @@ export class MainComponent implements OnInit, OnChanges, AfterViewInit {
     // }
 
     ngAfterViewInit() {
-        window['nanaHelper'].hideLoader();
+        //window['nanaHelper'].hideLoader();
     }
 
     ngOnChanges() {

@@ -3,7 +3,7 @@ export class FilterServiceModel {
     ServiceName: string;
     ServiceID: number;
     HebServiceName: string;
-    Checked: boolean = true;
+    Checked: boolean = false;
     constructor(data) {
         this.HebServiceName = data.HebServiceName;
         this.ServiceID = data.ServiceID;

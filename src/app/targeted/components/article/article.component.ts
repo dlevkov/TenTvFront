@@ -1,12 +1,13 @@
 import { Subscription } from '../../../../../node_modules/rxjs/src/Subscription';
 import { ArticleShareData } from '../../models/article-share-data.model';
-import { Component, OnDestroy, ElementRef, NgZone, AfterViewInit } from '@angular/core';
+import { Component, OnDestroy, ElementRef, NgZone } from '@angular/core';
 import { Http } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleService } from '../../services/article.service';
 import { ArticleModel } from '../../models/article.model';
 import { Constants } from '../../../common/Constants';
 import { GoogleTagManager } from '../../../common/components/3rdParty/googleTagManager';
+import { ScrollTop } from '../../../common/components/scroll-top/scroll-top.component';
 
 @Component({
     selector: 'article',
@@ -35,7 +36,7 @@ export class ArticleComponent implements OnDestroy {
                     this._loadingUrl = this.item.TitlePic;
                     this.sendArticleData();
                     window.setTimeout(() => {
-                        window.scrollTo(0, 0); // fix scroll in case of article to article navigation
+                        ScrollTop.ScrollToTop(); // fix scroll in case of article to article navigation
                     }, 1000);
                 });
 
@@ -44,6 +45,7 @@ export class ArticleComponent implements OnDestroy {
         });
 
     }
+
     ngOnDestroy() {
         this._subscriber.unsubscribe();
         this._routeSubscriber.unsubscribe();

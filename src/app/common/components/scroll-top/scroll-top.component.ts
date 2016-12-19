@@ -11,12 +11,16 @@ import { Constants } from '../../Constants';
 
 export class ScrollTop {
     private _isVisible: boolean = false;
+    public static ScrollToTop() {
+        $nana('html, body').animate({ scrollTop: '0px' }, 300);
+    }
 
     scrolleEvent(event) {
         this._isVisible = (Constants.SCROLL_POSITION < window.pageYOffset) ? true : false;
     }
 
     onClick() {
-        window.scrollTo(0, 0);
+        ScrollTop.ScrollToTop();
     }
+
 }

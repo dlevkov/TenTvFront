@@ -2,7 +2,7 @@
 	<li>
 		<a [routerLink]="['/article', item?.DestArticleID]">
 			<div class="rsvp_play_wrapper" style="width:100%;">
-				<img [src]="loadingUrl" [alt]="item?.MediaStockImageAlt" />
+				<img [src]="loadingUrl" [alt]="item?.MediaStockImageAlt" (load)="imageLoaded()"/>
 				<div class="rsvp_icon_play_outer" *ngIf="item?.VideoID > 0">
 					<div class="rsvp_icon_play"></div>
 				</div>
@@ -16,7 +16,7 @@
     <li>
 		<a [routerLink]="['/article', nextItem?.DestArticleID]">
 			<div class="rsvp_play_wrapper" style="width:100%;">
-				<img [src]="loadingUrlNext" [alt]="nextItem?.MediaStockImageAlt" />
+				<img [src]="loadingUrlNext" [alt]="nextItem?.MediaStockImageAlt" (load)="imageLoaded()"/>
 				<div class="rsvp_icon_play_outer" *ngIf="nextItem?.VideoID > 0">
 					<div class="rsvp_icon_play"></div>
 				</div>

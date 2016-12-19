@@ -3,7 +3,7 @@
 <div class="rsvp_main_article" [ngStyle]="{'margin-bottom': '12px'}">
     <a [routerLink]="['/article', item?.DestArticleID]">
         <div class="mainHeadlineClass"></div>
-        <img [src]="loadingUrl" [alt]="item?.MediaStockImageAlt" />
+        <img [src]="loadingUrl" [alt]="item?.MediaStockImageAlt" (load)="imageLoaded()"/>
         <div class="rsvp_main_article_content">
             <div class="oedooprob rsvp_main_article_cat">{{item?.PrimeTag}}</div>
             <div style="clear:both;"></div>

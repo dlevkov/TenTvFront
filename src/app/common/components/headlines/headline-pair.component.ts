@@ -15,7 +15,14 @@ export class HeadlinePairComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
-        this.loadingUrl = Constants.GetImagePathByType(this.item.MediaStockImageID, ImageTypes.HeadlIne_Big_460_258);
-        this.loadingUrlNext = Constants.GetImagePathByType(this.nextItem.MediaStockImageID, ImageTypes.HeadlIne_Big_460_258);
+        //
+    }
+
+    imageLoaded() {
+        setTimeout(() => {
+            this.loadingUrl = Constants.GetImagePathByType(this.item.MediaStockImageID, ImageTypes.HeadlIne_Big_460_258);
+            this.loadingUrlNext = Constants.GetImagePathByType(this.nextItem.MediaStockImageID, ImageTypes.HeadlIne_Big_460_258);
+        }, this.item.ImageTimeout);
+
     }
 }

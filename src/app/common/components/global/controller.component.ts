@@ -1,4 +1,4 @@
-import { Component, Input, NgZone } from '@angular/core';
+import { Component, Input, NgZone, AfterViewInit } from '@angular/core';
 import { PubSubService } from '../../Global/PubSubService';
 import { Router, ActivatedRoute, Params, NavigationStart } from '@angular/router';
 import { Subscription, BehaviorSubject } from 'rxjs/Rx';
@@ -8,7 +8,7 @@ import { Location } from '@angular/common';
     selector: 'controller',
     template: ''
 })
-export class Controller {
+export class Controller implements AfterViewInit{
     private _routeSubscriber: Subscription;
     private _isVisible: boolean = true;
     private _nanaRouteRef: any;
@@ -38,6 +38,10 @@ export class Controller {
         //         this.handleStatickTopFour(x.url);
         //     }
         // });
+    }
+
+    ngAfterViewInit() {
+        window['nanaHelper'].hideLoader();
     }
 
     getRouteUrl(data: String) {

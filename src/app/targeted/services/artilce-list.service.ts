@@ -18,7 +18,8 @@ export class ArticleListService {
             .map(data => {
                 let items: Array<ArticleListModel> = [];
                 if (data) {
-                    data.forEach((item) => {
+                    data.forEach((item, index) => {
+                    item.ImageTimeout = 1000 + Math.floor(index / 5) * 50;
                         items.push(new ArticleListModel(item));
                     });
                 }

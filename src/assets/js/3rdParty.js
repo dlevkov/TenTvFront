@@ -131,7 +131,7 @@ var nanaHelper = {
     fontSelectors: ['.rsvp_article_inner_content p:not(p.oedoopror)', '.rsvp_article_body_h1', '.rsvp_article_body_h2', '.rsvp_feed_item_title', '.rsvp_article_inner_content *'],
 
     hideLoader: function() {
-        $nana('#nanaLoader').fadeTo(2000, 0.01, function() {
+        $nana('#nanaLoader').fadeTo(1000, 0.01, function() {
             //
         });
     },

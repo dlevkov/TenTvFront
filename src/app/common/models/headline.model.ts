@@ -24,6 +24,7 @@ export class HeadlineModel {
     HeadlineType: string;
     AlertId: number = -1;
     PairStart: boolean = false;
+    ImageTimeout: number = 100;
     isDfp(i: any, TopFourEndIndex: any, AlertsEndIndex: any, isFiltered: boolean): boolean {
         let res: boolean = false;
         if (isFiltered) res = i !== 0 && (i === TopFourEndIndex || i === AlertsEndIndex); else
@@ -69,6 +70,7 @@ export class HeadlineModel {
     get getTypeString(): string {
         return Constants.HEADLINETYPES[this.DisplaySigns];
     }
+
     constructor(parameters) {
         this.DestArticleID = parameters.DestArticleID;
         this.DisplayOrder = parameters.DisplayOrder;
@@ -86,6 +88,6 @@ export class HeadlineModel {
         this.LastModifyDate = parameters.LastModifyDate;
         this.CounterId = parameters.Id;
         this.HeadlineType = this.getTypeString;
-
+        this.ImageTimeout = parameters.ImageTimeout;
     }
 }

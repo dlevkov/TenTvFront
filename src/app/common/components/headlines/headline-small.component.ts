@@ -13,6 +13,13 @@ export class HeadlineSmallComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
-        this.loadingUrl = this.item.MediaStockImageID != null ? Constants.GetImagePathByType(this.item.MediaStockImageID, ImageTypes.Small_130_72) : Constants.IMAGE_LOADING_URL16_9;
+        //
+    }
+
+    imageLoaded() {
+        setTimeout(() => {
+            this.loadingUrl = this.item.MediaStockImageID != null ? Constants.GetImagePathByType(this.item.MediaStockImageID, ImageTypes.Small_130_72) : Constants.IMAGE_LOADING_URL16_9;
+        }, this.item.ImageTimeout);
+
     }
 }

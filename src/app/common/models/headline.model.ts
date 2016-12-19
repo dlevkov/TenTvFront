@@ -35,38 +35,38 @@ export class HeadlineModel {
         return this.HeadlineType;
     }
 
-    isMain(): boolean {
+    get isMain(): boolean {
         return this.CounterId === 0;
     }
-    isTopFour(): boolean {
-        return this.isMain() || (this.CounterId >= 1 && this.CounterId <= 3);
+    get isTopFour(): boolean {
+        return this.isMain || (this.CounterId >= 1 && this.CounterId <= 3);
     }
 
-    isSmall(): boolean {
-        return !this.isTopFour() && (this.HeadlineType === 'Small' || this.HeadlineType === 'Video');
+    get isSmall(): boolean {
+        return !this.isTopFour && (this.HeadlineType === 'Small' || this.HeadlineType === 'Video');
     }
 
-    isBig(): boolean {
-        return !this.isMain() && (this.HeadlineType === 'Big' || this.isTopFour());
+    get isBig(): boolean {
+        return !this.isMain && (this.HeadlineType === 'Big' || this.isTopFour);
     }
 
-    isAlert(): boolean {
-        return !this.isTopFour() && this.HeadlineType === 'Alert';
+    get isAlert(): boolean {
+        return !this.isTopFour && this.HeadlineType === 'Alert';
     }
 
-    isAd(): boolean {
-        return !this.isTopFour() && this.HeadlineType === 'Ad' && !this.AdsSecond;
+    get isAd(): boolean {
+        return !this.isTopFour && this.HeadlineType === 'Ad' && !this.AdsSecond;
     }
 
-    isAdSecond(): boolean {
-        return !this.isTopFour() && this.HeadlineType === 'Ad' && this.AdsSecond;
+    get isAdSecond(): boolean {
+        return !this.isTopFour && this.HeadlineType === 'Ad' && this.AdsSecond;
     }
 
-    isPair(): boolean {
-        return !this.isTopFour() && this.HeadlineType === 'Pair' && this.PairStart;
+    get isPair(): boolean {
+        return !this.isTopFour && this.HeadlineType === 'Pair' && this.PairStart;
     }
 
-    getTypeString(): string {
+    get getTypeString(): string {
         return Constants.HEADLINETYPES[this.DisplaySigns];
     }
     constructor(parameters) {
@@ -85,7 +85,7 @@ export class HeadlineModel {
         this.DisplaySigns = parameters.DisplaySigns;
         this.LastModifyDate = parameters.LastModifyDate;
         this.CounterId = parameters.Id;
-        this.HeadlineType = this.getTypeString();
+        this.HeadlineType = this.getTypeString;
 
     }
 }

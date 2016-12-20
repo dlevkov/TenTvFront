@@ -146,9 +146,6 @@ var nanaHelper = {
         var bottom = top + $nana(elem).height();
         var elemBottom = bottom - offsetbottom;
 
-        console.log('offset top: --- ' + offsettop);
-        console.log('offset bottom: --- ' + offsetbottom);
-
         return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
     },
 

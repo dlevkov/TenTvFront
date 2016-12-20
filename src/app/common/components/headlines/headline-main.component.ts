@@ -18,6 +18,7 @@ export class HeadlineMainComponent implements OnInit, AfterViewChecked {
     }
 
     ngAfterViewChecked() {
+
         if (!this._initialized) {
             window['TopFour'].hide();
             window.scrollTo(0, 0);
@@ -26,9 +27,11 @@ export class HeadlineMainComponent implements OnInit, AfterViewChecked {
     }
 
     imageLoaded() {
-        setTimeout(() => {
-           this.loadingUrl = Constants.GetImagePathByType(this.item.MediaStockImageID, ImageTypes.Main_450_450);
-        }, this.item.ImageTimeout);
+        if (this.item.ImageTimeout > 0) {
+            setTimeout(() => {
+                this.loadingUrl = Constants.GetImagePathByType(this.item.MediaStockImageID, ImageTypes.Main_450_450);
+            }, this.item.ImageTimeout);
+        }
 
     }
 }

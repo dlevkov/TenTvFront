@@ -23,7 +23,7 @@ export class MainModel {
             } else if (element.DisplayOrder >= 2 && element.DisplayOrder <= 4) {
                 element.ImageTimeout = 100;
             } else {
-                element.ImageTimeout = 500;
+                element.ImageTimeout = -1;
             }
             let headline = new HeadlineModel(element);
             headline.AdsSecond = this.adFirst;

@@ -160,7 +160,7 @@ export class FilterServiceComponent implements OnInit, OnDestroy {
 
     private setVisible() {
         $nana(this._element.nativeElement.children[0]).slideToggle(1000);
-        window.scrollTo(0, 0);
+        // window.scrollTo(0, 0);
     }
     private Redirect() {
         this.setVisible();

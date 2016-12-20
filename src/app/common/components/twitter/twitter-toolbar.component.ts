@@ -23,7 +23,7 @@ import { Constants } from '../../Constants';
         ])
     ]
 })
-export class TwitterToolbarComponent implements OnInit, OnDestroy, AfterViewChecked {
+export class TwitterToolbarComponent implements OnInit, OnDestroy {
     items: TwitterModel[];
     animationState: string = 'collapsed';
     private _currentItem: TwitterModel;
@@ -50,12 +50,13 @@ export class TwitterToolbarComponent implements OnInit, OnDestroy, AfterViewChec
                 this.items = data;
                 if (!this._currentItem || this._currentItem.CounterId === 0) // is first time or last DB value
                     this._currentItem = data[0];
+                this.resubscribe();
             });
         this.animationState = 'expanded';
         this.initInterval();
     }
 
-    ngAfterViewChecked() {
+    resubscribe() {
         if (this.items != null && !this._isPolled) {
             console.log('checked change');
             this._subscriber.unsubscribe();
@@ -69,6 +70,21 @@ export class TwitterToolbarComponent implements OnInit, OnDestroy, AfterViewChec
             this._isPolled = true;
         }
     }
+
+    //ngAfterViewChecked() {
+        // if (this.items != null && !this._isPolled) {
+        //     console.log('checked change');
+        //     this._subscriber.unsubscribe();
+        //     this._subscriber = this._service
+        //         .pollITwitts()
+        //         .subscribe(data => {
+        //             this.items = data;
+        //             if (!this._currentItem || this._currentItem.CounterId === 0) // is first time or last DB value
+        //                 this._currentItem = data[0];
+        //         });
+        //     this._isPolled = true;
+        // }
+    //}
 
     getNext() {
         if (typeof this.items !== 'undefined') {

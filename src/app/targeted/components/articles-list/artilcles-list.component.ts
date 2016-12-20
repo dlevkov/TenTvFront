@@ -12,6 +12,9 @@ import { FilterServiceComponent } from '../filter-service/filter-service.compone
 @Component({
     selector: 'articles-list',
     templateUrl: 'articles-list.component.html',
+    // host: {
+    //     '(window:scroll)': 'scrolleEvent($event)'
+    // }
 })
 export class ArticlesListComponent {
     @Input() isVisible: boolean = false;
@@ -24,6 +27,8 @@ export class ArticlesListComponent {
     private _url: string = '';
     private _keepGoing: boolean = true;
     private _routeSubscriber: Subscription;
+    private _currentPage: number = 1;
+    private _itemsPerPage: number = 10;
 
 
     constructor(private http: Http, private _router: Router, private _ngZone: NgZone, public route: ActivatedRoute) {
@@ -50,9 +55,11 @@ export class ArticlesListComponent {
         }
         this._url = '';
         this.sids.forEach((element, index) => {
-            this._url += ('idsList=' + element + '&&');
+            this._url += ('idsList=' + element + '&');
         });
-        this._subscriber = this._service.GetItemsByUri('TenTvAppFront/article-list?' + this._url + '$orderby=DestArticleID desc')
+        ///TenTvAppFront/article-list?idsList=126&%24top=10&%24orderby=DestArticleID%20desc
+        // this._subscriber = this._service.GetItemsByUri('TenTvAppFront/article-list?' + this._url + '$top=' + (this._currentPage++ * this._itemsPerPage) + '&$orderby=DestArticleID desc')
+        this._subscriber = this._service.GetItemsByUri('TenTvAppFront/article-list?' + this._url + '$top=' + 100 + '&$orderby=DestArticleID desc')
             .subscribe(d => {
                 this.items = d;
                 if (!this.isInArticle) {
@@ -63,6 +70,18 @@ export class ArticlesListComponent {
                     }, 1000);
                 }
 
+            });
+    }
+
+//  scrolleEvent(event) {
+// if($(window).scrollTop() + $(window).height() == $(document).height()) {
+//        alert("bottom!");
+//    }
+//  }
+    loadMore() {
+        this._subscriber = this._service.GetItemsByUri('TenTvAppFront/article-list?' + this._url + '$top=' + (this._currentPage++ * this._itemsPerPage) + '&$orderby=DestArticleID desc')
+            .subscribe(d => {
+                this.items = d;
             });
     }
 
@@ -86,7 +105,7 @@ export class ArticlesListComponent {
     }
 
     scrollIntoView(eleID) {
-        if ( typeof this.route.snapshot.url !== 'undefined' && this.route.snapshot.url.length > 0 && this.route.snapshot.url['0'].path !== 'main') {
+        if (typeof this.route.snapshot.url !== 'undefined' && this.route.snapshot.url.length > 0 && this.route.snapshot.url['0'].path !== 'main') {
             let e = document.getElementById(eleID);
             if (!!e && e.scrollIntoView) {
                 e.scrollIntoView();

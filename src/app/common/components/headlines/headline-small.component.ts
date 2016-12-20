@@ -13,6 +13,7 @@ import { ImageTypes } from '../../Enums';
 export class HeadlineSmallComponent implements OnInit {
     @Input() item: HeadlineModel;
     loadingUrl = Constants.IMAGE_LOADING_URL16_9;
+    public DoCheck: boolean = true;
     constructor(private myElement: ElementRef) {
     }
 
@@ -21,8 +22,9 @@ export class HeadlineSmallComponent implements OnInit {
     }
 
     scrolleEvent(event) {
-        if (window['nanaHelper'].isScrolledIntoView( this.myElement.nativeElement)) {
+        if (this.DoCheck && window['nanaHelper'].isScrolledIntoView( this.myElement.nativeElement)) {
             this.loadingUrl = this.item.MediaStockImageID != null ? Constants.GetImagePathByType(this.item.MediaStockImageID, ImageTypes.Small_130_72) : Constants.IMAGE_LOADING_URL16_9;
+            this.DoCheck = false;
         }
     }
 

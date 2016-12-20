@@ -7,7 +7,7 @@ import { ImageTypes } from '../../Enums';
     selector: 'headline-main',
     templateUrl: 'headline-main.component.html'
 })
-export class HeadlineMainComponent implements OnInit, AfterViewChecked {
+export class HeadlineMainComponent implements OnInit {
     @Input() item: HeadlineModel;
     loadingUrl = Constants.IMAGE_LOADING_URL;
     private _initialized: boolean = false;
@@ -15,16 +15,21 @@ export class HeadlineMainComponent implements OnInit, AfterViewChecked {
 
     ngOnInit() {
         //
-    }
-
-    ngAfterViewChecked() {
-
-        if (!this._initialized) {
+         if (!this._initialized) {
             window['TopFour'].hide();
             window.scrollTo(0, 0);
             this._initialized = true;
         }
     }
+
+    // ngAfterViewChecked() {
+
+    //     if (!this._initialized) {
+    //         window['TopFour'].hide();
+    //         window.scrollTo(0, 0);
+    //         this._initialized = true;
+    //     }
+    // }
 
     imageLoaded() {
         if (this.item.ImageTimeout > 0) {

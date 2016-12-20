@@ -6,14 +6,15 @@ import { ImageTypes } from '../../Enums';
 @Component({
     selector: 'headline-big',
     templateUrl: 'headline-big.component.html',
-     host: {
+    host: {
         '(window:scroll)': 'scrolleEvent($event)'
     }
 })
 export class HeadlineBigComponent implements OnInit {
     @Input() item: HeadlineModel;
+    DoCheck: boolean = true;
     loadingUrl = Constants.IMAGE_LOADING_URL16_9;
-   constructor(private myElement: ElementRef) {
+    constructor(private myElement: ElementRef) {
     }
 
     ngOnInit() {
@@ -21,8 +22,9 @@ export class HeadlineBigComponent implements OnInit {
     }
 
     scrolleEvent(event) {
-        if (window['nanaHelper'].isScrolledIntoView(this.myElement.nativeElement)) {
+        if (this.DoCheck && window['nanaHelper'].isScrolledIntoView(this.myElement.nativeElement)) {
             this.loadingUrl = Constants.GetImagePathByType(this.item.MediaStockImageID, ImageTypes.HeadlIne_Big_460_258);
+            this.DoCheck = false;
         }
     }
 

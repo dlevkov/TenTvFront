@@ -12,7 +12,7 @@ import { Constants } from '../../Constants';
 export class ScrollTop {
     private _isVisible: boolean = false;
     public static ScrollToTop() {
-        $nana('html, body').animate({ scrollTop: '0px' }, 300);
+        $nana('html:not(:animated),body:not(:animated)').animate({ scrollTop: '0px' }, 1000, 'swing');
     }
 
     scrolleEvent(event) {

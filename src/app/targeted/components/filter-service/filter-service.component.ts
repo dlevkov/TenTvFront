@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, NgZone, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, NgZone, Input, ElementRef } from '@angular/core';
 import { FilterServiceModel } from '../../../common/models/filter-service.model';
 import { Constants } from '../../../common/Constants';
 import { Subscription } from 'rxjs/Rx';
@@ -41,7 +41,6 @@ export class FilterServiceComponent implements OnInit, OnDestroy {
     private _loadingUrl = Constants.IMAGE_LOADING_URL16_9;
     private _service: FilterServiceService;
     private _subscriber: Subscription;
-    private _isVisible: boolean = false;
     private _sids: number[] = [];
     private _generatedId: string;
     private _classUpdated: string = '';
@@ -64,7 +63,7 @@ export class FilterServiceComponent implements OnInit, OnDestroy {
         return color;
     }
 
-    constructor(http: Http, private _router: Router, private _ngZone: NgZone, public route: ActivatedRoute) {
+    constructor(http: Http, private _router: Router, private _ngZone: NgZone, public route: ActivatedRoute, private _element: ElementRef) {
         this._service = new FilterServiceService(http);
         window.angularComponentRef = { component: this, zone: _ngZone };
         this._routeSubscriber = this.route.params.subscribe(x => {
@@ -160,9 +159,7 @@ export class FilterServiceComponent implements OnInit, OnDestroy {
     }
 
     private setVisible() {
-        this._isVisible = !this._isVisible;
-        window['castTimeHelper'].triggerFilter(this._isVisible);
-        //if (this._isVisible) this.init();
+        $nana(this._element.nativeElement.children[0]).slideToggle(1000);
         window.scrollTo(0, 0);
     }
     private Redirect() {

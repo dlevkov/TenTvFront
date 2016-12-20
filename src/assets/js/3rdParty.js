@@ -136,6 +136,19 @@ var nanaHelper = {
         });
     },
 
+    isScrolledIntoView: function(elem) {
+        var docViewTop = $nana(window).scrollTop();
+        var docViewBottom = docViewTop + $nana(window).height();
+        var top = $nana(elem).offset().top;
+        var offsettop = $nana(elem).height() * 0.25
+        var elemTop = top + offsettop;
+        var offsetbottom = $nana(elem).height() * 0.25
+        var bottom = top + $nana(elem).height();
+        var elemBottom = bottom - offsetbottom;
+
+        return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+    },
+
     animateFilterToggle: function(elem) {
         $nana(elem).hide("slide", {
             direction: "down"

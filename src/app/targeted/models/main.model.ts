@@ -18,10 +18,12 @@ export class MainModel {
         data.forEach(element => {
             this.headlinePushValid = true;
             element.Id = this.ItemCounter++;
-            if(element.DisplayOrder >= 1 && element.DisplayOrder <= 4){
+            if (element.DisplayOrder === 1) {
+                element.ImageTimeout = 10;
+            } else if (element.DisplayOrder >= 2 && element.DisplayOrder <= 4) {
                 element.ImageTimeout = 100;
-            } else{
-                element.ImageTimeout = 200;
+            } else {
+                element.ImageTimeout = -1;
             }
             let headline = new HeadlineModel(element);
             headline.AdsSecond = this.adFirst;

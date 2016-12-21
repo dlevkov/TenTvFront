@@ -16,25 +16,6 @@ $nana(document).ready(function() {
     //AdUnitsCollectionIndex.init();
 });
 
-var TopFour = {
-    url: 'http://m.nana10.co.il/complex/home',
-    elementId: 'topFour',
-    init: function() {
-        // $nana.ajax({
-        //         method: "GET",
-        //         url: TopFour.url,
-        //         dataType: "html",
-        //         jsonp: true,
-        //     })
-        //     .done(function(data) {
-        //         $nana("#" + TopFour.elementId).html(data);
-        //     });
-    },
-    hide: function() {
-        // $nana("#" + TopFour.elementId).hide();
-    }
-};
-
 //casttime native player
 function casttimePlayer() {
     this.platform = "unknown";
@@ -130,12 +111,6 @@ var nanaHelper = {
     fontInterval: 2,
     fontSelectors: ['.rsvp_article_inner_content p:not(p.oedoopror)', '.rsvp_article_body_h1', '.rsvp_article_body_h2', '.rsvp_feed_item_title', '.rsvp_article_inner_content *'],
 
-    hideLoader: function() {
-        $nana('#nanaLoader').fadeTo(1000, 0, function() {
-            //
-        });
-    },
-
     isScrolledIntoView: function(elem) {
         var docViewTop = $nana(window).scrollTop();
         var docViewBottom = docViewTop + $nana(window).height();
@@ -148,26 +123,6 @@ var nanaHelper = {
 
         return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
     },
-
-    animateFilterToggle: function(elem) {
-        $nana(elem).hide("slide", {
-            direction: "down"
-        }, 2000);
-    },
-
-    animateslideUp: function(selector) {
-        //$nana(selector).slideDown(400);
-        $nana(selector).hide("slide", {
-            direction: "down"
-        }, 400);
-        window.setTimeout(function() {
-            $nana(selector).show("slide", {
-                direction: "up"
-            }, 700);
-            //$nana(selector).slideUp(700);
-        }, 450);
-    },
-
 
     changeFontSize: function(zoomin) {
         console.log('zoomin: ' + zoomin);

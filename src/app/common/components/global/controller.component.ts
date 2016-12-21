@@ -1,4 +1,4 @@
-import { Component, Input, NgZone, AfterViewInit } from '@angular/core';
+import { Component, Input, NgZone, OnInit } from '@angular/core';
 import { PubSubService } from '../../Global/PubSubService';
 import { Router, ActivatedRoute, Params, NavigationStart } from '@angular/router';
 import { Subscription, BehaviorSubject } from 'rxjs/Rx';
@@ -8,7 +8,7 @@ import { Location } from '@angular/common';
     selector: 'controller',
     template: ''
 })
-export class Controller implements AfterViewInit{
+export class Controller implements OnInit {
     private _routeSubscriber: Subscription;
     private _isVisible: boolean = true;
     private _nanaRouteRef: any;
@@ -22,7 +22,6 @@ export class Controller implements AfterViewInit{
             // Do whatever in here
             if (x instanceof NavigationStart) {
                 this._nanaRouteRef.invokeRouteEvent(x.url, this.isArticle(x.url), this.isSection(x.url), this.isTwitter(x.url), null);
-                this.handleStatickTopFour(x.url);
             }
         });
         this._router.events
@@ -31,17 +30,11 @@ export class Controller implements AfterViewInit{
                 if (!evt.url.includes('/mainfiltered/'))
                     console.log('maavaron on:' + evt.url);
             });
-        // this._router.events.forEach((x) => {
-        //     // Do whatever in here
-        //     if (x instanceof NavigationEnd) {
-        //         this._nanaRouteRef.invokeRouteEvent(x.url);
-        //         this.handleStatickTopFour(x.url);
-        //     }
-        // });
     }
 
-    ngAfterViewInit() {
-        window['nanaHelper'].hideLoader();
+
+    ngOnInit() {
+        $nana('#nanaLoader').fadeOut(3000);
     }
 
     getRouteUrl(data: String) {
@@ -56,13 +49,7 @@ export class Controller implements AfterViewInit{
             this._location.back(); // in HTML5 window.history.back(); works fine
         });
     }
-    private handleStatickTopFour(path: string) {
-        if (path === '/' || path === '/main') {
-            // window['TopFour'].hide();
-        } else {
-            window['TopFour'].hide();
-        }
-    }
+
 
     private isArticle(url: string) {
         return false; // Article part handeled in Article.component

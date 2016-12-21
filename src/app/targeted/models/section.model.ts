@@ -17,7 +17,14 @@ export class SectionModel {
 
             element.DestArticleID = element.ArticleID; // renaming for next operation
             element.LastModifyDate = element.ModifyDate;
+            element.DisplayOrder = i;
             element.Id = i++;
+            if (element.Id <= 5) {
+                element.ImageTimeout = 100;
+            } else {
+                element.ImageTimeout = -1;
+            }
+
             this.Headlines.push(new HeadlineModel(element));
         });
     }

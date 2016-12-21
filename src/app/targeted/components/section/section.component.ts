@@ -16,9 +16,14 @@ export class SectionComponent implements OnInit, OnDestroy {
     private _currentId: number;
     private _service: SectionService;
     private _subscriber: Subscription;
+    private _dfpId: number = 1;
 
     constructor(public route: ActivatedRoute, http: Http) {
         this._service = new SectionService(http);
+    }
+
+    generateDfpId(i: number): number {
+        return Math.floor(i / 4);
     }
 
     ngOnInit() {

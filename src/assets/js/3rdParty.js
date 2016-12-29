@@ -111,19 +111,6 @@ var nanaHelper = {
     fontInterval: 2,
     fontSelectors: ['.rsvp_article_inner_content p:not(p.oedoopror)', '.rsvp_article_body_h1', '.rsvp_article_body_h2', '.rsvp_feed_item_title', '.rsvp_article_inner_content *'],
 
-    isScrolledIntoView: function(elem) {
-        var docViewTop = $nana(window).scrollTop();
-        var docViewBottom = docViewTop + $nana(window).height();
-        var top = $nana(elem).offset().top;
-        var offsettop = $nana(elem).height() * 0.25
-        var elemTop = top + offsettop;
-        var offsetbottom = $nana(elem).height() * 0.25
-        var bottom = top + $nana(elem).height();
-        var elemBottom = bottom - offsetbottom;
-
-        return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
-    },
-
     changeFontSize: function(zoomin) {
         console.log('zoomin: ' + zoomin);
         this.currentFontSize = parseInt($nana(this.fontSelectors[0]).css("font-size"));

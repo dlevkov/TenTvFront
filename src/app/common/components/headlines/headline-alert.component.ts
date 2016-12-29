@@ -34,14 +34,12 @@ export class HeadlineAlertComponent implements OnInit {
     }
 
     private getItemClass() {
-        if (this.countId === (this.item.AlertId + 1)) {
+        if (this.countId === (this.item.AlertId + 1))
             return 'rsvp_main_article_updates AlertItemLast';
-        } else if (this.item.AlertId === 0) {
+
+        if (this.item.AlertId === 0)
             return 'rsvp_main_article_updates AlertItemFirst';
-        } else {
-            return 'rsvp_main_article_updates AlertItem';
-        }
+
+        return 'rsvp_main_article_updates AlertItem';
     }
-
-
 }

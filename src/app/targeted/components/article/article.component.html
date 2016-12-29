@@ -34,6 +34,7 @@
             <span class="rsvp_date">עודכן {{item?.ModifyDateFormatted}}</span>
         </div>
         <div class="rsvp_flc"></div>
+        <br>
         <paragraph [item]='paragraph' [index]='i' *ngFor="let paragraph of item?.Paragraphs; let i = index"></paragraph>
     </div>
     <dfp [placeHolderId]='"ad-div-box" + item?.ArticleID' [dfpStyle]='{"width":"300px", "margin":"0 auto","margin-top":"10px","margin-bottom":"10px"}' [dfpObjectName]='"article"'></dfp>

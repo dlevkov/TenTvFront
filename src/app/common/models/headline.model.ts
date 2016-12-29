@@ -24,10 +24,11 @@ export class HeadlineModel {
     HeadlineType: string;
     AlertId: number = -1;
     PairStart: boolean = false;
-    ImageTimeout: number = 100;
+    ImageTimeout: number = -1;
     isDfp(i: any, TopFourEndIndex: any, AlertsEndIndex: any, isFiltered: boolean): boolean {
         let res: boolean = false;
-        if (isFiltered) res = i !== 0 && (i === TopFourEndIndex || i === AlertsEndIndex); else
+        if (isFiltered)
+            res = i !== 0 && (i === TopFourEndIndex || i === AlertsEndIndex); else
             res = i !== 0 && (i === TopFourEndIndex || i === AlertsEndIndex || (i >= TopFourEndIndex && (i - TopFourEndIndex) % 5 === 0));
         return res;
     }

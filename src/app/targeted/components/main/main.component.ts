@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, NgZone, OnChanges, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, NgZone, OnChanges } from '@angular/core';
 import { Http } from '@angular/http';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
@@ -12,7 +12,7 @@ import { FilterServiceComponent } from '../filter-service/filter-service.compone
     selector: 'main',
     templateUrl: 'main.component.html'
 })
-export class MainComponent implements OnInit, OnChanges, AfterViewInit {
+export class MainComponent implements OnInit, OnChanges {
     @Input() showTwitter: boolean = true;
     @Input() isInArticle: boolean = false;
     seed: string;
@@ -26,29 +26,17 @@ export class MainComponent implements OnInit, OnChanges, AfterViewInit {
         this._service = new MainService(this.http);
     }
 
-    generateDfpId(): any {
-        let newid = this.DfpId;
-        return newid;
+    generateDfpId(): number {
+        return this.DfpId;
     }
 
-    addCounter() {
+    addCounter(): void {
         this.DfpId++;
-    }
-
-
-    // set generateDfpId(newid: number): any {
-    //     this.DfpId = newid;
-    // }
-
-    ngAfterViewInit() {
-        //window['nanaHelper'].hideLoader();
     }
 
     ngOnChanges() {
         this.seed = new Date().getMilliseconds().toString();
     }
-
-
 
     ngOnInit() {
         this.seed = new Date().getMilliseconds().toString();
@@ -70,18 +58,13 @@ export class MainComponent implements OnInit, OnChanges, AfterViewInit {
             .subscribe(data => {
                 this.item = data;
                 this.item.isFiltered = this.isFiltered;
-                // if (!this.isInArticle){
-                //     window.setTimeout(() => {
-                //         window.scrollTo(0, 0);
-                //     }, 1000);
-                // }
             });
     }
 
     ngOnDestroy() {
         this._subscriber.unsubscribe();
         window['AdUnitsCollectionIndex'].reset();
-        console.log('main detor');
+        console.log('main dtor');
     }
 
     initFilter() {

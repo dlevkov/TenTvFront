@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, ElementRef } from '@angular/core';
+import { Component, Input, ElementRef } from '@angular/core';
 import { HeadlineModel } from '../../models/headline.model';
 import { Constants } from '../../Constants';
 import { ImageTypes } from '../../Enums';
-
+import { HeadlineBase, CustomBaseModel } from './headline-base.component';
 @Component({
     selector: 'headline-big',
     templateUrl: 'headline-big.component.html',
@@ -10,30 +10,42 @@ import { ImageTypes } from '../../Enums';
         '(window:scroll)': 'scrolleEvent($event)'
     }
 })
-export class HeadlineBigComponent implements OnInit {
+export class HeadlineBigComponent {
     @Input() item: HeadlineModel;
-    DoCheck: boolean = true;
-    loadingUrl = Constants.IMAGE_LOADING_URL16_9;
-    constructor(private myElement: ElementRef) {
-    }
+    _changedToRealImage: boolean = false;
+    private _basic: HeadlineBase;
+    private _baseModel = new CustomBaseModel();
+    private _imageType = ImageTypes.HeadlIne_Big_460_258;
 
-    ngOnInit() {
-        //
+    constructor(private myElement: ElementRef) {
+        this._basic = new HeadlineBase(myElement, this._baseModel);
     }
 
     scrolleEvent(event) {
-        if (this.DoCheck && window['nanaHelper'].isScrolledIntoView(this.myElement.nativeElement)) {
-            this.loadingUrl = Constants.GetImagePathByType(this.item.MediaStockImageID, ImageTypes.HeadlIne_Big_460_258);
-            this.DoCheck = false;
+        if (!this._changedToRealImage && this.isVisible) {
+            this.loadUrl();
         }
     }
 
     imageLoaded() {
-        if (this.item.ImageTimeout > 0) {
+        if (this.item.ImageTimeout > 0 && !this._changedToRealImage) {
             setTimeout(() => {
-                this.loadingUrl = Constants.GetImagePathByType(this.item.MediaStockImageID, ImageTypes.HeadlIne_Big_460_258);
+                this.loadUrl();
             }, this.item.ImageTimeout);
         }
+    }
 
+    private loadUrl() {
+        this._basic.loadUrl(this.item.MediaStockImageID, this._imageType);
+        this._changedToRealImage = true;
+    }
+    get isVisible() {
+        return this._basic.isVisible();
+    }
+    get loadingUrl() {
+        return this._baseModel.loadingUrl;
+    }
+    set loadingUrl(value: string) {
+        this._baseModel.loadingUrl = value;
     }
 }

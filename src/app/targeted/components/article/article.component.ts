@@ -35,20 +35,23 @@ export class ArticleComponent implements OnDestroy {
                     this.parser.length = this.item.Paragraphs.length;
                     this._loadingUrl = this.item.TitlePic;
                     this.sendArticleData();
-                    window.setTimeout(() => {
-                        ScrollTop.ScrollToTop(); // fix scroll in case of article to article navigation
-                    }, 1000);
+                    this.fancyScrollToTop();
                 });
-
-            // window['AdUnitsCollectionIndex'].reset();
-
         });
-
     }
 
     ngOnDestroy() {
         this._subscriber.unsubscribe();
         this._routeSubscriber.unsubscribe();
+    }
+    private animateTransition() {
+        $nana('article').delay(400).fadeIn(1000);
+    }
+
+    private fancyScrollToTop() {
+        $nana('article').fadeOut(300);
+        ScrollTop.ScrollToTop(); // fix scroll in case of article to article navigation
+        this.animateTransition();
     }
     private sendArticleData() {
         this._nanaRouteRef.invokeRouteEvent('/article/' + this.item.ArticleID,

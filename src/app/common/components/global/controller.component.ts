@@ -34,7 +34,7 @@ export class Controller implements OnInit {
 
 
     ngOnInit() {
-        $nana('#nanaLoader').fadeOut(3000);
+        $nana('#nanaLoader').fadeOut(300);
     }
 
     getRouteUrl(data: String) {
